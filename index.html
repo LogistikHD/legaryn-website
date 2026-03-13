@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Legaryn Mythic Legends — Summon creatures of ancient power. Build your empire. Dominate the dark realm. Join the waitlist and claim a FREE Epic Summon on launch day." />
+  <meta property="og:title" content="Legaryn Mythic Legends" />
+  <meta property="og:description" content="Join the waitlist and claim a FREE Epic Summon on launch day." />
+  <meta property="og:url" content="https://legaryn.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@legaryn" />
+  <title>Legaryn — Mythic Legends</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: #0a0a0f;
+      color: #e8e8e8;
+      overflow-x: hidden;
+    }
+
+    /* PARTICLES */
+    .particles { position: absolute; top:0; left:0; right:0; bottom:0; pointer-events:none; overflow:hidden; }
+    .particle { position:absolute; width:2px; height:2px; background:#00E5CC; border-radius:50%; opacity:0; animation: rise linear infinite; }
+    @keyframes rise {
+      0%   { opacity:0; transform:translateY(100vh); }
+      10%  { opacity:0.3; }
+      90%  { opacity:0.3; }
+      100% { opacity:0; transform:translateY(-10px); }
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(180deg, #0a0a0f 0%, #0d1a1a 50%, #0a0a0f 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem 3rem;
+      position: relative;
+    }
+
+    .rune-ring {
+      width: 110px;
+      height: 110px;
+      border: 1px solid #00E5CC;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      position: relative;
+      animation: pulse-ring 3s ease-in-out infinite;
+    }
+    @keyframes pulse-ring {
+      0%,100% { box-shadow: 0 0 10px #00E5CC33, inset 0 0 10px #00E5CC11; }
+      50%      { box-shadow: 0 0 30px #00E5CC66, inset 0 0 20px #00E5CC22; }
+    }
+    .rune-ring::before {
+      content: '';
+      position: absolute;
+      width: 90px; height: 90px;
+      border: 1px solid #00E5CC33;
+      border-radius: 50%;
+    }
+    .crown { font-size: 36px; filter: drop-shadow(0 0 8px #00E5CC); }
+
+    .game-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+      filter: drop-shadow(0 0 20px #FFD70044);
+    }
+
+    .game-subtitle {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.85rem, 2vw, 1.2rem);
+      color: #00E5CC;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+
+    .divider {
+      width: 180px; height: 1px;
+      background: linear-gradient(90deg, transparent, #00E5CC, transparent);
+      margin: 1.75rem auto;
+    }
+
+    /* REWARD BOX */
+    .reward-box {
+      border: 1px solid #FFD70055;
+      background: #0d1a0d;
+      padding: 1.25rem 2rem;
+      margin-bottom: 1.75rem;
+      position: relative;
+      max-width: 440px;
+      width: 100%;
+    }
+    .reward-box::before { content:''; position:absolute; top:0; left:0; width:40px; height:2px; background:#FFD700; }
+    .reward-box::after  { content:''; position:absolute; bottom:0; right:0; width:40px; height:2px; background:#FFD700; }
+    .reward-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      color: #FFD700;
+      text-transform: uppercase;
+      font-family: 'Cinzel', serif;
+      margin-bottom: 0.5rem;
+    }
+    .reward-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .reward-title span { color: #a855f7; text-shadow: 0 0 10px #a855f766; }
+    .reward-desc { font-size: 0.8rem; color: #888; margin-top: 0.4rem; line-height: 1.6; }
+
+    .tagline {
+      font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+      color: #999;
+      max-width: 460px;
+      line-height: 1.9;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      margin-bottom: 2rem;
+    }
+    .tagline strong { color: #00E5CC; font-weight: 600; }
+
+    /* EMAIL FORM */
+    .email-form {
+      display: flex;
+      max-width: 440px;
+      width: 100%;
+      border: 1px solid #00E5CC55;
+      overflow: hidden;
+    }
+    .email-input {
+      flex: 1;
+      background: #0d1a1a;
+      border: none;
+      color: #e8e8e8;
+      padding: 0.9rem 1.25rem;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      min-width: 0;
+    }
+    .email-input::placeholder { color: #444; }
+    .join-btn {
+      background: #00E5CC;
+      border: none;
+      color: #0a0a0f;
+      padding: 0.9rem 1.4rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .join-btn:hover { background: #00ffdd; }
+
+    .fine-print { font-size: 0.7rem; color: #444; margin-top: 0.6rem; letter-spacing: 0.03em; }
+
+    .success-msg {
+      display: none;
+      color: #00E5CC;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      padding: 1rem 1.5rem;
+      border: 1px solid #00E5CC33;
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+    }
+
+    /* SOCIALS */
+    .socials-section { margin-top: 2.5rem; }
+    .socials-label { font-size: 0.65rem; letter-spacing: 0.3em; color: #444; text-transform: uppercase; margin-bottom: 0.85rem; }
+    .social-links { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.1rem;
+      border: 1px solid #00E5CC22;
+      color: #00E5CC;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .social-link:hover { border-color: #00E5CC; background: #00E5CC11; }
+    .social-icon { width: 16px; height: 16px; fill: #00E5CC; flex-shrink: 0; }
+
+    /* FEATURES */
+    .features {
+      padding: 5rem 2rem;
+      background: #0d0d12;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .section-title { font-family: 'Cinzel', serif; font-size: clamp(1.1rem, 3vw, 1.7rem); color: #FFD700; letter-spacing: 0.1em; margin-bottom: 0.4rem; text-align: center; }
+    .section-sub { color: #444; font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 3rem; text-align: center; }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1.25rem;
+      max-width: 860px;
+      width: 100%;
+    }
+    .feature-card {
+      border: 1px solid #00E5CC1a;
+      padding: 1.75rem 1.5rem;
+      background: #0a0a0f;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+    .feature-card::before { content:''; position:absolute; top:0; left:0; width:28px; height:2px; background:#00E5CC; }
+    .feature-card:hover { border-color: #00E5CC44; }
+    .feature-icon { font-size: 1.4rem; margin-bottom: 0.85rem; display: block; }
+    .feature-name { font-family: 'Cinzel', serif; font-size: 0.85rem; color: #FFD700; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+    .feature-desc { font-size: 0.82rem; color: #555; line-height: 1.7; font-weight: 300; }
+
+    /* FOOTER */
+    footer {
+      background: #0a0a0f;
+      border-top: 1px solid #00E5CC1a;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      color: #2a2a2a;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 480px) {
+      .email-form { flex-direction: column; }
+      .join-btn { padding: 0.9rem; }
+      .reward-box { padding: 1rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="hero">
+    <div class="particles" id="particles"></div>
+
+    <div class="rune-ring">
+      <div class="crown">♛</div>
+    </div>
+
+    <h1 class="game-title">LEGARYN</h1>
+    <p class="game-subtitle">Mythic Legends</p>
+
+    <div class="divider"></div>
+
+    <div class="reward-box">
+      <div class="reward-label">⬡ &nbsp; Early Access Reward &nbsp; ⬡</div>
+      <div class="reward-title">Claim a FREE <span>Epic Summon</span> on Launch Day</div>
+      <p class="reward-desc">Join the waitlist now and receive one guaranteed Epic creature summon the moment the realm opens — yours to keep forever.</p>
+    </div>
+
+    <p class="tagline">
+      Summon creatures of ancient power. Build your empire.<br>
+      <strong>Dominate the dark realm.</strong>
+    </p>
+
+    <div class="email-form" id="emailForm">
+      <input class="email-input" type="email" id="emailInput" placeholder="Enter your email to claim your reward" />
+      <button class="join-btn" onclick="handleJoin()">JOIN THE REALM</button>
+    </div>
+    <p class="fine-print" id="finePrint">Free Epic Summon delivered automatically on launch day. No payment required.</p>
+    <div class="success-msg" id="successMsg">⬡ &nbsp; You have been chosen. Your Epic Summon awaits. &nbsp; ⬡</div>
+
+    <div class="socials-section">
+      <p class="socials-label">Follow the legend</p>
+      <div class="social-links">
+        <a class="social-link" href="https://x.com/legaryn" target="_blank" rel="noopener">
+          <svg class="social-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          X
+        </a>
+        <a class="social-link" href="https://tiktok.com/@legaryn" target="_blank" rel="noopener">
+          <svg class="social-icon" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+          TikTok
+        </a>
+        <a class="social-link" href="https://instagram.com/legaryn" target="_blank" rel="noopener">
+          <svg class="social-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          Instagram
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <section class="features">
+    <h2 class="section-title">What Awaits You</h2>
+    <p class="section-sub">The realm holds many secrets</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon">⚔</span>
+        <div class="feature-name">Battle</div>
+        <p class="feature-desc">Challenge players worldwide. Rise through the ranks and claim bounties on your enemies.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">♛</span>
+        <div class="feature-name">Summon</div>
+        <p class="feature-desc">Call forth mythic creatures of legendary rarity. Common to Mythic — what will you unleash?</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⬡</span>
+        <div class="feature-name">Alliance</div>
+        <p class="feature-desc">Form powerful alliances. Protect your realm and conquer enemies together.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">◈</span>
+        <div class="feature-name">Empire</div>
+        <p class="feature-desc">Acquire properties, amass wealth and grow your legend across the dark urban realm.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    ⬡ &nbsp; © 2025 Legaryn Mythic Legends. All rights reserved. &nbsp; ⬡
+  </footer>
+
+  <script>
+    // Particles
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 20; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.animationDuration = (8 + Math.random() * 12) + 's';
+      p.style.animationDelay = (Math.random() * 10) + 's';
+      container.appendChild(p);
+    }
+
+    // Email signup
+    function handleJoin() {
+      const input = document.getElementById('emailInput');
+      const form = document.getElementById('emailForm');
+      const msg = document.getElementById('successMsg');
+      const fine = document.getElementById('finePrint');
+      if (input.value && input.value.includes('@')) {
+        form.style.display = 'none';
+        fine.style.display = 'none';
+        msg.style.display = 'block';
+        // TODO: wire to your email backend / Mailchimp / ConvertKit here
+        console.log('Signup:', input.value);
+      } else {
+        input.style.outline = '1px solid #ff4444';
+        setTimeout(() => input.style.outline = '', 1000);
+      }
+    }
+
+    // Allow Enter key to submit
+    document.getElementById('emailInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') handleJoin();
+    });
+  </script>
+
+</body>
+</html>
