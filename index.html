@@ -149,7 +149,7 @@
     }
     .tagline strong { color: #00E5CC; font-weight: 600; }
 
-    /* EMAIL FORM - Fixed side-by-side + full-width mobile */
+    /* EMAIL FORM - Final fixed version */
     .email-form {
       display: flex !important;
       max-width: 520px;
@@ -158,6 +158,7 @@
       gap: 12px;
       flex-wrap: wrap;
     }
+
     .email-input {
       flex: 1 !important;
       background: #0d1a1a !important;
@@ -170,9 +171,11 @@
       min-width: 260px !important;
       outline: none !important;
     }
+
     .email-input::placeholder { 
       color: #555 !important; 
     }
+
     .join-btn {
       background: #00E5CC !important;
       border: none !important;
@@ -185,11 +188,18 @@
       cursor: pointer !important;
       white-space: nowrap !important;
       border-radius: 8px !important;
-      transition: background 0.2s !important;
       min-width: 160px !important;
     }
+
     .join-btn:hover { 
       background: #00ffdd !important; 
+    }
+
+    /* Force side-by-side on desktop */
+    @media (min-width: 600px) {
+      .email-form {
+        flex-wrap: nowrap !important;
+      }
     }
 
     .fine-print { font-size: 0.7rem; color: #444; margin-top: 0.6rem; letter-spacing: 0.03em; }
