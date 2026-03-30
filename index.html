@@ -149,9 +149,9 @@
     }
     .tagline strong { color: #00E5CC; font-weight: 600; }
 
-    /* EMAIL FORM - Fixed side-by-side alignment */
+    /* EMAIL FORM - Fixed side-by-side + full-width mobile */
     .email-form {
-      display: flex;
+      display: flex !important;
       max-width: 520px;
       width: 100%;
       margin: 0 auto;
@@ -159,33 +159,38 @@
       flex-wrap: wrap;
     }
     .email-input {
-      flex: 1;
-      background: #0d1a1a;
-      border: none;
-      color: #e8e8e8;
-      padding: 18px 20px;
-      font-family: 'Raleway', sans-serif;
-      font-size: 17px;
-      border-radius: 8px;
-      min-width: 260px;
-      outline: none;
+      flex: 1 !important;
+      background: #0d1a1a !important;
+      border: none !important;
+      color: #e8e8e8 !important;
+      padding: 18px 20px !important;
+      font-family: 'Raleway', sans-serif !important;
+      font-size: 17px !important;
+      border-radius: 8px !important;
+      min-width: 260px !important;
+      outline: none !important;
     }
-    .email-input::placeholder { color: #555; }
+    .email-input::placeholder { 
+      color: #555 !important; 
+    }
     .join-btn {
-      background: #00E5CC;
-      border: none;
-      color: #0a0a0f;
-      padding: 18px 40px;
-      font-family: 'Cinzel', serif;
-      font-size: 17px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      cursor: pointer;
-      white-space: nowrap;
-      border-radius: 8px;
-      transition: background 0.2s;
+      background: #00E5CC !important;
+      border: none !important;
+      color: #0a0a0f !important;
+      padding: 18px 40px !important;
+      font-family: 'Cinzel', serif !important;
+      font-size: 17px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.08em !important;
+      cursor: pointer !important;
+      white-space: nowrap !important;
+      border-radius: 8px !important;
+      transition: background 0.2s !important;
+      min-width: 160px !important;
     }
-    .join-btn:hover { background: #00ffdd; }
+    .join-btn:hover { 
+      background: #00ffdd !important; 
+    }
 
     .fine-print { font-size: 0.7rem; color: #444; margin-top: 0.6rem; letter-spacing: 0.03em; }
 
