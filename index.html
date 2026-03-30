@@ -48,30 +48,37 @@
       position: relative;
     }
 
+    /* RUNE RING + CROWN GLOW (updated) */
     .rune-ring {
-      width: 110px;
-      height: 110px;
-      border: 1px solid #00E5CC;
+      width: 130px;
+      height: 130px;
+      border: 2px solid #00E5CC;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 1.5rem;
       position: relative;
-      animation: pulse-ring 3s ease-in-out infinite;
+      animation: pulse-ring 2.5s ease-in-out infinite;
+      box-shadow: 
+        0 0 20px #00E5CC,
+        0 0 40px #00E5CC,
+        inset 0 0 30px #00E5CC33;
     }
     @keyframes pulse-ring {
-      0%,100% { box-shadow: 0 0 10px #00E5CC33, inset 0 0 10px #00E5CC11; }
-      50%      { box-shadow: 0 0 30px #00E5CC66, inset 0 0 20px #00E5CC22; }
+      0%, 100% { box-shadow: 0 0 20px #00E5CC, 0 0 40px #00E5CC, inset 0 0 30px #00E5CC33; }
+      50%      { box-shadow: 0 0 45px #00E5CC, 0 0 70px #a855f7, inset 0 0 50px #a855f766; }
     }
-    .rune-ring::before {
-      content: '';
-      position: absolute;
-      width: 90px; height: 90px;
-      border: 1px solid #00E5CC33;
-      border-radius: 50%;
+
+    .crown {
+      font-size: 52px;
+      filter: drop-shadow(0 0 12px #00E5CC);
+      animation: crown-glow 2s ease-in-out infinite alternate;
     }
-    .crown { font-size: 36px; filter: drop-shadow(0 0 8px #00E5CC); }
+    @keyframes crown-glow {
+      from { text-shadow: 0 0 15px #00E5CC, 0 0 30px #00E5CC, 0 0 45px #a855f7; }
+      to   { text-shadow: 0 0 25px #00E5CC, 0 0 50px #00E5CC, 0 0 80px #a855f7, 0 0 100px #a855f766; }
+    }
 
     .game-title {
       font-family: 'Cinzel', serif;
