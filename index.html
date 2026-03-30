@@ -149,37 +149,40 @@
     }
     .tagline strong { color: #00E5CC; font-weight: 600; }
 
-    /* EMAIL FORM */
+    /* EMAIL FORM - Fixed side-by-side alignment */
     .email-form {
       display: flex;
-      max-width: 440px;
+      max-width: 520px;
       width: 100%;
-      border: 1px solid #00E5CC55;
-      overflow: hidden;
+      margin: 0 auto;
+      gap: 12px;
+      flex-wrap: wrap;
     }
     .email-input {
       flex: 1;
       background: #0d1a1a;
       border: none;
       color: #e8e8e8;
-      padding: 0.9rem 1.25rem;
+      padding: 18px 20px;
       font-family: 'Raleway', sans-serif;
-      font-size: 0.9rem;
+      font-size: 17px;
+      border-radius: 8px;
+      min-width: 260px;
       outline: none;
-      min-width: 0;
     }
-    .email-input::placeholder { color: #444; }
+    .email-input::placeholder { color: #555; }
     .join-btn {
       background: #00E5CC;
       border: none;
       color: #0a0a0f;
-      padding: 0.9rem 1.4rem;
+      padding: 18px 40px;
       font-family: 'Cinzel', serif;
-      font-size: 0.75rem;
+      font-size: 17px;
       font-weight: 700;
       letter-spacing: 0.08em;
       cursor: pointer;
       white-space: nowrap;
+      border-radius: 8px;
       transition: background 0.2s;
     }
     .join-btn:hover { background: #00ffdd; }
