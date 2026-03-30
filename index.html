@@ -289,11 +289,27 @@
     </p>
 
     <div class="email-form" id="emailForm">
-      <input class="email-input" type="email" id="emailInput" placeholder="Enter your email to claim your reward" />
-      <button class="join-btn" onclick="handleJoin()">JOIN THE REALM</button>
-    </div>
-    <p class="fine-print" id="finePrint">Free Epic Summon delivered automatically on launch day. No payment required.</p>
-    <div class="success-msg" id="successMsg">⬡ &nbsp; You have been chosen. Your Epic Summon awaits. &nbsp; ⬡</div>
+  <form action="https://formsubmit.co/hello@legaryn.com" method="POST">
+    <input 
+      class="email-input" 
+      type="email" 
+      name="email" 
+      placeholder="Enter your email to claim your reward" 
+      required 
+    />
+    <input type="hidden" name="_subject" value="New Legaryn Waitlist Signup!">
+    <input type="hidden" name="_next" value="https://legaryn.com?success=1">
+    <input type="hidden" name="_captcha" value="false">
+    
+    <button type="submit" class="join-btn">JOIN THE REALM</button>
+  </form>
+</div>
+
+<p class="fine-print" id="finePrint">Free Epic Summon delivered automatically on launch day. No payment required.</p>
+
+<div class="success-msg" id="successMsg" style="display: none;">
+  ⬡ &nbsp; You have been chosen. Your Epic Summon awaits. &nbsp; ⬡
+</div>
 
     <div class="socials-section">
       <p class="socials-label">Follow the legend</p>
