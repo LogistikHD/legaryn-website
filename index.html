@@ -107,14 +107,17 @@
       <img src="character.jpg" alt="Legaryn Vanguard" class="character-art">
     </div>
 
-    <!-- 📧 ACTIVE EMAIL WAITLIST CONTAINER -->
-    <form class="email-form" id="waitlistForm" action="https://formspree.io/f/xvgolepe" method="POST">
-      <input type="email" class="email-input" id="userEmail" placeholder="Enter your email to claim code..." required name="email" />
-      <button type="submit" class="join-btn" id="submitBtn">JOIN THE REALM</button>
+        <!-- 📧 FULLY RESTORED FORMSUBMIT.CO ROUTING CONTAINER -->
+    <form class="email-form" action="https://formsubmit.co/hello@legaryn.com" method="POST">
+      <!-- Hidden security tuning hooks for FormSubmit -->
+      <input type="hidden" name="_next" value="https://legaryn.com">
+      <input type="hidden" name="_subject" value="New Legaryn Vanguard Pre-Registration!">
+      <input type="hidden" name="_captcha" value="false">
+      
+      <input type="email" class="email-input" placeholder="Enter your email to claim code..." required name="email" />
+      <button type="submit" class="join-btn">JOIN THE REALM</button>
     </form>
-    <div class="success-msg" id="successMessage" style="margin: 0 auto;">
-      🎉 Welcome Vanguard! Your unique promo code for a FREE Epic Summon has been reserved. Check your inbox on launch day!
-    </div>
+
 
     <div class="socials-section">
       <div class="socials-label">Follow the Legend</div>
@@ -179,4 +182,5 @@
   </script>
 </body>
 </html>
+
 
