@@ -269,16 +269,29 @@
     .feature-name { font-family: 'Cinzel', serif; font-size: 0.85rem; color: #FFD700; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
     .feature-desc { font-size: 0.82rem; color: #555; line-height: 1.7; font-weight: 300; }
 
-    /* FOOTER */
-    footer {
-      background: #0a0a0f;
-      border-top: 1px solid #00E5CC1a;
-      padding: 1.5rem 2rem;
-      text-align: center;
-      color: #2a2a2a;
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-    }
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #050505; /* Keeps the deep dark theme */
+    color: #888888; /* Soft readable gray for the copyright text */
+    font-size: 14px;
+}
+
+footer a {
+    color: #00ffff; /* Glowing Cyan - exactly matches your game's runic light colors! */
+    text-transform: uppercase; /* Makes the links look structural and clean */
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+}
+
+footer a:hover {
+    color: #ffffff; /* Turns bright white when hovered */
+    text-shadow: 0 0 8px #00ffff; /* Gives it a magical runic glow on hover */
+}
+
 
     /* RESPONSIVE */
     @media (max-width: 480px) {
