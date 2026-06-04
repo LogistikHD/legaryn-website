@@ -24,6 +24,44 @@
       color: #e8e8e8;
       overflow-x: hidden;
     }
+.faq-container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: left;
+}
+
+.faq-container h2 {
+    color: #ffffff;
+    text-align: center;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.faq-item {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 3px solid #00ffff; /* Runic Cyan indicator bar */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 0 4px 4px 0;
+}
+
+.faq-item h3 {
+    color: #00ffff; /* Cyan question text */
+    margin-top: 0;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+.faq-item p {
+    color: #cccccc; /* Highly readable body text */
+    line-height: 1.6;
+    font-size: 14px;
+    margin-bottom: 0;
+}
 
     /* PARTICLES */
     .particles { position: absolute; top:0; left:0; right:0; bottom:0; pointer-events:none; overflow:hidden; }
@@ -48,42 +86,42 @@
       position: relative;
     }
 
-    /* RUNE RING + SKULL LOGO GLOW (UPDATED) */
-    .rune-ring {
-      width: 130px;
-      height: 130px;
-      border: 2px solid #00E5CC;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      position: relative;
-      overflow: hidden;
-      animation: pulse-ring 2.5s ease-in-out infinite;
-      box-shadow: 
-        0 0 20px #00E5CC,
-        0 0 40px #00E5CC,
-        inset 0 0 30px #00E5CC33;
-    }
+  /* RUNE RING + SKULL LOGO GLOW (UPDATED) */
+.rune-ring {
+  width: 130px;
+  height: 130px;
+  border: 2px solid #00E5CC;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  position: relative;
+  overflow: hidden; /* Ensures the graphic stays crisp inside the ring circular path */
+  animation: pulse-ring 2.5s ease-in-out infinite;
+  box-shadow: 
+    0 0 20px #00E5CC,
+    0 0 40px #00E5CC,
+    inset 0 0 30px #00E5CC33;
+}
 
-    @keyframes pulse-ring {
-      0%, 100% { box-shadow: 0 0 20px #00E5CC, 0 0 40px #00E5CC, inset 0 0 30px #00E5CC33; }
-      50%      { box-shadow: 0 0 45px #00E5CC, 0 0 70px #a855f7, inset 0 0 50px #a855f766; }
-    }
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 20px #00E5CC, 0 0 40px #00E5CC, inset 0 0 30px #00E5CC33; }
+  50%      { box-shadow: 0 0 45px #00E5CC, 0 0 70px #a855f7, inset 0 0 50px #a855f766; }
+}
 
-    .main-logo {
-      width: 130px;
-      height: 130px;
-      object-fit: cover;
-      display: block;
-      animation: skull-glow 2s ease-in-out infinite alternate;
-    }
+.main-logo {
+  width: 130px; /* Scales fully to lock into the exact size of the ring */
+  height: 130px;
+  object-fit: cover;
+  display: block;
+  animation: skull-glow 2s ease-in-out infinite alternate;
+}
 
-    @keyframes skull-glow {
-      from { filter: drop-shadow(0 0 8px #00E5CC) drop-shadow(0 0 20px #a855f7); }
-      to   { filter: drop-shadow(0 0 18px #00E5CC) drop-shadow(0 0 35px #a855f7); }
-    }
+@keyframes skull-glow {
+  from { filter: drop-shadow(0 0 8px #00E5CC) drop-shadow(0 0 20px #a855f7); }
+  to   { filter: drop-shadow(0 0 18px #00E5CC) drop-shadow(0 0 35px #a855f7); }
+}
 
     .game-title {
       font-family: 'Cinzel', serif;
@@ -154,7 +192,7 @@
     }
     .tagline strong { color: #00E5CC; font-weight: 600; }
 
-    /* EMAIL FORM */
+    /* EMAIL FORM - Final fixed version */
     .email-form {
       display: flex !important;
       max-width: 520px;
@@ -177,7 +215,9 @@
       outline: none !important;
     }
 
-    .email-input::placeholder { color: #555 !important; }
+    .email-input::placeholder { 
+      color: #555 !important; 
+    }
 
     .join-btn {
       background: #00E5CC !important;
@@ -194,106 +234,38 @@
       min-width: 160px !important;
     }
 
-    .join-btn:hover { background: #00ffdd !important; }
+    .join-btn:hover { 
+      background: #00ffdd !important; 
+    }
 
+    /* Force side-by-side on desktop */
     @media (min-width: 600px) {
-      .email-form { flex-wrap: nowrap !important; }
+      .email-form {
+        flex-wrap: nowrap !important;
+      }
     }
 
     .fine-print { font-size: 0.7rem; color: #444; margin-top: 0.6rem; letter-spacing: 0.03em; }
 
-    /* SOCIALS & RE-ADDED FIXES */
-    .socials-section { margin-top: 2.5rem; text-align: center; }
-    .socials-label { font-size: 0.65rem; letter-spacing: 0.3em; color: #444; text-transform: uppercase; margin-bottom: 0.85rem; }
-    .social-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; }
-    .social-link {
+    .success-msg {
+      display: none;
       color: #00E5CC;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-    }
-    .social-link:hover { color: #ffffff; text-shadow: 0 0 8px #00E5CC; }
-
-    /* DISCORD INTERACTIVE BUTTON */
-    .community-hook { text-align: center; margin: 20px 0 40px; }
-    .discord-btn {
-      display: inline-block;
-      padding: 14px 32px;
-      background-color: #5865F2;
-      color: #ffffff;
-      font-weight: bold;
-      text-transform: uppercase;
-      text-decoration: none;
-      letter-spacing: 1px;
-      border-radius: 6px;
-      font-size: 14px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
-    }
-    .discord-btn:hover {
-      background-color: #4752C4;
-      box-shadow: 0 0 20px #5865F2;
-      transform: translateY(-2px);
-    }
-
-    /* FAQ LAYOUT SECTION */
-    .faq-container { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: left; }
-    .faq-container h2 {
-      color: #ffffff;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      padding: 1rem 1.5rem;
+      border: 1px solid #00E5CC33;
+      max-width: 440px;
+      width: 100%;
       text-align: center;
-      font-size: 24px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 40px;
       font-family: 'Cinzel', serif;
-      text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
     }
-    .faq-item {
-      background: rgba(255, 255, 255, 0.02);
-      border-left: 3px solid #00E5CC;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 0 4px 4px 0;
-    }
-    .faq-item h3 { color: #00E5CC; margin-top: 0; font-size: 16px; letter-spacing: 0.5px; font-family: 'Cinzel', serif; }
-    .faq-item p { color: #cccccc; line-height: 1.6; font-size: 14px; margin-bottom: 0; }
 
-    /* LEGAL COMPLIANT FOOTER */
-    footer { text-align: center; padding: 40px 20px; background-color: #050505; color: #666666; font-size: 13px; margin-top: 40px; border-top: 1px solid #111115; }
-    footer a {
-      color: #00E5CC;
-      text-transform: uppercase;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-decoration: none;
-      margin: 0 12px;
-      transition: all 0.3s ease;
-    }
-    footer a:hover { color: #ffffff; text-shadow: 0 0 8px #00E5CC; }
-  </style>
-</head>
-<body>
-
-  <main class="hero">
-    <div class="particles" id="particles"></div>
-
-    <div class="rune-ring">
-      <img src="legaryn_logo.jpeg" alt="Legaryn Skull Logo" class="main-logo">
-    </div>
-
-    <h1 class="game-title">LEGARYN</h1>
-    <p class="game-subtitle">Mythic Legends</p>
-
-    <div class="divider"></div>
-
-    <div class="reward-box">
-      <div class="reward-label">💎 Early Access Reward 💎</div>
-      <div class="reward-title">CLAIM 500 FREE GEMS ON LAUNCH</div>
-      <p class="reward-desc">Secure your spot in the vanguard. Your unique currency activation key will be dispatched directly to your inbox on server launch.</p>
-    </div>
-
-    <p class="tagline">Summon ancient powers. Forge absolute alliances. <strong>Dominate the dark realm.</strong></p>
-
-    <form class="email-form" action="YOUR_EMAIL_SCRIPT_URL_HERE" method="POST">
+    /* SOCIALS */
+    .socials-section { margin-top: 2.5rem; }
+    .socials-label { font-size: 0.65rem; letter-spacing: 0.3em; color: #444; text-transform: uppercase; margin-bottom: 0.85rem; }
+    .social-links { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem
