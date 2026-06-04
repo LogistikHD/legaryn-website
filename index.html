@@ -154,14 +154,17 @@
 </head>
 <body>
   <main class="hero">
-    <div class="particles" id="particles"></div>
+  <div class="particles" id="particles"></div>
 
-    <div class="rune-ring">
-      <img src="legaryn_logo.jpeg" alt="Legaryn Skull Logo" class="main-logo">
-    </div>
+  <!-- IMPROVED RUNE RING WITH BETTER LOGO CONTAINMENT -->
+  <div class="rune-ring" style="width: 160px; height: 160px; border: 3px solid #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.8rem; position: relative; z-index: 2; box-shadow: 0 0 40px #22c55e, 0 0 70px #a855f7;">
+    <img src="legaryn_logo.jpeg" alt="Legaryn Skull Logo" class="main-logo" 
+         style="width: 110px; height: 110px; object-fit: contain; border-radius: 50%; 
+                filter: drop-shadow(0 0 20px #22c55e) drop-shadow(0 0 35px #a855f7);">
+  </div>
 
-    <h1 class="game-title">LEGARYN</h1>
-    <p class="game-subtitle">Mythic Legends</p>
+  <h1 class="game-title">LEGARYN</h1>
+  <p class="game-subtitle">Mythic Legends</p>
     <div style="width: 180px; height: 2px; background: linear-gradient(90deg, transparent, var(--neon-green), transparent); margin: 2rem auto;"></div>
 
     <div class="reward-box">
