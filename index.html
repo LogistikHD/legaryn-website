@@ -106,18 +106,33 @@
     <div class="character-showcase">
       <img src="character.jpg" alt="Legaryn Vanguard" class="character-art">
     </div>
-
-        <!-- 📧 FULLY RESTORED FORMSUBMIT.CO ROUTING CONTAINER -->
-    <form class="email-form" action="https://formsubmit.co/hello@legaryn.com" method="POST">
-      <!-- Hidden security tuning hooks for FormSubmit -->
-      <input type="hidden" name="_next" value="https://legaryn.com">
-      <input type="hidden" name="_subject" value="New Legaryn Vanguard Pre-Registration!">
-      <input type="hidden" name="_captcha" value="false">
-      
-      <input type="email" class="email-input" placeholder="Enter your email to claim code..." required name="email" />
-      <button type="submit" class="join-btn">JOIN THE REALM</button>
-    </form>
-
+<!-- === LEGARYN EMAIL CAPTURE FORM === -->
+<div style="text-align: center; margin: 30px 0;">
+  <form action="https://formsubmit.co/d5264602fd5e64eef25c6e98014439d1" method="POST" 
+        style="display: flex; max-width: 420px; margin: 0 auto; gap: 12px; flex-wrap: wrap; justify-content: center;">
+    
+    <input 
+      type="email" 
+      name="email" 
+      placeholder="Enter your email to claim code.." 
+      required
+      style="flex: 1; min-width: 260px; padding: 16px 20px; font-size: 16px; border: none; border-radius: 8px; background: #1a1a1a; color: #fff;">
+    
+    <!-- Hidden fields -->
+    <input type="hidden" name="_subject" value="🜁 New Realm Summoner - Legaryn">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://legaryn.com/#thank-you"> <!-- or your thank you section -->
+    
+    <!-- Autoresponder with promo code -->
+    <input type="hidden" name="_autoresponse" value="Thank you for joining the Legaryn Realm! 🎉 Your activation code has been reserved. You will receive your FREE Epic Summon code, via email, the moment the servers launch. Welcome to the dark realm, Summoner.">
+    
+    <button 
+      type="submit"
+      style="padding: 16px 32px; font-size: 16px; font-weight: bold; background: #22c55e; color: #000; border: none; border-radius: 8px; cursor: pointer; white-space: nowrap;">
+      JOIN THE REALM
+    </button>
+  </form>
+</div>
 
     <div class="socials-section">
       <div class="socials-label">Follow the Legend</div>
