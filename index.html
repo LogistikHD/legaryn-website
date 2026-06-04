@@ -17,8 +17,6 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Raleway', sans-serif; background: #0a0a0f; color: #e8e8e8; overflow-x: hidden; }
-
-    /* PARTICLES */
     .particles { position: absolute; top:0; left:0; right:0; bottom:0; pointer-events:none; overflow:hidden; z-index: 1; }
     .particle { position:absolute; width:2px; height:2px; background:#00E5CC; border-radius:50%; opacity:0; animation: rise linear infinite; }
     @keyframes rise {
@@ -27,117 +25,31 @@
       90%  { opacity:0.3; }
       100% { opacity:0; transform:translateY(-10px); }
     }
-
-    /* HERO CONTAINER */
-    .hero {
-      min-height: 100vh;
-      background: linear-gradient(180deg, #0a0a0f 0%, #0d1a1a 50%, #0a0a0f 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 4rem 2rem 3rem;
-      position: relative;
-    }
-
-        /* RUNE RING + SKULL LOGO GLOW (REPAIRED) */
-    .rune-ring {
-      width: 130px;
-      height: 130px;
-      border: 2px solid #00E5CC;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      position: relative;
-      /* REMOVED OVERFLOW HIDDEN TO PREVENT IMAGE CLIPPING OUTAGES */
-      z-index: 2;
-      animation: pulse-ring 2.5s ease-in-out infinite;
-      box-shadow: 0 0 20px #00E5CC, 0 0 40px #00E5CC, inset 0 0 30px #00E5CC33;
-    }
+    .hero { min-height: 100vh; background: linear-gradient(180deg, #0a0a0f 0%, #0d1a1a 50%, #0a0a0f 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4rem 2rem 3rem; position: relative; }
+    .rune-ring { width: 130px; height: 130px; border: 2px solid #00E5CC; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; position: relative; z-index: 2; animation: pulse-ring 2.5s ease-in-out infinite; box-shadow: 0 0 20px #00E5CC, 0 0 40px #00E5CC, inset 0 0 30px #00E5CC33; }
     @keyframes pulse-ring {
       0%, 100% { box-shadow: 0 0 20px #00E5CC, 0 0 40px #00E5CC, inset 0 0 30px #00E5CC33; }
       50%      { box-shadow: 0 0 45px #00E5CC, 0 0 70px #a855f7, inset 0 0 50px #a855f766; }
     }
-    .main-logo {
-      width: 120px; /* Sized down slightly from 130px to sit clean inside the border padding */
-      height: 120px;
-      object-fit: contain; /* Changed from cover to contain so the whole skull renders completely */
-      display: block;
-      border-radius: 50%;
-      animation: skull-glow 2s ease-in-out infinite alternate;
-    }
+    .main-logo { width: 120px; height: 120px; object-fit: contain; display: block; border-radius: 50%; animation: skull-glow 2s ease-in-out infinite alternate; }
     @keyframes skull-glow {
       from { filter: drop-shadow(0 0 8px #00E5CC) drop-shadow(0 0 20px #a855f7); }
       to   { filter: drop-shadow(0 0 18px #00E5CC) drop-shadow(0 0 35px #a855f7); }
     }
-
-    .main-logo {
-      width: 130px;
-      height: 130px;
-      object-fit: cover;
-      display: block;
-      animation: skull-glow 2s ease-in-out infinite alternate;
-    }
-    @keyframes skull-glow {
-      from { filter: drop-shadow(0 0 8px #00E5CC) drop-shadow(0 0 20px #a855f7); }
-      to   { filter: drop-shadow(0 0 18px #00E5CC) drop-shadow(0 0 35px #a855f7); }
-    }
-
-    /* HEADERS */
-    .game-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(2.8rem, 8vw, 5.5rem);
-      font-weight: 900;
-      background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: 0.05em;
-      line-height: 1.1;
-      filter: drop-shadow(0 0 20px #FFD70044);
-      z-index: 2;
-    }
-    .game-subtitle {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(0.85rem, 2vw, 1.2rem);
-      color: #00E5CC;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      margin-top: 0.5rem;
-      z-index: 2;
-    }
-    .divider {
-      width: 180px; height: 1px;
-      background: linear-gradient(90deg, transparent, #00E5CC, transparent);
-      margin: 1.75rem auto;
-      z-index: 2;
-    }
-
-    /* REWARD DISPLAY BOX */
-    .reward-box {
-      border: 1px solid #FFD70055;
-      background: #0d1a0d;
-      padding: 1.25rem 2rem;
-      margin-bottom: 1.75rem;
-      position: relative;
-      max-width: 440px;
-      width: 100%;
-      z-index: 2;
-    }
+    .game-title { font-family: 'Cinzel', serif; font-size: clamp(2.8rem, 8vw, 5.5rem); font-weight: 900; background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: 0.05em; line-height: 1.1; filter: drop-shadow(0 0 20px #FFD70044); z-index: 2; }
+    .game-subtitle { font-family: 'Cinzel', serif; font-size: clamp(0.85rem, 2vw, 1.2rem); color: #00E5CC; letter-spacing: 0.4em; text-transform: uppercase; margin-top: 0.5rem; z-index: 2; }
+    .divider { width: 180px; height: 1px; background: linear-gradient(90deg, transparent, #00E5CC, transparent); margin: 1.75rem auto; z-index: 2; }
+    .reward-box { border: 1px solid #FFD70055; background: #0d1a0d; padding: 1.25rem 2rem; margin-bottom: 1.75rem; position: relative; max-width: 440px; width: 100%; z-index: 2; }
     .reward-box::before { content:''; position:absolute; top:0; left:0; width:40px; height:2px; background:#FFD700; }
     .reward-box::after  { content:''; position:absolute; bottom:0; right:0; width:40px; height:2px; background:#FFD700; }
     .reward-label { font-size: 0.65rem; letter-spacing: 0.35em; color: #FFD700; text-transform: uppercase; font-family: 'Cinzel', serif; margin-bottom: 0.5rem; }
     .reward-title { font-family: 'Cinzel', serif; font-size: 1.1rem; color: #fff; font-weight: 700; letter-spacing: 0.05em; }
     .reward-title span { color: #a855f7; text-shadow: 0 0 10px #a855f766; }
     .reward-desc { font-size: 0.8rem; color: #888; margin-top: 0.4rem; line-height: 1.6; }
-
-    /* INTERACTIVE TEXT CAPTURES */
     .tagline { font-size: clamp(0.95rem, 2.2vw, 1.15rem); color: #999; max-width: 460px; line-height: 1.9; font-weight: 300; letter-spacing: 0.02em; margin-bottom: 2rem; z-index: 2; }
     .tagline strong { color: #00E5CC; font-weight: 600; }
-
+    .character-showcase { max-width: 500px; width: 100%; margin: 0 auto 2.5rem; border-radius: 12px; overflow: hidden; box-shadow: 0 0 35px rgba(0, 229, 204, 0.25); border: 1px solid rgba(0, 229, 204, 0.15); z-index: 2; }
+    .character-art { width: 100%; height: auto; display: block; object-fit: cover; }
     .email-form { display: flex !important; max-width: 520px; width: 100%; margin: 0 auto; gap: 12px; flex-wrap: wrap; z-index: 2; position: relative; }
     .email-input { flex: 1 !important; background: #0d1a1a !important; border: none !important; color: #e8e8e8 !important; padding: 18px 20px !important; font-family: 'Raleway', sans-serif !important; font-size: 17px !important; border-radius: 8px !important; min-width: 260px !important; outline: none !important; }
     .email-input::placeholder { color: #555 !important; }
@@ -145,103 +57,110 @@
     .join-btn:hover { background: #00ffdd !important; }
     @media (min-width: 600px) { .email-form { flex-wrap: nowrap !important; } }
     .fine-print { font-size: 0.7rem; color: #444; margin-top: 0.6rem; letter-spacing: 0.03em; z-index: 2; }
-
-    /* SOCIAL ROW & DISCORD HOOK */
-    .socials-section { margin-top: 2.5rem; text-align: center; z-index: 2; }
+    .success-msg { display: none; color: #00E5CC; font-size: 0.9rem; letter-spacing: 0.05em; padding: 1rem 1.5rem; border: 1px solid #00E5CC33; max-width: 440px; width: 100%; text-align: center; font-family: 'Cinzel', serif; z-index: 2; }
+    .socials-section { margin-top: 2.5rem; z-index: 2; text-align: center; }
     .socials-label { font-size: 0.65rem; letter-spacing: 0.3em; color: #444; text-transform: uppercase; margin-bottom: 0.85rem; }
     .social-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; }
     .social-link { color: #00E5CC; text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: 1px; transition: all 0.3s ease; }
     .social-link:hover { color: #ffffff; text-shadow: 0 0 8px #00E5CC; }
-
     .community-hook { text-align: center; margin: 20px 0 20px; }
     .discord-btn { display: inline-block; padding: 14px 32px; background-color: #5865F2; color: #ffffff; font-weight: bold; text-transform: uppercase; text-decoration: none; letter-spacing: 1px; border-radius: 6px; font-size: 14px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3); }
     .discord-btn:hover { background-color: #4752C4; box-shadow: 0 0 20px #5865F2; transform: translateY(-2px); }
-
-    /* FAQ CONTENT ZONE */
     .faq-container { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: left; position: relative; z-index: 2; }
     .faq-container h2 { color: #ffffff; text-align: center; font-size: 24px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px; font-family: 'Cinzel', serif; text-shadow: 0 0 10px rgba(0, 255, 255, 0.3); }
     .faq-item { background: rgba(255, 255, 255, 0.02); border-left: 3px solid #00E5CC; padding: 20px; margin-bottom: 20px; border-radius: 0 4px 4px 0; }
     .faq-item h3 { color: #00E5CC; margin-top: 0; font-size: 16px; letter-spacing: 0.5px; font-family: 'Cinzel', serif; }
     .faq-item p { color: #cccccc; line-height: 1.6; font-size: 14px; margin-bottom: 0; }
-
-    /* LEGAL SECURE FOOTER */
     footer { text-align: center; padding: 40px 20px; background-color: #050505; color: #666666; font-size: 13px; margin-top: 40px; border-top: 1px solid #111115; position: relative; z-index: 2; }
     footer a { color: #00E5CC; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; text-decoration: none; margin: 0 12px; transition: all 0.3s ease; }
     footer a:hover { color: #ffffff; text-shadow: 0 0 8px #00E5CC; }
+    .features-section { max-width: 1000px; margin: 60px auto; padding: 0 20px; text-align: center; position: relative; z-index: 2; }
+    .features-section h2 { font-family: 'Cinzel', serif; font-size: 24px; text-transform: uppercase; letter-spacing: 2px; color: #ffffff; margin-bottom: 10px; }
+    .features-section h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 4px; color: #FFD700; margin-bottom: 40px; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .feature-card { background: rgba(255, 255, 255, 0.01); border: 1px solid #111115; padding: 25px; border-radius: 6px; text-align: left; transition: all 0.3s ease; }
+    .feature-card:hover { border-color: #00E5CC44; background: rgba(0, 229, 204, 0.01); }
+    .feature-card span { font-size: 18px; display: block; margin-bottom: 15px; }
+    .feature-card h3 { font-family: 'Cinzel', serif; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: #ffffff; margin-bottom: 10px; }
+    .feature-card p { font-size: 12px; color: #666; line-height: 1.6; }
   </style>
 </head>
 <body>
-
   <main class="hero">
     <div class="particles" id="particles"></div>
-
     <div class="rune-ring">
       <img src="legaryn_logo.jpeg" alt="Legaryn Skull Logo" class="main-logo">
     </div>
-
     <h1 class="game-title">LEGARYN</h1>
     <p class="game-subtitle">Mythic Legends</p>
-
     <div class="divider"></div>
-
     <div class="reward-box">
       <div class="reward-label">💎 Early Access Reward 💎</div>
       <div class="reward-title">CLAIM 500 FREE GEMS ON LAUNCH</div>
       <p class="reward-desc">Secure your spot in the vanguard. Your unique currency activation key will be dispatched directly to your inbox on server launch.</p>
     </div>
-
     <p class="tagline">Summon ancient powers. Forge absolute alliances. <strong>Dominate the dark realm.</strong></p>
+    
+    <!-- 🔮 STUNNING HORNED CREATURE ART DESIGN SECTOR FULLY RESTORED -->
+    <div class="character-showcase">
+      <img src="main-bg.png" alt="Legaryn Vanguard" class="character-art">
+    </div>
 
-    <form class="email-form" action="YOUR_EMAIL_SCRIPT_URL_HERE" method="POST">
-      <input type="email" class="email-input" placeholder="Enter your email to claim code..." required name="email" />
-      <button type="submit" class="join-btn">JOIN THE REALM</button>
+    <!-- 📧 YOUR ACTIVE WAITLIST FORM WITH ATTACHED SUCCESS ANIMATOR FUNCTIONS -->
+    <form class="email-form" id="waitlistForm" action="https://formspree.io/f/xvgolepe" method="POST">
+      <input type="email" class="email-input" id="userEmail" placeholder="Enter your email to claim code..." required name="email" />
+      <button type="submit" class="join-btn" id="submitBtn">JOIN THE REALM</button>
     </form>
+    <div class="success-msg" id="successMessage" style="margin: 0 auto;">
+      🎉 Welcome Vanguard! Your launch code has been reserved.
+    </div>
     <p class="fine-print">Free deployment allocation keys sent automatically on official release. No transaction required.</p>
-
     <div class="socials-section">
       <div class="socials-label">Follow the Legend</div>
       <div class="social-links">
-        <a href="https://x.com" class="social-link" target="_blank">X (TWITTER)</a>
-        <a href="https://tiktok.com" class="social-link" target="_blank">TIKTOK</a>
-        <a href="https://instagram.com" class="social-link" target="_blank">INSTAGRAM</a>
+        <a href="https://x.com/legaryn" class="social-link" target="_blank">X (TWITTER)</a>
+        <a href="https://tiktok.com/legaryn.com" class="social-link" target="_blank">TIKTOK</a>
+        <a href="https://instagram.com/legaryn" class="social-link" target="_blank">INSTAGRAM</a>
       </div>
-      
       <div class="community-hook">
-        <a href="YOUR_DISCORD_INVITE_LINK_HERE" class="discord-btn" target="_blank">
+        <a href="https://discord.gg/Vp4Rs6zDxu" class="discord-btn" target="_blank">
           💬 Enter the Official Discord Server
         </a>
       </div>
     </div>
   </main>
-
+  <section class="features-section">
+    <h2>What Awaits You</h2>
+    <h4>The Realm Holds Many Secrets</h4>
+    <div class="features-grid">
+      <div class="feature-card"><span>⚔️</span><h3>Battle</h3><p>Clash top players worldwide. Rise ranks of battle arena to prove your power loop solutions.</p></div>
+      <div class="feature-card"><span>🔮</span><h3>Summon</h3><p>Call forth mythic warriors of legendary pedigree. Combine tier configurations safely.</p></div>
+      <div class="feature-card"><span>☤</span><h3>Alliance</h3><p>Form absolute tactical pacts. Protect alliance territory during live synchronized wars.</p></div>
+      <div class="feature-card"><span>💠</span><h3>Empire</h3><p>Amass vast capital assets. Unlock rare weapon properties across custom tracks.</p></div>
+    </div>
+  </section>
   <section class="faq-container">
     <h2>Frequently Asked Questions</h2>
-    
     <div class="faq-item">
       <h3>What platforms is the Legaryn Beta available on?</h3>
       <p>The closed beta is currently running on iOS via Apple TestFlight. Our Android framework is actively being finalized with our engineering team, and the Google Play track will open very soon! Stay tuned to our Discord for the link.</p>
     </div>
-
     <div class="faq-item">
       <h3>How do I claim my Launch Day Promo Code?</h3>
       <p>Simply enter your email address in the field above to join the realm vanguard. Your exclusive 500-Gem promo code will be securely delivered straight to your inbox the moment our official game servers open!</p>
     </div>
-
     <div class="faq-item">
       <h3>Is Legaryn Free-to-Play?</h3>
       <p>Yes! Legaryn is completely free to download and play. The game features completely optional premium cosmetic loops, seasonal passes, and gem progression packages that players can utilize to customize their journey.</p>
     </div>
-
     <div class="faq-item">
       <h3>How can I report bugs or submit feature suggestions?</h3>
       <p>We are building this game transparently alongside our players! Once you join our official Discord server, you will have direct access to our specialized "Dev Forge" categories to log glitches and vote on community balance ideas.</p>
     </div>
   </section>
-
   <footer>
     <p>&copy; 2026 Legaryn Mythic Legends. All rights reserved. | <a href="/privacy/">Privacy Policy</a> | <a href="/terms/">Terms of Use</a></p>
   </footer>
-
   <script>
     function createParticles() {
       const container = document.getElementById('particles');
@@ -250,12 +169,23 @@
         const p = document.createElement('div');
         p.className = 'particle';
         p.style.left = Math.random() * 100 + 'vw';
-        p.style.animationDuration = (Math.random() * 4 + 4) + 's';
-        p.style.animationDelay = (Math.random() * 5) + 's';
+        p.style.animationDuration = (Math.random() * 4 + 4)s;
+        p.style.animationDelay = (Math.random() * 5)s;
         container.appendChild(p);
       }
     }
     window.addEventListener('DOMContentLoaded', createParticles);
+    const form = document.getElementById('waitlistForm');
+    const successMsg = document.getElementById('successMessage');
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      try {
+        const response = await fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
+        if (response.ok) { form.style.setProperty('display', 'none', 'important'); successMsg.style.display = 'block'; form.reset(); }
+        else { alert('Submission failed. Please check network connections.'); }
+      } catch (error) { form.style.setProperty('display', 'none', 'important'); successMsg.style.display = 'block'; }
+    });
   </script>
 </body>
 </html>
