@@ -24,6 +24,44 @@
       color: #e8e8e8;
       overflow-x: hidden;
     }
+.faq-container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: left;
+}
+
+.faq-container h2 {
+    color: #ffffff;
+    text-align: center;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.faq-item {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 3px solid #00ffff; /* Runic Cyan indicator bar */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 0 4px 4px 0;
+}
+
+.faq-item h3 {
+    color: #00ffff; /* Cyan question text */
+    margin-top: 0;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+.faq-item p {
+    color: #cccccc; /* Highly readable body text */
+    line-height: 1.6;
+    font-size: 14px;
+    margin-bottom: 0;
+}
 
     /* PARTICLES */
     .particles { position: absolute; top:0; left:0; right:0; bottom:0; pointer-events:none; overflow:hidden; }
@@ -269,6 +307,33 @@
     .feature-name { font-family: 'Cinzel', serif; font-size: 0.85rem; color: #FFD700; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
     .feature-desc { font-size: 0.82rem; color: #555; line-height: 1.7; font-weight: 300; }
 
+.community-hook {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.discord-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #5865F2; /* Official premium Discord Blurple color */
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(88, 101, 242, 0.2);
+}
+
+.discord-btn:hover {
+    background-color: #4752C4; /* Darkens smoothly on hover */
+    box-shadow: 0 0 15px #5865F2; /* Gives it an automated community glow */
+    transform: translateY(-2px);
+}
+
+    
 footer {
     text-align: center;
     padding: 40px 20px;
@@ -426,6 +491,30 @@ footer a:hover {
       document.getElementById('successMsg').style.display = 'block';
     }
   </script>
+  <section class="faq-container">
+    <h2>Frequently Asked Questions</h2>
+    
+    <div class="faq-item">
+        <h3>What platforms is the Legaryn Beta available on?</h3>
+        <p>The closed beta is currently running on iOS via Apple TestFlight. Our Android framework is actively being finalized with our engineering team, and the Google Play track will open very soon! Stay tuned to our Discord for the link.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>How do I claim my Launch Day Promo Code?</h3>
+        <p>Simply enter your email address in the field above to join the realm vanguard. Your exclusive Epic Summon promo code will be securely delivered straight to your inbox the moment our official game servers open!</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Is Legaryn Free-to-Play?</h3>
+        <p>Yes! Legaryn is completely free to download and play. The game features completely optional premium cosmetic loops, seasonal passes, and gem progression packages that players can utilize to customize their journey.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>How can I report bugs or submit feature suggestions?</h3>
+        <p>We are building this game transparently alongside our players! Once you join our official Discord server, you will have direct access to our specialized "Dev Forge" categories to log glitches and vote on community balance ideas.</p>
+    </div>
+</section>
+
 <footer>
     <p>&copy; 2026 Legaryn Mythic Legends. All rights reserved. | <a href="/privacy/">Privacy Policy</a> | <a href="/terms/">Terms of Use</a></p>
 </footer>
