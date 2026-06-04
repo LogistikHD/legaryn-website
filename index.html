@@ -86,37 +86,42 @@
       position: relative;
     }
 
-    /* RUNE RING + CROWN GLOW (updated) */
-    .rune-ring {
-      width: 130px;
-      height: 130px;
-      border: 2px solid #00E5CC;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      position: relative;
-      animation: pulse-ring 2.5s ease-in-out infinite;
-      box-shadow: 
-        0 0 20px #00E5CC,
-        0 0 40px #00E5CC,
-        inset 0 0 30px #00E5CC33;
-    }
-    @keyframes pulse-ring {
-      0%, 100% { box-shadow: 0 0 20px #00E5CC, 0 0 40px #00E5CC, inset 0 0 30px #00E5CC33; }
-      50%      { box-shadow: 0 0 45px #00E5CC, 0 0 70px #a855f7, inset 0 0 50px #a855f766; }
-    }
+  /* RUNE RING + SKULL LOGO GLOW (UPDATED) */
+.rune-ring {
+  width: 130px;
+  height: 130px;
+  border: 2px solid #00E5CC;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  position: relative;
+  overflow: hidden; /* Ensures the graphic stays crisp inside the ring circular path */
+  animation: pulse-ring 2.5s ease-in-out infinite;
+  box-shadow: 
+    0 0 20px #00E5CC,
+    0 0 40px #00E5CC,
+    inset 0 0 30px #00E5CC33;
+}
 
-    .crown {
-      font-size: 52px;
-      filter: drop-shadow(0 0 12px #00E5CC);
-      animation: crown-glow 2s ease-in-out infinite alternate;
-    }
-    @keyframes crown-glow {
-      from { text-shadow: 0 0 15px #00E5CC, 0 0 30px #00E5CC, 0 0 45px #a855f7; }
-      to   { text-shadow: 0 0 25px #00E5CC, 0 0 50px #00E5CC, 0 0 80px #a855f7, 0 0 100px #a855f766; }
-    }
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 20px #00E5CC, 0 0 40px #00E5CC, inset 0 0 30px #00E5CC33; }
+  50%      { box-shadow: 0 0 45px #00E5CC, 0 0 70px #a855f7, inset 0 0 50px #a855f766; }
+}
+
+.main-logo {
+  width: 130px; /* Scales fully to lock into the exact size of the ring */
+  height: 130px;
+  object-fit: cover;
+  display: block;
+  animation: skull-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes skull-glow {
+  from { filter: drop-shadow(0 0 8px #00E5CC) drop-shadow(0 0 20px #a855f7); }
+  to   { filter: drop-shadow(0 0 18px #00E5CC) drop-shadow(0 0 35px #a855f7); }
+}
 
     .game-title {
       font-family: 'Cinzel', serif;
@@ -372,11 +377,12 @@ footer a:hover {
     <div class="particles" id="particles"></div>
 
     <div class="rune-ring">
-      <div class="crown">♛</div>
+      <img src="legaryn_logo.jpeg" alt="Legaryn Skull Logo" class="main-logo">
     </div>
 
     <h1 class="game-title">LEGARYN</h1>
     <p class="game-subtitle">Mythic Legends</p>
+
 
     <div class="divider"></div>
 
