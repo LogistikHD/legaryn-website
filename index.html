@@ -180,21 +180,29 @@
   <footer>
     <p>&copy; 2026 Legaryn Mythic Legends. All rights reserved. | <a href="/privacy/">Privacy Policy</a> | <a href="/terms/">Terms of Use</a></p>
   </footer>
-  <script>
-    function createParticles() {
-      const container = document.getElementById('particles');
-      const count = 35;
-      for (let i = 0; i < count; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        p.style.left = Math.random() * 100 + 'vw';
-        p.style.animationDuration = (Math.random() * 4 + 4) + 's';
-        p.style.animationDelay = (Math.random() * 5) + 's';
-        container.appendChild(p);
-      }
-    }
-    window.addEventListener('DOMContentLoaded', createParticles);
-  </script>
+<script>
+// Handle form submission with nice success message
+document.getElementById('realm-form').addEventListener('submit', async function(e) {
+  const btn = document.getElementById('submit-btn');
+  const successMsg = document.getElementById('success-message');
+  const form = this;
+  
+  btn.textContent = 'SUMMONING...';
+  btn.disabled = true;
+
+  // Let FormSubmit handle the actual sending
+  // We just enhance the UX
+  setTimeout(() => {
+    form.reset();
+    btn.textContent = 'JOIN THE REALM';
+    btn.disabled = false;
+    
+    // Hide form and show success
+    form.style.display = 'none';
+    successMsg.style.display = 'block';
+  }, 800);
+});
+</script>
 </body>
 </html>
 
