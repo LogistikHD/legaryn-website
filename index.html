@@ -5,318 +5,784 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Legaryn Mythic Legends — Summon creatures of ancient power. Build your empire. Dominate the dark realm." />
   <title>Legaryn — Mythic Legends</title>
-  
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --neon-green: #22ff88;
-      --blood: #c0263e;
-      --void: #050507;
-      --deep-purple: #4c1d95;
-      --gold: #facc15;
+      --neon:    #00ffaa;
+      --neon-dim: rgba(0,255,170,0.15);
+      --blood:   #c0263e;
+      --gold:    #e8b84b;
+      --gold-dim: rgba(232,184,75,0.12);
+      --void:    #04040a;
+      --deep:    #080812;
+      --surface: rgba(255,255,255,0.028);
+      --border:  rgba(255,255,255,0.06);
+      --purple:  #7c3aed;
     }
 
-    * { margin:0; padding:0; box-sizing:border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { 
-      font-family: 'Raleway', sans-serif; 
-      background: var(--void); 
-      color: #e0e0e0; 
-      overflow-x: hidden; 
-      line-height: 1.6;
+
+    body {
+      font-family: 'Crimson Pro', Georgia, serif;
+      background: var(--void);
+      color: #c8c8d0;
+      overflow-x: hidden;
+      line-height: 1.7;
+      font-size: 17px;
     }
 
-    /* Background atmosphere */
+    /* ─── Atmospheric BG ─── */
     body::before {
       content: '';
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(circle at center, rgba(34,197,94,0.08) 0%, transparent 60%);
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0,255,170,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 90%, rgba(192,38,62,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 50% at 10% 60%, rgba(124,58,237,0.05) 0%, transparent 50%);
       pointer-events: none;
-      z-index: -1;
+      z-index: 0;
     }
 
+    /* ─── NOISE TEXTURE OVERLAY ─── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ─── PARTICLES ─── */
+    #particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: var(--neon);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--neon), 0 0 14px var(--neon);
+      animation: rise linear infinite;
+    }
+    .particle.blood {
+      background: var(--blood);
+      box-shadow: 0 0 6px var(--blood), 0 0 14px var(--blood);
+    }
+    .particle.gold {
+      background: var(--gold);
+      box-shadow: 0 0 6px var(--gold);
+      width: 3px; height: 3px;
+    }
+    @keyframes rise {
+      0%   { opacity: 0; transform: translateY(105vh) scale(0.3); }
+      15%  { opacity: 1; }
+      85%  { opacity: 0.6; }
+      100% { opacity: 0; transform: translateY(-40px) scale(1.8) rotate(180deg); }
+    }
+
+    /* ─── NAV ─── */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
-      background: rgba(5,5,7,0.98); 
-      backdrop-filter: blur(16px); 
-      z-index: 1000; 
-      border-bottom: 1px solid rgba(34,255,136,0.2);
+      background: rgba(4,4,10,0.92);
+      backdrop-filter: blur(24px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(0,255,170,0.12);
     }
-    nav .container {
-      max-width: 1200px;
+    nav .inner {
+      max-width: 1240px;
       margin: 0 auto;
-      padding: 1rem 1.5rem;
+      padding: 0.85rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-
-    /* Enhanced Particles + Fog */
-    .particles { 
-      position: fixed; top:0; left:0; right:0; bottom:0; 
-      pointer-events:none; overflow:hidden; z-index: 0; 
-      background: linear-gradient(transparent, rgba(76,29,149,0.1));
+    .nav-brand {
+      display: flex; align-items: center; gap: 11px;
+      text-decoration: none;
     }
-    .particle { 
-      position:absolute; width:4px; height:4px; background: var(--neon-green); 
-      border-radius:50%; box-shadow: 0 0 12px var(--neon-green), 0 0 25px var(--neon-green);
-      animation: rise linear infinite; 
+    .nav-brand img {
+      height: 40px;
+      border-radius: 6px;
+      filter: drop-shadow(0 0 8px rgba(0,255,170,0.4));
     }
-    @keyframes rise {
-      0% { opacity:0; transform:translateY(100vh) scale(0.4); }
-      20% { opacity:1; }
-      100% { opacity:0; transform:translateY(-80px) scale(1.6); }
+    .nav-brand span {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: 0.08em;
     }
-
-    .hero { 
-      min-height: 100vh; 
-      background: linear-gradient(180deg, #050507 0%, #0a0a1f 40%, #050507 100%); 
-      display: flex; flex-direction: column; align-items: center; justify-content: center; 
-      text-align: center; padding: 130px 1rem 80px; position: relative; z-index: 2;
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      color: #aaa;
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      transition: color 0.2s;
     }
-
-    /* Demonic Rune Ring */
-    .rune-ring { 
-      width: 190px; 
-      height: 190px; 
-      border: 6px solid var(--neon-green); 
-      border-radius: 50%; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      margin: 0 auto 2rem; 
-      box-shadow: 0 0 60px var(--neon-green), 
-                  0 0 120px var(--deep-purple),
-                  inset 0 0 40px rgba(34,255,136,0.4);
-      background: rgba(0,0,0,0.6);
-      animation: pulse-ring 4s ease-in-out infinite;
+    .nav-links a:hover { color: #ddd; }
+    .nav-links a.discord {
+      color: var(--neon);
+      border: 1px solid rgba(0,255,170,0.3);
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      transition: all 0.25s;
     }
-    @keyframes pulse-ring {
-      0%, 100% { box-shadow: 0 0 60px var(--neon-green), 0 0 120px var(--deep-purple); }
-      50% { box-shadow: 0 0 80px var(--neon-green), 0 0 160px #a855f7; }
+    .nav-links a.discord:hover {
+      background: rgba(0,255,170,0.1);
+      border-color: var(--neon);
     }
 
-    .main-logo { 
-      width: 138px; 
-      height: 138px; 
-      object-fit: contain; 
-      filter: drop-shadow(0 0 30px var(--neon-green)) 
-              drop-shadow(0 0 55px var(--blood));
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 1.2rem 80px;
+      position: relative;
+      z-index: 3;
     }
 
-    .game-title { 
-      font-family: 'Cinzel', serif; font-size: clamp(3rem, 9vw, 6.5rem); font-weight: 900; 
-      background: linear-gradient(135deg, #fcd34d, #f59e0b, #c0263e); 
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
-      text-shadow: 0 0 40px rgba(250,204,21,0.6);
+    /* Divider line between sections of the page */
+    .rune-divider {
+      width: 100%;
+      max-width: 480px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blood) 20%, var(--neon) 50%, var(--blood) 80%, transparent);
+      margin: 2rem auto;
+      position: relative;
     }
-    .game-subtitle { 
-      font-family: 'Cinzel', serif; color: var(--neon-green); letter-spacing: 0.6em; 
-      text-transform: uppercase; margin-top: 0.4rem; font-size: 1.25rem;
+    .rune-divider::before {
+      content: '✦';
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--void);
+      padding: 0 0.6rem;
+      color: var(--gold);
+      font-size: 0.65rem;
     }
 
-    .reward-box { 
-      border: 3px solid rgba(250,204,21,0.6); 
-      background: linear-gradient(145deg, rgba(16,16,20,0.95), rgba(10,5,15,0.95)); 
-      padding: 2rem 1.8rem; margin: 2.5rem auto; max-width: 540px; 
-      border-radius: 16px; box-shadow: 0 0 50px rgba(192,38,62,0.3);
+    /* Sigil ring */
+    .sigil-wrap {
+      position: relative;
+      width: 200px; height: 200px;
+      margin: 0 auto 2.5rem;
+    }
+    .sigil-ring {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      background: linear-gradient(var(--void), var(--void)) padding-box,
+                  linear-gradient(135deg, var(--neon), var(--purple), var(--blood), var(--gold)) border-box;
+      animation: spin-ring 18s linear infinite;
+      box-shadow:
+        0 0 40px rgba(0,255,170,0.2),
+        0 0 80px rgba(124,58,237,0.15),
+        inset 0 0 30px rgba(0,0,0,0.8);
+    }
+    .sigil-ring-inner {
+      position: absolute;
+      inset: 12px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,255,170,0.15);
+      animation: spin-ring 8s linear infinite reverse;
+    }
+    @keyframes spin-ring {
+      to { transform: rotate(360deg); }
+    }
+    .sigil-logo {
+      position: absolute;
+      inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .sigil-logo img {
+      width: 140px; height: 140px;
+      object-fit: contain;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 20px rgba(0,255,170,0.5)) drop-shadow(0 0 40px rgba(192,38,62,0.4));
     }
 
-    .email-form { 
-      display: flex; max-width: 540px; margin: 2.5rem auto; gap: 14px; 
-      flex-wrap: wrap; justify-content: center; 
+    .game-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(2.8rem, 9vw, 6rem);
+      font-weight: 900;
+      background: linear-gradient(160deg, #fde68a 0%, var(--gold) 40%, #c0263e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.05;
+      letter-spacing: 0.04em;
+      filter: drop-shadow(0 2px 30px rgba(232,184,75,0.3));
     }
-    .email-input { 
-      flex: 1; min-width: 260px; padding: 22px 24px; font-size: 17px; 
-      background: rgba(10,10,20,0.95); color: #fff; 
-      border: 2px solid rgba(34,255,136,0.6); border-radius: 12px; 
-      box-shadow: inset 0 0 15px rgba(0,0,0,0.6);
+    .game-subtitle {
+      font-family: 'Cinzel', serif;
+      color: var(--neon);
+      letter-spacing: 0.55em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin-top: 0.6rem;
+      opacity: 0.85;
     }
-    .join-btn { 
-      padding: 22px 48px; background: linear-gradient(90deg, #22ff88, #86efac, #22ff88); 
-      color: #000; font-weight: 700; font-size: 17px; border: none; 
-      border-radius: 12px; cursor: pointer; white-space: nowrap;
-      box-shadow: 0 0 30px rgba(34,255,136,0.6);
-      transition: all 0.3s;
+
+    /* Reward box */
+    .reward-box {
+      position: relative;
+      margin: 2.8rem auto;
+      max-width: 520px;
+      padding: 2rem 2rem;
+      border-radius: 12px;
+      background: linear-gradient(145deg, rgba(12,10,22,0.98), rgba(8,6,16,0.98));
+      border: 1px solid rgba(232,184,75,0.35);
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.5),
+        0 0 60px rgba(192,38,62,0.18),
+        inset 0 1px 0 rgba(232,184,75,0.1);
+    }
+    .reward-box::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, rgba(232,184,75,0.2), transparent 40%, rgba(0,255,170,0.1));
+      pointer-events: none;
+    }
+    .reward-label {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      letter-spacing: 0.35em;
+      font-size: 0.72rem;
+      margin-bottom: 0.75rem;
+      opacity: 0.8;
+    }
+    .reward-headline {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.1rem, 3.5vw, 1.45rem);
+      font-weight: 700;
+      line-height: 1.35;
+      color: #f0f0f0;
+      margin-bottom: 0.75rem;
+    }
+    .reward-headline em {
+      color: #e11d48;
+      font-style: normal;
+    }
+    .reward-body {
+      color: #8a8a9a;
+      font-size: 0.95rem;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* Email form */
+    .email-form {
+      display: flex;
+      max-width: 520px;
+      margin: 0 auto 2rem;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .email-input {
+      flex: 1;
+      min-width: 240px;
+      padding: 18px 20px;
+      font-size: 15px;
+      font-family: 'Crimson Pro', serif;
+      background: rgba(8,8,18,0.95);
+      color: #ddd;
+      border: 1px solid rgba(0,255,170,0.3);
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .email-input::placeholder { color: #555; }
+    .email-input:focus {
+      border-color: rgba(0,255,170,0.7);
+      box-shadow: 0 0 20px rgba(0,255,170,0.12);
+    }
+    .join-btn {
+      padding: 18px 36px;
+      background: linear-gradient(135deg, #00e896 0%, #00ffaa 50%, #00cc7a 100%);
+      color: #030a06;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.2em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 0 25px rgba(0,255,170,0.4), inset 0 1px 0 rgba(255,255,255,0.25);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .join-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+      pointer-events: none;
     }
     .join-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 45px rgba(34,255,136,0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(0,255,170,0.65), 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .join-btn:active { transform: translateY(0); }
+
+    /* Success */
+    .success-message {
+      display: none;
+      margin: 2rem auto;
+      padding: 2.5rem 2rem;
+      background: rgba(0,255,170,0.04);
+      border: 1px solid rgba(0,255,170,0.25);
+      border-radius: 12px;
+      max-width: 480px;
+      text-align: center;
+      box-shadow: 0 0 50px rgba(0,255,170,0.15);
+      animation: fadeIn 0.6s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    .success-glyph {
+      font-size: 3rem;
+      color: var(--neon);
+      display: block;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 15px var(--neon));
+    }
+    .success-title {
+      font-family: 'Cinzel', serif;
+      color: var(--neon);
+      font-size: 1.1rem;
+      letter-spacing: 0.2em;
+      margin-bottom: 0.75rem;
     }
 
-    .success-message { 
-      display: none; margin-top: 40px; padding: 40px 30px; 
-      background: linear-gradient(180deg, rgba(16,16,25,0.98), rgba(10,5,15,0.98)); 
-      border: 3px solid var(--neon-green); border-radius: 16px; 
-      color: #86efac; max-width: 520px; text-align: center; box-shadow: 0 0 60px rgba(34,255,136,0.5);
+    /* Character art */
+    .character-showcase {
+      max-width: 500px;
+      margin: 3rem auto 0;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      box-shadow:
+        0 0 0 1px rgba(0,255,170,0.15),
+        0 0 60px rgba(0,255,170,0.25),
+        0 0 120px rgba(192,38,62,0.2);
+    }
+    .character-showcase::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(transparent, var(--void));
+      pointer-events: none;
+    }
+    .character-showcase img {
+      width: 100%; height: auto; display: block;
     }
 
-    .character-showcase { 
-      max-width: 520px; margin: 4rem auto 1rem; 
-      border-radius: 16px; overflow: hidden; 
-      box-shadow: 0 0 80px rgba(34,255,136,0.5), 0 0 140px rgba(192,38,62,0.3); 
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 100px 20px;
+      position: relative;
+      z-index: 3;
+    }
+    section + section {
+      border-top: 1px solid var(--border);
     }
 
-    section { padding: 100px 20px; }
-    h2 { 
-      font-family: 'Cinzel', serif; font-size: clamp(2.2rem, 6vw, 3rem); 
-      text-align: center; margin-bottom: 1rem; 
-      text-shadow: 0 0 30px var(--neon-green);
+    .section-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.5em;
+      color: var(--neon);
+      text-align: center;
+      margin-bottom: 0.75rem;
+      opacity: 0.7;
+    }
+    .section-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: #f0ece0;
+      letter-spacing: 0.02em;
+    }
+    .section-sub {
+      text-align: center;
+      color: #4a4a5a;
+      letter-spacing: 0.4em;
+      font-size: 0.75rem;
+      font-family: 'Cinzel', serif;
+      margin-bottom: 70px;
     }
 
-    .feature-grid { 
-      max-width: 1100px; margin: 0 auto; 
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; 
+    /* ─── FEATURE GRID ─── */
+    .feature-grid {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
     }
-    .feature-card { 
-      background: rgba(255,255,255,0.015); 
-      border: 1px solid #1a1a1a; 
-      padding: 36px 28px; border-radius: 14px; 
-      transition: all 0.4s ease; 
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      cursor: default;
     }
-    .feature-card:hover { 
-      border-color: var(--neon-green); 
-      transform: translateY(-16px) scale(1.03); 
-      box-shadow: 0 0 50px rgba(34,255,136,0.5); 
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,255,170,0.04) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .feature-card:hover::before { opacity: 1; }
+    .feature-card:hover {
+      border-color: rgba(0,255,170,0.25);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(0,255,170,0.1);
+    }
+    /* Corner accent on card hover */
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 40px; height: 40px;
+      border-top: 2px solid rgba(0,255,170,0);
+      border-right: 2px solid rgba(0,255,170,0);
+      border-radius: 0 12px 0 0;
+      transition: border-color 0.4s;
+    }
+    .feature-card:hover::after {
+      border-color: rgba(0,255,170,0.4);
     }
 
-    .faq-container { max-width: 820px; margin: 0 auto; }
-    .faq-item { 
-      background: rgba(255,255,255,0.015); 
-      border-left: 5px solid var(--blood); 
-      padding: 28px; margin-bottom: 24px; border-radius: 0 14px 14px 0; 
+    .card-icon {
+      width: 52px; height: 52px;
+      margin-bottom: 20px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .card-icon svg {
+      width: 36px; height: 36px;
+      filter: drop-shadow(0 0 8px currentColor);
+    }
+    .card-title {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+    .card-body {
+      color: #7a7a8a;
+      font-size: 0.95rem;
+      line-height: 1.65;
     }
 
-    footer { 
-      text-align: center; padding: 70px 20px; background: #020202; 
-      color: #555; border-top: 1px solid #1a1a1a;
+    /* ─── FAQ ─── */
+    .faq-list {
+      max-width: 780px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .faq-item {
+      position: relative;
+      padding: 28px 28px 28px 36px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .faq-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      border-radius: 3px 0 0 3px;
+      background: linear-gradient(180deg, var(--blood), var(--purple));
+    }
+    .faq-item:hover {
+      background: rgba(255,255,255,0.035);
+      border-color: rgba(192,38,62,0.2);
+    }
+    .faq-q {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d0ccc0;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+      line-height: 1.45;
+    }
+    .faq-a {
+      color: #666678;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      font-style: italic;
     }
 
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 50px 20px;
+      background: #020205;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      color: #333340;
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      position: relative;
+      z-index: 3;
+    }
+    footer span { color: #2a2a38; }
+
+    /* ─── SCROLL ANIMATION ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── RESPONSIVE ─── */
     @media (max-width: 640px) {
-      .hero { padding-top: 110px; }
-      .rune-ring { width: 160px; height: 160px; }
-      .main-logo { width: 118px; height: 118px; }
-      .email-form { flex-direction: column; align-items: center; }
-      .join-btn { width: 100%; max-width: 340px; }
+      .hero { padding-top: 120px; }
+      .sigil-wrap { width: 164px; height: 164px; }
+      .sigil-logo img { width: 115px; height: 115px; }
+      .email-form { flex-direction: column; align-items: stretch; }
+      .join-btn { width: 100%; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 1.2rem; }
+      .nav-links a:not(.discord) { display: none; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Atmospheric particles -->
+  <div id="particles"></div>
+
+  <!-- ─── NAV ─── -->
   <nav>
-    <div class="container">
-      <div style="display:flex;align-items:center;gap:12px;">
-        <img src="legaryn_logo.jpeg" alt="Logo" style="height:42px;">
-        <span style="font-family:'Cinzel',serif;color:#fcd34d;font-weight:700;font-size:1.35rem;">LEGARYN</span>
-      </div>
-      <div style="display:flex;gap:1.8rem;font-size:0.95rem;">
-        <a href="#features" style="color:#ddd;text-decoration:none;">Features</a>
-        <a href="#faq" style="color:#ddd;text-decoration:none;">FAQ</a>
-        <a href="https://discord.gg/Vp4Rs6zDxu" target="_blank" style="color:var(--neon-green);font-weight:600;">Discord</a>
+    <div class="inner">
+      <a class="nav-brand" href="#">
+        <img src="legaryn_logo.jpeg" alt="Legaryn">
+        <span>LEGARYN</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://discord.gg/Vp4Rs6zDxu" target="_blank" class="discord">Discord</a>
       </div>
     </div>
   </nav>
 
+  <!-- ─── HERO ─── -->
   <main class="hero">
-    <div class="particles" id="particles"></div>
 
-    <div class="rune-ring">
-      <img src="legaryn_logo.jpeg" alt="Legaryn Skull Logo" class="main-logo">
+    <div class="sigil-wrap">
+      <div class="sigil-ring"></div>
+      <div class="sigil-ring-inner"></div>
+      <div class="sigil-logo">
+        <img src="legaryn_logo.jpeg" alt="Legaryn Skull Logo">
+      </div>
     </div>
 
     <h1 class="game-title">LEGARYN</h1>
     <p class="game-subtitle">Mythic Legends</p>
 
-    <div style="width:260px;height:3px;background:linear-gradient(90deg,transparent,#c0263e,var(--neon-green),#c0263e,transparent);margin:2.2rem auto;"></div>
+    <div class="rune-divider"></div>
 
     <div class="reward-box">
-      <div style="color:var(--gold);letter-spacing:4px;font-size:0.9rem;font-weight:600;">EARLY ACCESS REWARD</div>
-      <div style="font-size:1.65rem;margin:16px 0 12px;font-weight:700;line-height:1.3;">CLAIM A FREE <span style="color:#e11d48;">EPIC SUMMON</span> ON LAUNCH</div>
-      <p style="color:#bbb;">Join the vanguard, mortal. Your activation code shall be delivered the moment the gates of the realm tear open.</p>
+      <div class="reward-label">EARLY ACCESS REWARD</div>
+      <div class="reward-headline">CLAIM A FREE <em>EPIC SUMMON</em> ON LAUNCH</div>
+      <div class="reward-body">
+        Join the vanguard, mortal. Your activation code shall be delivered<br>
+        the moment the gates of the realm tear open.
+      </div>
     </div>
 
     <form id="realm-form" class="email-form" action="https://formsubmit.co/d5264602fd5e64eef25c6e98014439d1" method="POST">
-      <input type="email" name="email" id="email-input" placeholder="Enter thy mortal email..." required class="email-input">
-      <input type="hidden" name="_subject" value="🜁 New Soul Bound - Legaryn">
+      <input type="email" name="email" id="email-input" placeholder="Enter thy mortal email…" required class="email-input">
+      <input type="hidden" name="_subject" value="🜁 New Soul Bound — Legaryn">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_autoresponse" value="The ritual is complete. You are now bound to the Legaryn Realm. Your FREE Epic Summon code is reserved and will be delivered on launch day. Welcome, Summoner.">
       <button type="submit" id="submit-btn" class="join-btn">JOIN THE REALM</button>
     </form>
 
     <div id="success-message" class="success-message">
-      <div style="font-size:52px;margin-bottom:16px;">🜁</div>
-      <h2 style="color:var(--neon-green);">THE RITUAL IS COMPLETE</h2>
-      <p>You have been marked.<br><strong>Your Epic Summon awaits in the void.</strong></p>
+      <span class="success-glyph">🜁</span>
+      <div class="success-title">THE RITUAL IS COMPLETE</div>
+      <p style="color:#4a6a52;font-style:italic;">You have been marked.<br><strong style="color:#6a9a72;">Your Epic Summon awaits in the void.</strong></p>
     </div>
 
     <div class="character-showcase">
-      <img src="character.jpg" alt="Legaryn Vanguard" style="width:100%;height:auto;display:block;">
+      <img src="character.jpg" alt="Legaryn Vanguard">
     </div>
+
   </main>
 
+  <!-- ─── FEATURES ─── -->
   <section id="features">
-    <h2>What Awaits You</h2>
-    <p style="text-align:center;color:#888;margin-bottom:60px;letter-spacing:4px;font-size:1.1rem;">THE REALM HOLDS MANY SECRETS</p>
+    <div class="section-eyebrow">THE REALM HOLDS MANY SECRETS</div>
+    <h2 class="section-title">What Awaits You</h2>
+    <div class="section-sub">DESCEND INTO DARKNESS</div>
+
     <div class="feature-grid">
-      <div class="feature-card"><span style="font-size:3.2rem;display:block;margin-bottom:18px;">⚔️</span><h3 style="margin-bottom:12px;color:var(--gold);">Battle</h3><p>Clash with top players worldwide. Rise through blood-soaked arena combat.</p></div>
-      <div class="feature-card"><span style="font-size:3.2rem;display:block;margin-bottom:18px;">🔮</span><h3 style="margin-bottom:12px;color:var(--gold);">Summon</h3><p>Call forth mythic warriors and legendary creatures from the abyss.</p></div>
-      <div class="feature-card"><span style="font-size:3.2rem;display:block;margin-bottom:18px;">☤</span><h3 style="margin-bottom:12px;color:var(--gold);">Alliance</h3><p>Form absolute tactical pacts and dominate eternal wars.</p></div>
-      <div class="feature-card"><span style="font-size:3.2rem;display:block;margin-bottom:18px;">💠</span><h3 style="margin-bottom:12px;color:var(--gold);">Empire</h3><p>Amass vast capital assets and unlock forbidden weapons of power.</p></div>
+
+      <div class="feature-card fade-in">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c0263e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.5 17.5L3 6V3h3l11.5 11.5"/><path d="M13 19l6-6"/><path d="M16 16l4 4"/><path d="M19 21l2-2"/>
+          </svg>
+        </div>
+        <div class="card-title">Battle</div>
+        <div class="card-body">Clash with summoners across the realm. Rise through blood-soaked arena combat and carve your name into legend.</div>
+      </div>
+
+      <div class="feature-card fade-in" style="transition-delay:0.1s">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/><path d="M12 3v4"/><path d="M12 17v4"/><path d="M3 12h4"/><path d="M17 12h4"/>
+            <circle cx="12" cy="12" r="3" fill="#7c3aed" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="card-title">Summon</div>
+        <div class="card-body">Open forbidden portals. Call forth mythic warriors and ancient creatures from the abyss — from Cursed to Primal to Ethereal.</div>
+      </div>
+
+      <div class="feature-card fade-in" style="transition-delay:0.2s">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#e8b84b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="card-title">Alliance</div>
+        <div class="card-body">Forge blood oaths with ruthless tacticians. Coordinate your war machine and dominate global conquest.</div>
+      </div>
+
+      <div class="feature-card fade-in" style="transition-delay:0.3s">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00ffaa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><line x1="12" y1="12" x2="12" y2="16"/>
+          </svg>
+        </div>
+        <div class="card-title">Empire</div>
+        <div class="card-body">Seize properties. Amass shadow wealth. Unlock forbidden weapons that bend the laws of the realm.</div>
+      </div>
+
     </div>
   </section>
 
+  <!-- ─── FAQ ─── -->
   <section id="faq">
-    <h2>Frequently Asked Questions</h2>
-    <div class="faq-container">
-      <div class="faq-item">
-        <h3>What platforms is the Legaryn Beta available on?</h3>
-        <p>The closed beta is currently running on iOS via Apple TestFlight. Android version coming soon.</p>
+    <div class="section-eyebrow">ANSWERS FROM THE VOID</div>
+    <h2 class="section-title">Frequently Asked</h2>
+    <div class="section-sub">QUESTIONS</div>
+
+    <div class="faq-list">
+
+      <div class="faq-item fade-in">
+        <div class="faq-q">What platforms is the Legaryn Beta available on?</div>
+        <div class="faq-a">The closed beta runs on iOS via Apple TestFlight. Android descends soon.</div>
       </div>
-      <div class="faq-item">
-        <h3>How do I claim my Launch Day Promo Code?</h3>
-        <p>Enter your email above to bind your soul. Your exclusive promo code will be sent on launch day.</p>
+
+      <div class="faq-item fade-in">
+        <div class="faq-q">How do I claim my Launch Day Promo Code?</div>
+        <div class="faq-a">Enter your email above to bind your soul to the realm. Your exclusive activation code will be delivered the moment servers go live.</div>
       </div>
-      <div class="faq-item">
-        <h3>Is Legaryn Free-to-Play?</h3>
-        <p>Yes. Completely free to descend into and play, with optional offerings to the gods.</p>
+
+      <div class="faq-item fade-in">
+        <div class="faq-q">Is Legaryn Free-to-Play?</div>
+        <div class="faq-a">Free to enter. Free to conquer. Optional offerings unlock cosmetics, summon portals, and mythic rarities for those who seek greater power.</div>
       </div>
-      <div class="faq-item">
-        <h3>How can I report bugs or submit suggestions?</h3>
-        <p>Join our Discord server for direct access to the Dev Forge channels.</p>
+
+      <div class="faq-item fade-in">
+        <div class="faq-q">How can I report bugs or submit suggestions?</div>
+        <div class="faq-a">Join our Discord for direct access to the Dev Forge channels — where the realm is shaped.</div>
       </div>
+
     </div>
   </section>
 
+  <!-- ─── FOOTER ─── -->
   <footer>
     <p>&copy; 2026 Legaryn Mythic Legends. All rights reserved.</p>
   </footer>
 
-<script>
-// Enhanced Particles
-function createParticle() {
-  const p = document.createElement('div');
-  p.classList.add('particle');
-  p.style.left = Math.random() * 100 + 'vw';
-  p.style.animationDuration = (Math.random() * 18 + 14) + 's';
-  p.style.opacity = Math.random() * 0.7 + 0.3;
-  document.getElementById('particles').appendChild(p);
-  setTimeout(() => p.remove(), 60000);
-}
-setInterval(createParticle, 60);
+  <script>
+    // ── Particles ──
+    const container = document.getElementById('particles');
+    const types = ['', '', 'blood', 'gold'];
+    function spawnParticle() {
+      const p = document.createElement('div');
+      const t = types[Math.floor(Math.random() * types.length)];
+      p.className = 'particle' + (t ? ' ' + t : '');
+      p.style.cssText = `
+        left: ${Math.random() * 100}vw;
+        animation-duration: ${Math.random() * 22 + 14}s;
+        animation-delay: ${Math.random() * 4}s;
+        opacity: ${Math.random() * 0.6 + 0.2};
+      `;
+      container.appendChild(p);
+      setTimeout(() => p.remove(), 40000);
+    }
+    for (let i = 0; i < 18; i++) spawnParticle();
+    setInterval(spawnParticle, 800);
 
-// Form
-document.getElementById('realm-form').addEventListener('submit', function(e) {
-  const btn = document.getElementById('submit-btn');
-  btn.textContent = 'SUMMONING...';
-  btn.disabled = true;
+    // ── Scroll fade-in ──
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  setTimeout(() => {
-    this.style.display = 'none';
-    document.getElementById('success-message').style.display = 'block';
-  }, 950);
-});
-</script>
+    // ── Form ──
+    document.getElementById('realm-form').addEventListener('submit', function(e) {
+      const btn = document.getElementById('submit-btn');
+      btn.textContent = 'SUMMONING…';
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
+      setTimeout(() => {
+        this.style.display = 'none';
+        document.getElementById('success-message').style.display = 'block';
+      }, 950);
+    });
+  </script>
+
 </body>
 </html>
