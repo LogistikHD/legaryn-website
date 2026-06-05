@@ -13,6 +13,7 @@
       --neon-green: #22c55e;
       --void: #0a0a0f;
       --gold: #fcd34d;
+      --purple: #a855f7;
     }
 
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -22,89 +23,165 @@
       background: var(--void); 
       color: #e8e8e8; 
       overflow-x: hidden; 
+      line-height: 1.6;
     }
 
+    /* Navigation */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
-      background: rgba(10,10,15,0.95); 
+      background: rgba(10,10,15,0.97); 
       backdrop-filter: blur(12px); 
       z-index: 1000; 
-      border-bottom: 1px solid #22c55e33;
+      border-bottom: 1px solid rgba(34,197,94,0.3);
+    }
+    nav .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
+    /* Particles */
+    .particles { 
+      position: fixed; top:0; left:0; right:0; bottom:0; 
+      pointer-events:none; overflow:hidden; z-index: 0; 
+    }
+    .particle { 
+      position:absolute; width:3px; height:3px; background: var(--neon-green); 
+      border-radius:50%; box-shadow: 0 0 10px var(--neon-green);
+      animation: rise linear infinite; 
+    }
+    @keyframes rise {
+      0% { opacity:0; transform:translateY(100vh) scale(0.6); }
+      100% { opacity:0; transform:translateY(-60px) scale(1.3); }
+    }
+
+    /* Hero */
     .hero { 
       min-height: 100vh; 
-      background: linear-gradient(180deg, #0a0a0f 0%, #0d1a1a 40%, #0a0a0f 100%); 
+      background: linear-gradient(180deg, #0a0a0f 0%, #0d1a1a 45%, #0a0a0f 100%); 
       display: flex; flex-direction: column; align-items: center; justify-content: center; 
-      text-align: center; padding: 120px 1rem 60px; position: relative; 
+      text-align: center; padding: 120px 1rem 80px; position: relative; z-index: 2;
     }
 
     .rune-ring { 
-      width: 168px; height: 168px; border: 3px solid var(--neon-green); 
+      width: 160px; height: 160px; border: 3px solid var(--neon-green); 
       border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-      margin: 0 auto 1.5rem; box-shadow: 0 0 40px var(--neon-green), 0 0 80px #a855f7;
+      margin: 0 auto 1.5rem; box-shadow: 0 0 45px var(--neon-green), 0 0 85px var(--purple);
     }
-    .main-logo { width: 118px; height: 118px; object-fit: contain; }
+    .main-logo { width: 115px; height: 115px; object-fit: contain; }
 
     .game-title { 
-      font-family: 'Cinzel', serif; font-size: clamp(3rem, 9vw, 6.2rem); font-weight: 900; 
+      font-family: 'Cinzel', serif; font-size: clamp(2.8rem, 8.5vw, 6rem); font-weight: 900; 
       background: linear-gradient(135deg, #fcd34d, #fbbf24); 
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+      letter-spacing: 0.05em;
     }
     .game-subtitle { 
       font-family: 'Cinzel', serif; color: var(--neon-green); letter-spacing: 0.5em; 
-      text-transform: uppercase; margin-top: 0.5rem; 
+      text-transform: uppercase; margin-top: 0.5rem; font-size: 1.2rem;
     }
 
     .reward-box { 
-      border: 2px solid #fcd34d55; background: rgba(13,26,13,0.9); 
-      padding: 1.8rem 2.2rem; margin: 2rem auto; max-width: 520px; border-radius: 8px; 
+      border: 2px solid #fcd34d55; background: rgba(13,26,13,0.92); 
+      padding: 1.8rem 1.5rem; margin: 2rem auto; max-width: 520px; 
+      border-radius: 10px; 
     }
 
     .email-form { 
-      display: flex; max-width: 520px; margin: 2rem auto; gap: 14px; 
+      display: flex; max-width: 520px; margin: 2rem auto; gap: 12px; 
       flex-wrap: wrap; justify-content: center; 
     }
     .email-input { 
-      flex: 1; min-width: 280px; padding: 20px 24px; font-size: 17px; 
+      flex: 1; min-width: 260px; padding: 20px 22px; font-size: 17px; 
       background: rgba(10,10,15,0.95); color: #fff; 
       border: 2px solid rgba(34,197,94,0.7); border-radius: 8px; 
     }
     .join-btn { 
-      padding: 20px 42px; background: linear-gradient(90deg, #22c55e, #86efac); 
-      color: #000; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; 
+      padding: 20px 40px; background: linear-gradient(90deg, #22c55e, #86efac); 
+      color: #000; font-weight: 700; font-size: 17px; border: none; 
+      border-radius: 8px; cursor: pointer; white-space: nowrap;
     }
 
     .success-message { 
-      display: none; margin-top: 30px; padding: 32px; 
+      display: none; margin-top: 30px; padding: 32px 20px; 
       background: linear-gradient(180deg, rgba(16,16,20,0.98), rgba(10,10,15,0.98)); 
       border: 2px solid var(--neon-green); border-radius: 12px; 
-      color: #86efac; max-width: 480px; text-align: center;
+      color: #86efac; max-width: 500px; text-align: center;
     }
 
-    .trailer-section { padding: 100px 20px; text-align:center; background:#050505; }
-    .character-showcase { max-width: 520px; margin: 3rem auto; border-radius: 12px; overflow: hidden; box-shadow: 0 0 60px rgba(34,197,94,0.4); }
+    .character-showcase { 
+      max-width: 520px; margin: 3rem auto 1rem; 
+      border-radius: 12px; overflow: hidden; 
+      box-shadow: 0 0 60px rgba(34,197,94,0.45); 
+    }
 
-    footer { text-align: center; padding: 50px 20px; background: #050505; color: #666; border-top: 1px solid #1a1a1a; }
+    /* Sections */
+    section { padding: 80px 20px; }
+    h2 { 
+      font-family: 'Cinzel', serif; font-size: clamp(2rem, 5vw, 2.6rem); 
+      text-align: center; margin-bottom: 1rem; 
+    }
+
+    .feature-grid { 
+      max-width: 1100px; margin: 0 auto; 
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+      gap: 24px; 
+    }
+    .feature-card { 
+      background: rgba(255,255,255,0.015); border: 1px solid #222; 
+      padding: 32px 24px; border-radius: 10px; transition: all 0.4s ease; 
+    }
+    .feature-card:hover { 
+      border-color: var(--neon-green); 
+      transform: translateY(-12px); 
+      box-shadow: 0 0 40px rgba(34,197,94,0.4); 
+    }
+
+    .faq-container { 
+      max-width: 800px; margin: 0 auto; 
+    }
+    .faq-item { 
+      background: rgba(255,255,255,0.02); border-left: 4px solid var(--neon-green); 
+      padding: 24px; margin-bottom: 20px; border-radius: 0 10px 10px 0; 
+    }
+
+    footer { 
+      text-align: center; padding: 60px 20px; background: #050505; 
+      color: #666; border-top: 1px solid #1a1a1a;
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding-top: 100px; }
+      nav .container { padding: 1rem; }
+      .email-form { flex-direction: column; align-items: center; }
+      .join-btn { width: 100%; max-width: 300px; }
+    }
   </style>
 </head>
 <body>
 
+  <!-- Navigation -->
   <nav>
-    <div style="max-width:1200px;margin:0 auto;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;">
+    <div class="container">
       <div style="display:flex;align-items:center;gap:12px;">
         <img src="legaryn_logo.jpeg" alt="Logo" style="height:40px;">
         <span style="font-family:'Cinzel',serif;color:#fcd34d;font-weight:700;">LEGARYN</span>
       </div>
-      <div style="display:flex;gap:2rem;font-size:0.95rem;">
+      <div style="display:flex;gap:1.8rem;font-size:0.95rem;">
         <a href="#features" style="color:#ddd;text-decoration:none;">Features</a>
         <a href="#faq" style="color:#ddd;text-decoration:none;">FAQ</a>
-        <a href="https://discord.gg/Vp4Rs6zDxu" target="_blank" style="color:#22c55e;font-weight:600;">Discord</a>
+        <a href="https://discord.gg/Vp4Rs6zDxu" target="_blank" style="color:var(--neon-green);font-weight:600;">Discord</a>
       </div>
     </div>
   </nav>
 
+  <!-- Hero -->
   <main class="hero">
+    <div class="particles" id="particles"></div>
+
     <div class="rune-ring">
       <img src="legaryn_logo.jpeg" alt="Legaryn Skull Logo" class="main-logo">
     </div>
@@ -112,48 +189,67 @@
     <h1 class="game-title">LEGARYN</h1>
     <p class="game-subtitle">Mythic Legends</p>
 
+    <div style="width:200px;height:2px;background:linear-gradient(90deg,transparent,var(--neon-green),transparent);margin:2rem auto;"></div>
+
     <div class="reward-box">
-      <div style="color:var(--gold);letter-spacing:2px;">EARLY ACCESS REWARD</div>
-      <div style="font-size:1.45rem;margin:12px 0 8px;font-weight:700;">CLAIM A FREE <span style="color:#c026d3;">EPIC SUMMON</span> ON LAUNCH</div>
+      <div style="color:var(--gold);letter-spacing:3px;font-size:0.85rem;">EARLY ACCESS REWARD</div>
+      <div style="font-size:1.5rem;margin:14px 0 10px;font-weight:700;">CLAIM A FREE <span style="color:#c026d3;">EPIC SUMMON</span> ON LAUNCH</div>
       <p style="color:#bbb;">Join the vanguard. Your activation code will be delivered the moment the servers open.</p>
     </div>
 
     <form id="realm-form" class="email-form" action="https://formsubmit.co/d5264602fd5e64eef25c6e98014439d1" method="POST">
-      <input type="email" name="email" placeholder="Enter your email to claim code.." required class="email-input">
-      <input type="hidden" name="_subject" value="New Realm Summoner - Legaryn">
+      <input type="email" name="email" id="email-input" placeholder="Enter your email to claim code.." required class="email-input">
+      <input type="hidden" name="_subject" value="🜁 New Realm Summoner - Legaryn">
       <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_autoresponse" value="Thank you for joining the Legaryn Realm! Your activation code has been reserved.">
-      <button type="submit" class="join-btn">JOIN THE REALM</button>
+      <input type="hidden" name="_autoresponse" value="Thank you for joining the Legaryn Realm! 🎉 Your activation code has been reserved. You will receive your FREE Epic Summon code the moment the servers launch. Welcome to the dark realm, Summoner.">
+      <button type="submit" id="submit-btn" class="join-btn">JOIN THE REALM</button>
     </form>
 
     <div id="success-message" class="success-message">
-      <strong>RITUAL COMPLETE</strong><br>You have been bound to the Realm.
+      <div style="font-size:48px;margin-bottom:12px;">🜁</div>
+      <h2 style="color:var(--neon-green);">RITUAL COMPLETE</h2>
+      <p>You have been bound to the Legaryn Realm.<br><strong>Your Epic Summon is reserved.</strong></p>
     </div>
 
     <div class="character-showcase">
-      <img src="character.jpg" alt="Legaryn Vanguard" style="width:100%;height:auto;">
+      <img src="character.jpg" alt="Legaryn Vanguard" style="width:100%;height:auto;display:block;">
     </div>
   </main>
 
-  <!-- Trailer Section -->
-  <section class="trailer-section">
-    <h2 style="font-family:'Cinzel',serif; font-size:2.5rem; margin-bottom:1.5rem;">Experience the Realm</h2>
-    <div style="max-width:900px;margin:0 auto;border-radius:12px;overflow:hidden;box-shadow:0 0 60px rgba(34,197,94,0.3);">
-      <iframe width="100%" height="515" src="YOUR_YOUTUBE_LINK_HERE" frameborder="0" allowfullscreen></iframe>
+  <!-- Features -->
+  <section id="features">
+    <h2>What Awaits You</h2>
+    <p style="text-align:center;color:#888;margin-bottom:50px;letter-spacing:3px;">THE REALM HOLDS MANY SECRETS</p>
+    
+    <div class="feature-grid">
+      <div class="feature-card"><span style="font-size:2.8rem;display:block;margin-bottom:16px;">⚔️</span><h3 style="margin-bottom:12px;">Battle</h3><p>Clash top players worldwide. Rise through intense arena combat.</p></div>
+      <div class="feature-card"><span style="font-size:2.8rem;display:block;margin-bottom:16px;">🔮</span><h3 style="margin-bottom:12px;">Summon</h3><p>Call forth mythic warriors and legendary creatures.</p></div>
+      <div class="feature-card"><span style="font-size:2.8rem;display:block;margin-bottom:16px;">☤</span><h3 style="margin-bottom:12px;">Alliance</h3><p>Form absolute tactical pacts and dominate wars.</p></div>
+      <div class="feature-card"><span style="font-size:2.8rem;display:block;margin-bottom:16px;">💠</span><h3 style="margin-bottom:12px;">Empire</h3><p>Amass vast capital assets and unlock rare weapons.</p></div>
     </div>
   </section>
 
-  <!-- Features -->
-  <section id="features" style="max-width:1100px;margin:80px auto;padding:0 20px;">
-    <h2 style="font-family:'Cinzel',serif;font-size:2.2rem;text-align:center;margin-bottom:8px;">What Awaits You</h2>
-    <p style="text-align:center;color:#888;margin-bottom:50px;letter-spacing:3px;">THE REALM HOLDS MANY SECRETS</p>
-    <!-- Your feature cards here -->
-  </section>
-
   <!-- FAQ -->
-  <section id="faq" style="max-width:800px;margin:80px auto;padding:0 20px;">
-    <h2 style="text-align:center;font-family:'Cinzel',serif;font-size:2.2rem;margin-bottom:50px;">Frequently Asked Questions</h2>
-    <!-- Paste your full FAQ items here -->
+  <section id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-container">
+      <div class="faq-item">
+        <h3>What platforms is the Legaryn Beta available on?</h3>
+        <p>The closed beta is currently running on iOS via Apple TestFlight. Android version is coming soon.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How do I claim my Launch Day Promo Code?</h3>
+        <p>Enter your email above to join the realm. Your exclusive promo code will be sent on launch day.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is Legaryn Free-to-Play?</h3>
+        <p>Yes! Completely free to download and play with optional premium cosmetics.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How can I report bugs or submit suggestions?</h3>
+        <p>Join our Discord server for direct access to Dev Forge channels.</p>
+      </div>
+    </div>
   </section>
 
   <footer>
@@ -161,12 +257,28 @@
   </footer>
 
 <script>
-  document.getElementById('realm-form').addEventListener('submit', function() {
-    setTimeout(() => {
-      this.style.display = 'none';
-      document.getElementById('success-message').style.display = 'block';
-    }, 800);
-  });
+// Particle System
+function createParticle() {
+  const p = document.createElement('div');
+  p.classList.add('particle');
+  p.style.left = Math.random() * 100 + 'vw';
+  p.style.animationDuration = (Math.random() * 12 + 15) + 's';
+  document.getElementById('particles').appendChild(p);
+  setTimeout(() => p.remove(), 45000);
+}
+setInterval(createParticle, 80);
+
+// Form Success
+document.getElementById('realm-form').addEventListener('submit', function() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'SUMMONING...';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    this.style.display = 'none';
+    document.getElementById('success-message').style.display = 'block';
+  }, 900);
+});
 </script>
 </body>
 </html>
