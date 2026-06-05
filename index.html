@@ -32,20 +32,6 @@
       border-bottom: 1px solid #22c55e33;
     }
 
-    .particles { 
-      position: absolute; top:0; left:0; right:0; bottom:0; 
-      pointer-events:none; overflow:hidden; z-index: 1; 
-    }
-    .particle { 
-      position:absolute; width:3px; height:3px; background: var(--neon-green); 
-      border-radius:50%; box-shadow: 0 0 8px var(--neon-green);
-      animation: rise linear infinite; 
-    }
-    @keyframes rise {
-      0% { opacity:0; transform:translateY(100vh) scale(0.5); }
-      100% { opacity:0; transform:translateY(-50px) scale(1.2); }
-    }
-
     .hero { 
       min-height: 100vh; 
       background: linear-gradient(180deg, #0a0a0f 0%, #0d1a1a 40%, #0a0a0f 100%); 
@@ -96,32 +82,14 @@
       color: #86efac; max-width: 480px; text-align: center;
     }
 
-    .character-showcase { 
-      max-width: 520px; margin: 3rem auto 2rem; 
-      border-radius: 12px; overflow: hidden; 
-      box-shadow: 0 0 60px rgba(34,197,94,0.4); 
-    }
-
     .trailer-section { padding: 100px 20px; text-align:center; background:#050505; }
+    .character-showcase { max-width: 520px; margin: 3rem auto; border-radius: 12px; overflow: hidden; box-shadow: 0 0 60px rgba(34,197,94,0.4); }
 
-    .feature-card { 
-      background: rgba(255,255,255,0.015); border: 1px solid #111; 
-      padding: 32px 24px; border-radius: 8px; transition: all 0.4s; 
-    }
-    .feature-card:hover { 
-      border-color: var(--neon-green); transform: translateY(-12px); 
-      box-shadow: 0 0 40px rgba(34,197,94,0.4); 
-    }
-
-    footer { 
-      text-align: center; padding: 50px 20px; background: #050505; 
-      color: #666; border-top: 1px solid #1a1a1a;
-    }
+    footer { text-align: center; padding: 50px 20px; background: #050505; color: #666; border-top: 1px solid #1a1a1a; }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
   <nav>
     <div style="max-width:1200px;margin:0 auto;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;">
       <div style="display:flex;align-items:center;gap:12px;">
@@ -136,10 +104,7 @@
     </div>
   </nav>
 
-  <!-- Hero -->
   <main class="hero">
-    <div class="particles" id="particles"></div>
-
     <div class="rune-ring">
       <img src="legaryn_logo.jpeg" alt="Legaryn Skull Logo" class="main-logo">
     </div>
@@ -147,26 +112,22 @@
     <h1 class="game-title">LEGARYN</h1>
     <p class="game-subtitle">Mythic Legends</p>
 
-    <div style="width:180px;height:2px;background:linear-gradient(90deg,transparent,var(--neon-green),transparent);margin:2rem auto;"></div>
-
     <div class="reward-box">
-      <div style="color:var(--gold);letter-spacing:2px;font-size:0.9rem;">EARLY ACCESS REWARD</div>
+      <div style="color:var(--gold);letter-spacing:2px;">EARLY ACCESS REWARD</div>
       <div style="font-size:1.45rem;margin:12px 0 8px;font-weight:700;">CLAIM A FREE <span style="color:#c026d3;">EPIC SUMMON</span> ON LAUNCH</div>
       <p style="color:#bbb;">Join the vanguard. Your activation code will be delivered the moment the servers open.</p>
     </div>
 
     <form id="realm-form" class="email-form" action="https://formsubmit.co/d5264602fd5e64eef25c6e98014439d1" method="POST">
-      <input type="email" name="email" id="email-input" placeholder="Enter your email to claim code.." required class="email-input">
-      <input type="hidden" name="_subject" value="🜁 New Realm Summoner - Legaryn">
+      <input type="email" name="email" placeholder="Enter your email to claim code.." required class="email-input">
+      <input type="hidden" name="_subject" value="New Realm Summoner - Legaryn">
       <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_autoresponse" value="Thank you for joining the Legaryn Realm! Your activation code has been reserved. Welcome to the dark realm, Summoner.">
-      <button type="submit" id="submit-btn" class="join-btn">JOIN THE REALM</button>
+      <input type="hidden" name="_autoresponse" value="Thank you for joining the Legaryn Realm! Your activation code has been reserved.">
+      <button type="submit" class="join-btn">JOIN THE REALM</button>
     </form>
 
     <div id="success-message" class="success-message">
-      <div style="font-size:48px;margin-bottom:12px;">🜁</div>
-      <h2 style="color:var(--neon-green);">RITUAL COMPLETE</h2>
-      <p>You have been bound to the Legaryn Realm.<br>Your Epic Summon is reserved.</p>
+      <strong>RITUAL COMPLETE</strong><br>You have been bound to the Realm.
     </div>
 
     <div class="character-showcase">
@@ -174,9 +135,9 @@
     </div>
   </main>
 
-  <!-- Trailer -->
+  <!-- Trailer Section -->
   <section class="trailer-section">
-    <h2 style="font-family:'Cinzel',serif;font-size:2.5rem;margin-bottom:1.5rem;">Experience the Realm</h2>
+    <h2 style="font-family:'Cinzel',serif; font-size:2.5rem; margin-bottom:1.5rem;">Experience the Realm</h2>
     <div style="max-width:900px;margin:0 auto;border-radius:12px;overflow:hidden;box-shadow:0 0 60px rgba(34,197,94,0.3);">
       <iframe width="100%" height="515" src="YOUR_YOUTUBE_LINK_HERE" frameborder="0" allowfullscreen></iframe>
     </div>
@@ -186,23 +147,13 @@
   <section id="features" style="max-width:1100px;margin:80px auto;padding:0 20px;">
     <h2 style="font-family:'Cinzel',serif;font-size:2.2rem;text-align:center;margin-bottom:8px;">What Awaits You</h2>
     <p style="text-align:center;color:#888;margin-bottom:50px;letter-spacing:3px;">THE REALM HOLDS MANY SECRETS</p>
-    
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;">
-      <div class="feature-card"><span style="font-size:2.4rem;">⚔️</span><h3 style="margin:12px 0;">Battle</h3><p>Clash top players worldwide.</p></div>
-      <div class="feature-card"><span style="font-size:2.4rem;">🔮</span><h3 style="margin:12px 0;">Summon</h3><p>Call forth mythic warriors.</p></div>
-      <div class="feature-card"><span style="font-size:2.4rem;">☤</span><h3 style="margin:12px 0;">Alliance</h3><p>Form absolute tactical pacts.</p></div>
-      <div class="feature-card"><span style="font-size:2.4rem;">💠</span><h3 style="margin:12px 0;">Empire</h3><p>Amass vast capital assets.</p></div>
-    </div>
+    <!-- Your feature cards here -->
   </section>
 
   <!-- FAQ -->
   <section id="faq" style="max-width:800px;margin:80px auto;padding:0 20px;">
     <h2 style="text-align:center;font-family:'Cinzel',serif;font-size:2.2rem;margin-bottom:50px;">Frequently Asked Questions</h2>
-    <div class="faq-item" style="background:rgba(255,255,255,0.02);border-left:4px solid var(--neon-green);padding:24px;margin-bottom:20px;border-radius:0 8px 8px 0;">
-      <h3>What platforms is the Legaryn Beta available on?</h3>
-      <p>The closed beta is currently running on iOS via Apple TestFlight...</p>
-    </div>
-    <!-- Add your other FAQ items here -->
+    <!-- Paste your full FAQ items here -->
   </section>
 
   <footer>
@@ -210,28 +161,12 @@
   </footer>
 
 <script>
-// Particles
-function createParticle() {
-  const p = document.createElement('div');
-  p.classList.add('particle');
-  p.style.left = Math.random() * 100 + 'vw';
-  p.style.animationDuration = (Math.random() * 12 + 12) + 's';
-  document.getElementById('particles').appendChild(p);
-  setTimeout(() => p.remove(), 35000);
-}
-setInterval(createParticle, 80);
-
-// Form Success
-document.getElementById('realm-form').addEventListener('submit', function(e) {
-  const btn = document.getElementById('submit-btn');
-  btn.textContent = 'SUMMONING...';
-  btn.disabled = true;
-
-  setTimeout(() => {
-    this.style.display = 'none';
-    document.getElementById('success-message').style.display = 'block';
-  }, 900);
-});
+  document.getElementById('realm-form').addEventListener('submit', function() {
+    setTimeout(() => {
+      this.style.display = 'none';
+      document.getElementById('success-message').style.display = 'block';
+    }, 800);
+  });
 </script>
 </body>
 </html>
