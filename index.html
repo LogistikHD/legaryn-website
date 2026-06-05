@@ -11,12 +11,9 @@
   <style>
     :root {
       --neon:    #00ffaa;
-      --neon-dim: rgba(0,255,170,0.15);
       --blood:   #c0263e;
       --gold:    #e8b84b;
-      --gold-dim: rgba(232,184,75,0.12);
       --void:    #04040a;
-      --deep:    #080812;
       --surface: rgba(255,255,255,0.028);
       --border:  rgba(255,255,255,0.06);
       --purple:  #7c3aed;
@@ -34,7 +31,6 @@
       font-size: 17px;
     }
 
-    /* ─── Atmospheric BG ─── */
     body::before {
       content: '';
       position: fixed;
@@ -47,7 +43,6 @@
       z-index: 0;
     }
 
-    /* ─── NOISE TEXTURE OVERLAY ─── */
     body::after {
       content: '';
       position: fixed;
@@ -58,31 +53,16 @@
       z-index: 1;
     }
 
-    /* ─── PARTICLES ─── */
-    #particles {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 2;
-      overflow: hidden;
-    }
+    /* ── PARTICLES ── */
+    #particles { position: fixed; inset: 0; pointer-events: none; z-index: 2; overflow: hidden; }
     .particle {
-      position: absolute;
-      width: 2px; height: 2px;
-      background: var(--neon);
-      border-radius: 50%;
+      position: absolute; width: 2px; height: 2px;
+      background: var(--neon); border-radius: 50%;
       box-shadow: 0 0 6px var(--neon), 0 0 14px var(--neon);
       animation: rise linear infinite;
     }
-    .particle.blood {
-      background: var(--blood);
-      box-shadow: 0 0 6px var(--blood), 0 0 14px var(--blood);
-    }
-    .particle.gold {
-      background: var(--gold);
-      box-shadow: 0 0 6px var(--gold);
-      width: 3px; height: 3px;
-    }
+    .particle.blood { background: var(--blood); box-shadow: 0 0 6px var(--blood), 0 0 14px var(--blood); }
+    .particle.gold  { background: var(--gold); box-shadow: 0 0 6px var(--gold); width: 3px; height: 3px; }
     @keyframes rise {
       0%   { opacity: 0; transform: translateY(105vh) scale(0.3); }
       15%  { opacity: 1; }
@@ -90,7 +70,7 @@
       100% { opacity: 0; transform: translateY(-40px) scale(1.8) rotate(180deg); }
     }
 
-    /* ─── NAV ─── */
+    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
       background: rgba(4,4,10,0.92);
@@ -99,484 +79,324 @@
       border-bottom: 1px solid rgba(0,255,170,0.12);
     }
     nav .inner {
-      max-width: 1240px;
-      margin: 0 auto;
+      max-width: 1240px; margin: 0 auto;
       padding: 0.85rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: flex; justify-content: space-between; align-items: center;
     }
-    .nav-brand {
-      display: flex; align-items: center; gap: 11px;
-      text-decoration: none;
-    }
-    .nav-brand img {
-      height: 40px;
-      border-radius: 6px;
-      filter: drop-shadow(0 0 8px rgba(0,255,170,0.4));
-    }
-    .nav-brand span {
-      font-family: 'Cinzel', serif;
-      color: var(--gold);
-      font-weight: 700;
-      font-size: 1.25rem;
-      letter-spacing: 0.08em;
-    }
+    .nav-brand { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+    .nav-brand img { height: 40px; border-radius: 6px; filter: drop-shadow(0 0 8px rgba(0,255,170,0.4)); }
+    .nav-brand span { font-family: 'Cinzel', serif; color: var(--gold); font-weight: 700; font-size: 1.25rem; letter-spacing: 0.08em; }
     .nav-links { display: flex; gap: 2rem; align-items: center; }
-    .nav-links a {
-      color: #aaa;
-      text-decoration: none;
-      font-family: 'Cinzel', serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      transition: color 0.2s;
-    }
+    .nav-links a { color: #aaa; text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.12em; transition: color 0.2s; }
     .nav-links a:hover { color: #ddd; }
-    .nav-links a.discord {
-      color: var(--neon);
-      border: 1px solid rgba(0,255,170,0.3);
-      padding: 0.4rem 1rem;
-      border-radius: 4px;
-      transition: all 0.25s;
-    }
-    .nav-links a.discord:hover {
-      background: rgba(0,255,170,0.1);
-      border-color: var(--neon);
-    }
+    .nav-links a.discord { color: var(--neon); border: 1px solid rgba(0,255,170,0.3); padding: 0.4rem 1rem; border-radius: 4px; transition: all 0.25s; }
+    .nav-links a.discord:hover { background: rgba(0,255,170,0.1); border-color: var(--neon); }
 
-    /* ─── HERO ─── */
+    /* ── HERO ── */
     .hero {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 140px 1.2rem 80px;
-      position: relative;
-      z-index: 3;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 140px 1.2rem 80px;
+      position: relative; z-index: 3;
     }
 
-    /* Divider line between sections of the page */
     .rune-divider {
-      width: 100%;
-      max-width: 480px;
-      height: 1px;
+      width: 100%; max-width: 480px; height: 1px;
       background: linear-gradient(90deg, transparent, var(--blood) 20%, var(--neon) 50%, var(--blood) 80%, transparent);
-      margin: 2rem auto;
-      position: relative;
+      margin: 2rem auto; position: relative;
     }
     .rune-divider::before {
-      content: '✦';
-      position: absolute;
-      left: 50%; top: 50%;
+      content: '✦'; position: absolute; left: 50%; top: 50%;
       transform: translate(-50%, -50%);
-      background: var(--void);
-      padding: 0 0.6rem;
-      color: var(--gold);
-      font-size: 0.65rem;
+      background: var(--void); padding: 0 0.6rem; color: var(--gold); font-size: 0.65rem;
     }
 
-    /* Sigil ring */
-    .sigil-wrap {
-      position: relative;
-      width: 200px; height: 200px;
-      margin: 0 auto 2.5rem;
-    }
+    .sigil-wrap { position: relative; width: 200px; height: 200px; margin: 0 auto 2.5rem; }
     .sigil-ring {
-      position: absolute; inset: 0;
-      border-radius: 50%;
+      position: absolute; inset: 0; border-radius: 50%;
       border: 2px solid transparent;
       background: linear-gradient(var(--void), var(--void)) padding-box,
                   linear-gradient(135deg, var(--neon), var(--purple), var(--blood), var(--gold)) border-box;
       animation: spin-ring 18s linear infinite;
-      box-shadow:
-        0 0 40px rgba(0,255,170,0.2),
-        0 0 80px rgba(124,58,237,0.15),
-        inset 0 0 30px rgba(0,0,0,0.8);
+      box-shadow: 0 0 40px rgba(0,255,170,0.2), 0 0 80px rgba(124,58,237,0.15), inset 0 0 30px rgba(0,0,0,0.8);
     }
     .sigil-ring-inner {
-      position: absolute;
-      inset: 12px;
-      border-radius: 50%;
+      position: absolute; inset: 12px; border-radius: 50%;
       border: 1px solid rgba(0,255,170,0.15);
       animation: spin-ring 8s linear infinite reverse;
     }
-    @keyframes spin-ring {
-      to { transform: rotate(360deg); }
-    }
-    .sigil-logo {
-      position: absolute;
-      inset: 0;
-      display: flex; align-items: center; justify-content: center;
-    }
+    @keyframes spin-ring { to { transform: rotate(360deg); } }
+    .sigil-logo { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
     .sigil-logo img {
-      width: 140px; height: 140px;
-      object-fit: contain;
-      border-radius: 50%;
+      width: 140px; height: 140px; object-fit: contain; border-radius: 50%;
       filter: drop-shadow(0 0 20px rgba(0,255,170,0.5)) drop-shadow(0 0 40px rgba(192,38,62,0.4));
     }
 
     .game-title {
       font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(2.8rem, 9vw, 6rem);
-      font-weight: 900;
+      font-size: clamp(2.8rem, 9vw, 6rem); font-weight: 900;
       background: linear-gradient(160deg, #fde68a 0%, var(--gold) 40%, #c0263e 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.05;
-      letter-spacing: 0.04em;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      line-height: 1.05; letter-spacing: 0.04em;
       filter: drop-shadow(0 2px 30px rgba(232,184,75,0.3));
     }
     .game-subtitle {
-      font-family: 'Cinzel', serif;
-      color: var(--neon);
-      letter-spacing: 0.55em;
-      text-transform: uppercase;
-      font-size: 0.9rem;
-      font-weight: 400;
-      margin-top: 0.6rem;
-      opacity: 0.85;
+      font-family: 'Cinzel', serif; color: var(--neon);
+      letter-spacing: 0.55em; text-transform: uppercase;
+      font-size: 0.9rem; font-weight: 400; margin-top: 0.6rem; opacity: 0.85;
     }
 
-    /* Reward box */
+    /* ── COUNTER STRIP ── */
+    .counter-strip {
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+      margin: 1.2rem auto 0;
+      font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.2em;
+      color: #555568;
+    }
+    .counter-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--neon);
+      box-shadow: 0 0 8px var(--neon);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+    #soul-count { color: var(--neon); font-weight: 700; }
+
     .reward-box {
-      position: relative;
-      margin: 2.8rem auto;
-      max-width: 520px;
-      padding: 2rem 2rem;
-      border-radius: 12px;
+      position: relative; margin: 2.8rem auto; max-width: 520px;
+      padding: 2rem; border-radius: 12px;
       background: linear-gradient(145deg, rgba(12,10,22,0.98), rgba(8,6,16,0.98));
       border: 1px solid rgba(232,184,75,0.35);
-      box-shadow:
-        0 0 0 1px rgba(0,0,0,0.5),
-        0 0 60px rgba(192,38,62,0.18),
-        inset 0 1px 0 rgba(232,184,75,0.1);
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.5), 0 0 60px rgba(192,38,62,0.18), inset 0 1px 0 rgba(232,184,75,0.1);
     }
     .reward-box::before {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      border-radius: 13px;
+      content: ''; position: absolute; inset: -1px; border-radius: 13px;
       background: linear-gradient(135deg, rgba(232,184,75,0.2), transparent 40%, rgba(0,255,170,0.1));
       pointer-events: none;
     }
-    .reward-label {
-      font-family: 'Cinzel', serif;
-      color: var(--gold);
-      letter-spacing: 0.35em;
-      font-size: 0.72rem;
-      margin-bottom: 0.75rem;
-      opacity: 0.8;
-    }
-    .reward-headline {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(1.1rem, 3.5vw, 1.45rem);
-      font-weight: 700;
-      line-height: 1.35;
-      color: #f0f0f0;
-      margin-bottom: 0.75rem;
-    }
-    .reward-headline em {
-      color: #e11d48;
-      font-style: normal;
-    }
-    .reward-body {
-      color: #8a8a9a;
-      font-size: 0.95rem;
-      font-style: italic;
-      line-height: 1.6;
-    }
+    .reward-label { font-family: 'Cinzel', serif; color: var(--gold); letter-spacing: 0.35em; font-size: 0.72rem; margin-bottom: 0.75rem; opacity: 0.8; }
+    .reward-headline { font-family: 'Cinzel', serif; font-size: clamp(1.1rem, 3.5vw, 1.45rem); font-weight: 700; line-height: 1.35; color: #f0f0f0; margin-bottom: 0.75rem; }
+    .reward-headline em { color: #e11d48; font-style: normal; }
+    .reward-body { color: #8a8a9a; font-size: 0.95rem; font-style: italic; line-height: 1.6; }
 
-    /* Email form */
-    .email-form {
-      display: flex;
-      max-width: 520px;
-      margin: 0 auto 2rem;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+    .email-form { display: flex; max-width: 520px; margin: 0 auto 2rem; gap: 10px; flex-wrap: wrap; justify-content: center; }
     .email-input {
-      flex: 1;
-      min-width: 240px;
-      padding: 18px 20px;
-      font-size: 15px;
+      flex: 1; min-width: 240px; padding: 18px 20px; font-size: 15px;
       font-family: 'Crimson Pro', serif;
-      background: rgba(8,8,18,0.95);
-      color: #ddd;
-      border: 1px solid rgba(0,255,170,0.3);
-      border-radius: 8px;
-      outline: none;
+      background: rgba(8,8,18,0.95); color: #ddd;
+      border: 1px solid rgba(0,255,170,0.3); border-radius: 8px; outline: none;
       transition: border-color 0.25s, box-shadow 0.25s;
     }
     .email-input::placeholder { color: #555; }
-    .email-input:focus {
-      border-color: rgba(0,255,170,0.7);
-      box-shadow: 0 0 20px rgba(0,255,170,0.12);
-    }
+    .email-input:focus { border-color: rgba(0,255,170,0.7); box-shadow: 0 0 20px rgba(0,255,170,0.12); }
     .join-btn {
       padding: 18px 36px;
       background: linear-gradient(135deg, #00e896 0%, #00ffaa 50%, #00cc7a 100%);
-      color: #030a06;
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      font-size: 0.82rem;
-      letter-spacing: 0.2em;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      white-space: nowrap;
+      color: #030a06; font-family: 'Cinzel', serif; font-weight: 700;
+      font-size: 0.82rem; letter-spacing: 0.2em;
+      border: none; border-radius: 8px; cursor: pointer; white-space: nowrap;
       box-shadow: 0 0 25px rgba(0,255,170,0.4), inset 0 1px 0 rgba(255,255,255,0.25);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
+      transition: all 0.3s ease; position: relative; overflow: hidden;
     }
-    .join-btn::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
-      pointer-events: none;
-    }
-    .join-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 50px rgba(0,255,170,0.65), 0 8px 30px rgba(0,0,0,0.4);
-    }
+    .join-btn::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%); pointer-events: none; }
+    .join-btn:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(0,255,170,0.65), 0 8px 30px rgba(0,0,0,0.4); }
     .join-btn:active { transform: translateY(0); }
 
-    /* Success */
     .success-message {
-      display: none;
-      margin: 2rem auto;
-      padding: 2.5rem 2rem;
-      background: rgba(0,255,170,0.04);
-      border: 1px solid rgba(0,255,170,0.25);
-      border-radius: 12px;
-      max-width: 480px;
-      text-align: center;
-      box-shadow: 0 0 50px rgba(0,255,170,0.15);
-      animation: fadeIn 0.6s ease;
+      display: none; margin: 2rem auto; padding: 2.5rem 2rem;
+      background: rgba(0,255,170,0.04); border: 1px solid rgba(0,255,170,0.25);
+      border-radius: 12px; max-width: 480px; text-align: center;
+      box-shadow: 0 0 50px rgba(0,255,170,0.15); animation: fadeIn 0.6s ease;
     }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-    .success-glyph {
-      font-size: 3rem;
-      color: var(--neon);
-      display: block;
-      margin-bottom: 1rem;
-      filter: drop-shadow(0 0 15px var(--neon));
-    }
-    .success-title {
-      font-family: 'Cinzel', serif;
-      color: var(--neon);
-      font-size: 1.1rem;
-      letter-spacing: 0.2em;
-      margin-bottom: 0.75rem;
-    }
+    .success-glyph { font-size: 3rem; color: var(--neon); display: block; margin-bottom: 1rem; filter: drop-shadow(0 0 15px var(--neon)); }
+    .success-title { font-family: 'Cinzel', serif; color: var(--neon); font-size: 1.1rem; letter-spacing: 0.2em; margin-bottom: 0.75rem; }
 
-    /* Character art */
     .character-showcase {
-      max-width: 500px;
-      margin: 3rem auto 0;
-      border-radius: 14px;
-      overflow: hidden;
-      position: relative;
-      box-shadow:
-        0 0 0 1px rgba(0,255,170,0.15),
-        0 0 60px rgba(0,255,170,0.25),
-        0 0 120px rgba(192,38,62,0.2);
+      max-width: 500px; margin: 3rem auto 0;
+      border-radius: 14px; overflow: hidden; position: relative;
+      box-shadow: 0 0 0 1px rgba(0,255,170,0.15), 0 0 60px rgba(0,255,170,0.25), 0 0 120px rgba(192,38,62,0.2);
     }
     .character-showcase::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 50%;
-      background: linear-gradient(transparent, var(--void));
-      pointer-events: none;
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 50%; background: linear-gradient(transparent, var(--void)); pointer-events: none;
     }
-    .character-showcase img {
-      width: 100%; height: auto; display: block;
-    }
+    .character-showcase img { width: 100%; height: auto; display: block; }
 
-    /* ─── SECTIONS ─── */
-    section {
-      padding: 100px 20px;
-      position: relative;
-      z-index: 3;
-    }
-    section + section {
-      border-top: 1px solid var(--border);
-    }
+    /* ── SECTIONS ── */
+    section { padding: 100px 20px; position: relative; z-index: 3; }
+    section + section { border-top: 1px solid var(--border); }
 
-    .section-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.5em;
-      color: var(--neon);
-      text-align: center;
-      margin-bottom: 0.75rem;
-      opacity: 0.7;
-    }
-    .section-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
-      text-align: center;
-      margin-bottom: 0.5rem;
-      color: #f0ece0;
-      letter-spacing: 0.02em;
-    }
-    .section-sub {
-      text-align: center;
-      color: #4a4a5a;
-      letter-spacing: 0.4em;
-      font-size: 0.75rem;
-      font-family: 'Cinzel', serif;
-      margin-bottom: 70px;
-    }
+    .section-eyebrow { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.5em; color: var(--neon); text-align: center; margin-bottom: 0.75rem; opacity: 0.7; }
+    .section-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(1.8rem, 5vw, 2.8rem); text-align: center; margin-bottom: 0.5rem; color: #f0ece0; letter-spacing: 0.02em; }
+    .section-sub { text-align: center; color: #4a4a5a; letter-spacing: 0.4em; font-size: 0.75rem; font-family: 'Cinzel', serif; margin-bottom: 70px; }
 
-    /* ─── FEATURE GRID ─── */
-    .feature-grid {
-      max-width: 1080px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
+    /* ── CREATURE SHOWCASE ── */
+    .creatures-section { background: linear-gradient(180deg, var(--void) 0%, rgba(10,5,20,0.98) 50%, var(--void) 100%); }
+
+    .creature-track-wrap {
+      max-width: 1200px; margin: 0 auto;
+      position: relative; overflow: hidden;
     }
-    .feature-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 36px 28px;
-      position: relative;
-      overflow: hidden;
+    .creature-track-wrap::before,
+    .creature-track-wrap::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none;
+    }
+    .creature-track-wrap::before { left: 0; background: linear-gradient(90deg, var(--void), transparent); }
+    .creature-track-wrap::after  { right: 0; background: linear-gradient(-90deg, var(--void), transparent); }
+
+    .creature-track {
+      display: flex; gap: 24px;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 20px 60px 30px;
+      scrollbar-width: none;
+    }
+    .creature-track::-webkit-scrollbar { display: none; }
+
+    .creature-card {
+      flex: 0 0 280px; scroll-snap-align: center;
+      border-radius: 16px; overflow: hidden;
+      position: relative; cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.07);
       transition: all 0.4s ease;
-      cursor: default;
+      background: rgba(0,0,0,0.4);
     }
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(0,255,170,0.04) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.4s;
+    .creature-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      border-color: var(--neon);
+      box-shadow: 0 0 0 1px rgba(0,255,170,0.2), 0 30px 80px rgba(0,0,0,0.7), 0 0 40px rgba(0,255,170,0.15);
     }
+    .creature-card img {
+      width: 100%; height: 340px; object-fit: cover; object-position: top;
+      display: block; transition: transform 0.5s ease;
+    }
+    .creature-card:hover img { transform: scale(1.06); }
+
+    .creature-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 50px 20px 20px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.92));
+    }
+    .creature-rarity {
+      font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.4em;
+      color: var(--gold); margin-bottom: 4px;
+      text-shadow: 0 0 12px rgba(232,184,75,0.6);
+    }
+    .creature-name {
+      font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700;
+      color: #f0ece0; line-height: 1.2;
+    }
+    .creature-type {
+      font-size: 0.8rem; color: #666; margin-top: 4px; font-style: italic;
+    }
+    .mythic-badge {
+      position: absolute; top: 14px; right: 14px;
+      background: linear-gradient(135deg, #7c3aed, #c0263e);
+      color: #fff; font-family: 'Cinzel', serif;
+      font-size: 0.55rem; letter-spacing: 0.25em;
+      padding: 4px 10px; border-radius: 20px;
+      box-shadow: 0 0 15px rgba(124,58,237,0.5);
+    }
+
+    /* Dot nav for carousel */
+    .creature-dots {
+      display: flex; justify-content: center; gap: 8px; margin-top: 24px;
+    }
+    .creature-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); border: none; cursor: pointer;
+      transition: all 0.3s; padding: 0;
+    }
+    .creature-dot.active { background: var(--neon); box-shadow: 0 0 8px var(--neon); width: 20px; border-radius: 3px; }
+
+    /* ── FEATURE GRID ── */
+    .feature-grid { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .feature-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 36px 28px;
+      position: relative; overflow: hidden; transition: all 0.4s ease; cursor: default;
+    }
+    .feature-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,255,170,0.04) 0%, transparent 60%); opacity: 0; transition: opacity 0.4s; }
     .feature-card:hover::before { opacity: 1; }
-    .feature-card:hover {
-      border-color: rgba(0,255,170,0.25);
-      transform: translateY(-8px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(0,255,170,0.1);
-    }
-    /* Corner accent on card hover */
-    .feature-card::after {
-      content: '';
-      position: absolute;
-      top: 0; right: 0;
-      width: 40px; height: 40px;
-      border-top: 2px solid rgba(0,255,170,0);
-      border-right: 2px solid rgba(0,255,170,0);
-      border-radius: 0 12px 0 0;
-      transition: border-color 0.4s;
-    }
-    .feature-card:hover::after {
-      border-color: rgba(0,255,170,0.4);
-    }
+    .feature-card:hover { border-color: rgba(0,255,170,0.25); transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(0,255,170,0.1); }
+    .feature-card::after { content: ''; position: absolute; top: 0; right: 0; width: 40px; height: 40px; border-top: 2px solid rgba(0,255,170,0); border-right: 2px solid rgba(0,255,170,0); border-radius: 0 12px 0 0; transition: border-color 0.4s; }
+    .feature-card:hover::after { border-color: rgba(0,255,170,0.4); }
+    .card-icon { width: 52px; height: 52px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; }
+    .card-icon svg { width: 36px; height: 36px; filter: drop-shadow(0 0 8px currentColor); }
+    .card-title { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1rem; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 10px; }
+    .card-body { color: #7a7a8a; font-size: 0.95rem; line-height: 1.65; }
 
-    .card-icon {
-      width: 52px; height: 52px;
-      margin-bottom: 20px;
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-    }
-    .card-icon svg {
-      width: 36px; height: 36px;
-      filter: drop-shadow(0 0 8px currentColor);
-    }
-    .card-title {
-      font-family: 'Cinzel', serif;
-      color: var(--gold);
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      margin-bottom: 10px;
-    }
-    .card-body {
-      color: #7a7a8a;
-      font-size: 0.95rem;
-      line-height: 1.65;
-    }
-
-    /* ─── FAQ ─── */
-    .faq-list {
-      max-width: 780px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
+    /* ── FAQ ── */
+    .faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
     .faq-item {
-      position: relative;
-      padding: 28px 28px 28px 36px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
+      position: relative; padding: 28px 28px 28px 36px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
       transition: background 0.3s, border-color 0.3s;
     }
-    .faq-item::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      border-radius: 3px 0 0 3px;
-      background: linear-gradient(180deg, var(--blood), var(--purple));
-    }
-    .faq-item:hover {
-      background: rgba(255,255,255,0.035);
-      border-color: rgba(192,38,62,0.2);
-    }
-    .faq-q {
-      font-family: 'Cinzel', serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #d0ccc0;
-      letter-spacing: 0.04em;
-      margin-bottom: 10px;
-      line-height: 1.45;
-    }
-    .faq-a {
-      color: #666678;
-      font-size: 0.95rem;
-      line-height: 1.7;
-      font-style: italic;
-    }
+    .faq-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; border-radius: 3px 0 0 3px; background: linear-gradient(180deg, var(--blood), var(--purple)); }
+    .faq-item:hover { background: rgba(255,255,255,0.035); border-color: rgba(192,38,62,0.2); }
+    .faq-q { font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 600; color: #d0ccc0; letter-spacing: 0.04em; margin-bottom: 10px; line-height: 1.45; }
+    .faq-a { color: #666678; font-size: 0.95rem; line-height: 1.7; font-style: italic; }
 
-    /* ─── FOOTER ─── */
+    /* ── FOOTER ── */
     footer {
-      text-align: center;
-      padding: 50px 20px;
+      text-align: center; padding: 50px 20px 40px;
       background: #020205;
       border-top: 1px solid rgba(255,255,255,0.04);
-      color: #333340;
+      position: relative; z-index: 3;
+    }
+    .footer-social {
+      display: flex; justify-content: center; gap: 1.4rem;
+      margin-bottom: 2rem;
+    }
+    .footer-social a {
+      display: flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #555568;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+    .footer-social a:hover {
+      border-color: var(--neon);
+      color: var(--neon);
+      background: rgba(0,255,170,0.06);
+      box-shadow: 0 0 16px rgba(0,255,170,0.2);
+      transform: translateY(-2px);
+    }
+    .footer-social svg { width: 18px; height: 18px; fill: currentColor; }
+    .footer-copy {
+      font-family: 'Cinzel', serif; font-size: 0.7rem;
+      letter-spacing: 0.2em; color: #333340;
+      margin-bottom: 1.2rem;
+    }
+    .footer-links {
+      display: flex; justify-content: center; gap: 2.5rem;
+    }
+    .footer-links a {
       font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      position: relative;
-      z-index: 3;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      color: var(--neon);
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      text-decoration-color: rgba(0,255,170,0.35);
+      transition: text-decoration-color 0.2s, text-shadow 0.2s;
     }
-    footer span { color: #2a2a38; }
-
-    /* ─── SCROLL ANIMATION ─── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: none;
+    .footer-links a:hover {
+      text-decoration-color: var(--neon);
+      text-shadow: 0 0 14px rgba(0,255,170,0.5);
     }
 
-    /* ─── RESPONSIVE ─── */
+    /* ── SCROLL ANIMATION ── */
+    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
       .hero { padding-top: 120px; }
       .sigil-wrap { width: 164px; height: 164px; }
@@ -586,15 +406,16 @@
       .feature-grid { grid-template-columns: 1fr; }
       .nav-links { gap: 1.2rem; }
       .nav-links a:not(.discord) { display: none; }
+      .creature-card { flex: 0 0 240px; }
+      .creature-card img { height: 280px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Atmospheric particles -->
   <div id="particles"></div>
 
-  <!-- ─── NAV ─── -->
+  <!-- ── NAV ── -->
   <nav>
     <div class="inner">
       <a class="nav-brand" href="#">
@@ -602,6 +423,7 @@
         <span>LEGARYN</span>
       </a>
       <div class="nav-links">
+        <a href="#creatures">Creatures</a>
         <a href="#features">Features</a>
         <a href="#faq">FAQ</a>
         <a href="https://discord.gg/Vp4Rs6zDxu" target="_blank" class="discord">Discord</a>
@@ -609,7 +431,7 @@
     </div>
   </nav>
 
-  <!-- ─── HERO ─── -->
+  <!-- ── HERO ── -->
   <main class="hero">
 
     <div class="sigil-wrap">
@@ -622,6 +444,11 @@
 
     <h1 class="game-title">LEGARYN</h1>
     <p class="game-subtitle">Mythic Legends</p>
+
+    <div class="counter-strip">
+      <div class="counter-dot"></div>
+      <span><span id="soul-count">328</span> SOULS HAVE JOINED THE REALM</span>
+    </div>
 
     <div class="rune-divider"></div>
 
@@ -654,14 +481,69 @@
 
   </main>
 
-  <!-- ─── FEATURES ─── -->
+  <!-- ── CREATURE SHOWCASE ── -->
+  <section id="creatures" class="creatures-section">
+    <div class="section-eyebrow">MYTHIC RARITY</div>
+    <h2 class="section-title">Creatures of the Realm</h2>
+    <div class="section-sub">SUMMON THE DARKNESS</div>
+
+    <div class="creature-track-wrap">
+      <div class="creature-track" id="creatureTrack">
+
+        <div class="creature-card fade-in">
+          <div class="mythic-badge">✦ MYTHIC</div>
+          <img src="creature1.jpeg" alt="Chernobog">
+          <div class="creature-info">
+            <div class="creature-name">Chernobog</div>
+            <div class="creature-type">Cursed</div>
+          </div>
+        </div>
+
+        <div class="creature-card fade-in" style="transition-delay:0.1s">
+          <div class="mythic-badge">✦ MYTHIC</div>
+          <img src="creature2.jpeg" alt="The Morrigan">
+          <div class="creature-info">
+            <div class="creature-name">The Morrigan</div>
+            <div class="creature-type">Ethereal</div>
+          </div>
+        </div>
+
+        <div class="creature-card fade-in" style="transition-delay:0.2s">
+          <div class="mythic-badge">✦ MYTHIC</div>
+          <img src="creature3.jpeg" alt="The Pale Rider">
+          <div class="creature-info">
+            <div class="creature-name">The Pale Rider</div>
+            <div class="creature-type">Cursed</div>
+          </div>
+        </div>
+
+        <div class="creature-card fade-in" style="transition-delay:0.3s">
+          <div class="mythic-badge">✦ MYTHIC</div>
+          <img src="creature4.jpeg" alt="Ancient Behemoth">
+          <div class="creature-info">
+            <div class="creature-name">Ancient Behemoth</div>
+            <div class="creature-type">Primal</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="creature-dots" id="creatureDots">
+      <button class="creature-dot active" data-index="0"></button>
+      <button class="creature-dot" data-index="1"></button>
+      <button class="creature-dot" data-index="2"></button>
+      <button class="creature-dot" data-index="3"></button>
+    </div>
+  </section>
+
+  <!-- ── FEATURES ── -->
   <section id="features">
     <div class="section-eyebrow">THE REALM HOLDS MANY SECRETS</div>
     <h2 class="section-title">What Awaits You</h2>
     <div class="section-sub">DESCEND INTO DARKNESS</div>
 
     <div class="feature-grid">
-
       <div class="feature-card fade-in">
         <div class="card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#c0263e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -680,7 +562,7 @@
           </svg>
         </div>
         <div class="card-title">Summon</div>
-        <div class="card-body">Open forbidden portals. Call forth mythic warriors and ancient creatures from the abyss — from Cursed to Primal to Ethereal.</div>
+        <div class="card-body">Open forbidden portals. Call forth mythic warriors and ancient creatures from the abyss — Cursed, Primal, or Ethereal.</div>
       </div>
 
       <div class="feature-card fade-in" style="transition-delay:0.2s">
@@ -705,61 +587,76 @@
         <div class="card-title">Empire</div>
         <div class="card-body">Seize properties. Amass shadow wealth. Unlock forbidden weapons that bend the laws of the realm.</div>
       </div>
-
     </div>
   </section>
 
-  <!-- ─── FAQ ─── -->
+  <!-- ── FAQ ── -->
   <section id="faq">
     <div class="section-eyebrow">ANSWERS FROM THE VOID</div>
     <h2 class="section-title">Frequently Asked</h2>
     <div class="section-sub">QUESTIONS</div>
 
     <div class="faq-list">
-
       <div class="faq-item fade-in">
         <div class="faq-q">What platforms is the Legaryn Beta available on?</div>
         <div class="faq-a">The closed beta runs on iOS via Apple TestFlight. Android descends soon.</div>
       </div>
-
       <div class="faq-item fade-in">
         <div class="faq-q">How do I claim my Launch Day Promo Code?</div>
         <div class="faq-a">Enter your email above to bind your soul to the realm. Your exclusive activation code will be delivered the moment servers go live.</div>
       </div>
-
       <div class="faq-item fade-in">
         <div class="faq-q">Is Legaryn Free-to-Play?</div>
         <div class="faq-a">Free to enter. Free to conquer. Optional offerings unlock cosmetics, summon portals, and mythic rarities for those who seek greater power.</div>
       </div>
-
       <div class="faq-item fade-in">
         <div class="faq-q">How can I report bugs or submit suggestions?</div>
         <div class="faq-a">Join our Discord for direct access to the Dev Forge channels — where the realm is shaped.</div>
       </div>
-
     </div>
   </section>
 
-  <!-- ─── FOOTER ─── -->
+  <!-- ── FOOTER ── -->
   <footer>
-    <p>&copy; 2026 Legaryn Mythic Legends. All rights reserved.</p>
+    <div class="footer-social">
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@legaryn.com" target="_blank" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.77a4.85 4.85 0 0 1-1.01-.08z"/>
+        </svg>
+      </a>
+      <!-- X / Twitter -->
+      <a href="https://x.com/legaryn" target="_blank" aria-label="X">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      </a>
+      <!-- Instagram -->
+      <a href="https://instagram.com/legaryn" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="footer-copy">&copy; 2026 LEGARYN MYTHIC LEGENDS. ALL RIGHTS RESERVED.</div>
+
+    <div class="footer-links">
+      <a href="https://legaryn.com/privacy">PRIVACY POLICY</a>
+      <a href="https://legaryn.com/terms">TERMS OF SERVICE</a>
+    </div>
   </footer>
 
   <script>
     // ── Particles ──
-    const container = document.getElementById('particles');
-    const types = ['', '', 'blood', 'gold'];
+    const pContainer = document.getElementById('particles');
+    const pTypes = ['', '', 'blood', 'gold'];
     function spawnParticle() {
       const p = document.createElement('div');
-      const t = types[Math.floor(Math.random() * types.length)];
+      const t = pTypes[Math.floor(Math.random() * pTypes.length)];
       p.className = 'particle' + (t ? ' ' + t : '');
-      p.style.cssText = `
-        left: ${Math.random() * 100}vw;
-        animation-duration: ${Math.random() * 22 + 14}s;
-        animation-delay: ${Math.random() * 4}s;
-        opacity: ${Math.random() * 0.6 + 0.2};
-      `;
-      container.appendChild(p);
+      p.style.cssText = `left:${Math.random()*100}vw;animation-duration:${Math.random()*22+14}s;animation-delay:${Math.random()*4}s;opacity:${Math.random()*0.6+0.2}`;
+      pContainer.appendChild(p);
       setTimeout(() => p.remove(), 40000);
     }
     for (let i = 0; i < 18; i++) spawnParticle();
@@ -768,11 +665,45 @@
     // ── Scroll fade-in ──
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+    // ── Soul counter ──
+    let count = 2847;
+    const countEl = document.getElementById('soul-count');
+    function formatCount(n) { return n.toLocaleString(); }
+    setInterval(() => {
+      if (Math.random() < 0.3) {
+        count += Math.floor(Math.random() * 3) + 1;
+        countEl.textContent = formatCount(count);
+      }
+    }, 4000);
+
+    // ── Creature carousel dots ──
+    const track = document.getElementById('creatureTrack');
+    const dots  = document.querySelectorAll('.creature-dot');
+    const cards = track.querySelectorAll('.creature-card');
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const idx = parseInt(dot.dataset.index);
+        const card = cards[idx];
+        track.scrollTo({ left: card.offsetLeft - 60, behavior: 'smooth' });
+      });
+    });
+
+    track.addEventListener('scroll', () => {
+      const center = track.scrollLeft + track.clientWidth / 2;
+      let closest = 0, minDist = Infinity;
+      cards.forEach((card, i) => {
+        const dist = Math.abs(card.offsetLeft + card.offsetWidth / 2 - center);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      dots.forEach((d, i) => d.classList.toggle('active', i === closest));
+    });
+
     // ── Form ──
-    document.getElementById('realm-form').addEventListener('submit', function(e) {
+    document.getElementById('realm-form').addEventListener('submit', function() {
       const btn = document.getElementById('submit-btn');
       btn.textContent = 'SUMMONING…';
       btn.disabled = true;
