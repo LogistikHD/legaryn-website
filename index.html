@@ -330,432 +330,184 @@
     .card-title { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1rem; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 10px; }
     .card-body { color: #7a7a8a; font-size: 0.95rem; line-height: 1.65; }
   
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
- 
-  .lqr-root {
-    background: #060a0a;
-    font-family: 'Crimson Text', Georgia, serif;
-    padding: 80px 20px 90px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
- 
-  /* Ambient teal glow background — matches game UI color exactly */
-  .lqr-root::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(0, 200, 180, 0.06) 0%, transparent 65%),
-      radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0, 160, 140, 0.04) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 60% at 10% 50%, rgba(0, 180, 160, 0.03) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 60% at 90% 50%, rgba(0, 180, 160, 0.03) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-  }
- 
-  /* Floating particle dots */
-  .lqr-particles {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-  }
- 
-  .lqr-particle {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    border-radius: 50%;
-    background: rgba(0, 220, 200, 0.5);
-    animation: floatUp linear infinite;
-  }
- 
-  .lqr-particle:nth-child(1)  { left: 8%;  animation-duration: 12s; animation-delay: 0s;    width: 1px; height: 1px; }
-  .lqr-particle:nth-child(2)  { left: 18%; animation-duration: 16s; animation-delay: 3s; }
-  .lqr-particle:nth-child(3)  { left: 28%; animation-duration: 10s; animation-delay: 1s;    width: 3px; height: 3px; background: rgba(0,200,180,0.3); }
-  .lqr-particle:nth-child(4)  { left: 42%; animation-duration: 14s; animation-delay: 5s; }
-  .lqr-particle:nth-child(5)  { left: 55%; animation-duration: 18s; animation-delay: 2s;    width: 1px; height: 1px; }
-  .lqr-particle:nth-child(6)  { left: 67%; animation-duration: 11s; animation-delay: 7s; }
-  .lqr-particle:nth-child(7)  { left: 78%; animation-duration: 15s; animation-delay: 4s;    width: 3px; height: 3px; background: rgba(0,200,180,0.3); }
-  .lqr-particle:nth-child(8)  { left: 88%; animation-duration: 13s; animation-delay: 6s; }
-  .lqr-particle:nth-child(9)  { left: 33%; animation-duration: 20s; animation-delay: 9s;    width: 1px; height: 1px; }
-  .lqr-particle:nth-child(10) { left: 72%; animation-duration: 17s; animation-delay: 1.5s; }
- 
-  @keyframes floatUp {
-    0%   { transform: translateY(100vh) scale(1); opacity: 0; }
-    10%  { opacity: 1; }
-    90%  { opacity: 0.6; }
-    100% { transform: translateY(-20px) scale(0.5); opacity: 0; }
-  }
- 
-  .lqr-content {
-    position: relative;
-    z-index: 1;
-  }
- 
-  /* EYEBROW */
-  .lqr-eyebrow {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 6px;
-    color: #00b8a8;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    opacity: 0.8;
-  }
- 
-  /* HEADLINE */
-  .lqr-headline {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
-    font-weight: 900;
-    color: #e8d8b0;
-    margin: 0 0 14px;
-    line-height: 1.15;
-    text-shadow: 0 0 40px rgba(0, 200, 180, 0.15);
-    letter-spacing: 2px;
-  }
- 
-  /* SUBTEXT */
-  .lqr-sub {
-    font-size: 1.15rem;
-    color: #7a8e8c;
-    margin: 0 auto 58px;
-    max-width: 440px;
-    line-height: 1.65;
-  }
- 
-  .lqr-sub strong {
-    color: #00ccb8;
-    font-weight: 600;
-  }
- 
-  /* ─── SEAL WRAPPER ─── */
-  .lqr-seal-wrap {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 80px;
-    width: 310px;
-    height: 310px;
-  }
- 
-  /* Outer slow-spinning teal ring */
-  .lqr-ring-outer {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    border: 1px solid rgba(0, 180, 160, 0.18);
-    animation: spinSlow 35s linear infinite;
-  }
- 
-  /* Tick marks on the outer ring */
-  .lqr-ring-outer::before {
-    content: '';
-    position: absolute;
-    inset: 6px;
-    border-radius: 50%;
-    border: 1px dashed rgba(0, 160, 140, 0.12);
-  }
- 
-  @keyframes spinSlow {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-  }
- 
-  /* Counter-spinning middle ring */
-  .lqr-ring-mid {
-    position: absolute;
-    inset: 18px;
-    border-radius: 50%;
-    border: 1px solid rgba(0, 200, 180, 0.10);
-    animation: spinSlow 20s linear infinite reverse;
-  }
- 
-  /* Corner diamond gems */
-  .lqr-gem {
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    background: #00a898;
-    transform: rotate(45deg);
-    box-shadow: 0 0 10px rgba(0, 200, 180, 0.8), 0 0 20px rgba(0, 180, 160, 0.4);
-  }
- 
-  .lqr-gem.top    { top: 12px;    left: calc(50% - 3.5px); }
-  .lqr-gem.bottom { bottom: 12px; left: calc(50% - 3.5px); }
-  .lqr-gem.left   { left: 12px;   top: calc(50% - 3.5px); }
-  .lqr-gem.right  { right: 12px;  top: calc(50% - 3.5px); }
- 
-  /* Main QR frame — octagon clipped */
-  .lqr-frame {
-    position: relative;
-    width: 240px;
-    height: 240px;
-    background: linear-gradient(145deg, #0a1412, #060e0c);
-    clip-path: polygon(20px 0%, calc(100% - 20px) 0%, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0% calc(100% - 20px), 0% 20px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: framePulse 4s ease-in-out infinite;
-  }
- 
-  @keyframes framePulse {
-    0%,  100% { box-shadow: 0 0 30px rgba(0, 180, 160, 0.20), 0 0 80px rgba(0, 140, 120, 0.08), inset 0 0 30px rgba(0, 160, 140, 0.04); }
-    50%        { box-shadow: 0 0 55px rgba(0, 210, 190, 0.35), 0 0 120px rgba(0, 170, 150, 0.15), inset 0 0 50px rgba(0, 180, 160, 0.08); }
-  }
- 
-  /* SVG octagon border overlay */
-  .lqr-frame-border {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
- 
-  /* QR image */
-  .lqr-qr-img {
-    width: 185px;
-    height: 185px;
-    border-radius: 2px;
-    display: block;
-    image-rendering: crisp-edges;
-    position: relative;
-    z-index: 1;
-  }
- 
-  /* Scanning line animation over QR */
-  .lqr-scan-line {
-    position: absolute;
-    left: 30px;
-    right: 30px;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(0, 220, 200, 0.7), transparent);
-    box-shadow: 0 0 8px rgba(0, 220, 200, 0.5);
-    z-index: 3;
-    animation: scanMove 3s ease-in-out infinite;
-    pointer-events: none;
-  }
- 
-  @keyframes scanMove {
-    0%   { top: 30px;  opacity: 0; }
-    10%  { opacity: 1; }
-    90%  { opacity: 1; }
-    100% { top: 210px; opacity: 0; }
-  }
- 
-  /* Corner targeting brackets */
-  .lqr-corners {
-    position: absolute;
-    inset: 28px;
-    pointer-events: none;
-    z-index: 2;
-  }
- 
-  .lqr-corner-svg {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-  }
- 
-  .lqr-corner-svg.tl { top: 0;    left: 0; }
-  .lqr-corner-svg.tr { top: 0;    right: 0;  transform: rotate(90deg); }
-  .lqr-corner-svg.bl { bottom: 0; left: 0;   transform: rotate(-90deg); }
-  .lqr-corner-svg.br { bottom: 0; right: 0;  transform: rotate(180deg); }
- 
-  /* "Scan to Summon" label below frame */
-  .lqr-scan-label {
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Cinzel', serif;
-    font-size: 8.5px;
-    letter-spacing: 5px;
-    color: #00a898;
-    white-space: nowrap;
-    text-transform: uppercase;
-    opacity: 0.7;
-  }
- 
-  /* ─── DIVIDER ─── */
-  .lqr-divider {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    max-width: 480px;
-    margin: 0 auto 52px;
-  }
- 
-  .lqr-divider-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(0, 160, 140, 0.35), transparent);
-  }
- 
-  .lqr-divider-glyph {
-    color: #00a898;
-    font-size: 14px;
-    opacity: 0.7;
-  }
- 
-  /* ─── RITUAL CARD ─── */
-  .lqr-ritual-card {
-    max-width: 500px;
-    margin: 0 auto 52px;
-    background: rgba(6, 14, 12, 0.95);
-    border: 1px solid rgba(0, 160, 140, 0.2);
-    border-radius: 2px;
-    padding: 42px 44px;
-    position: relative;
-    text-align: left;
-    box-shadow:
-      0 0 40px rgba(0, 160, 140, 0.06),
-      inset 0 0 60px rgba(0, 140, 120, 0.03);
-  }
- 
-  /* Teal corner accents */
-  .lqr-ritual-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 30px; height: 30px;
-    border-top: 1px solid rgba(0, 180, 160, 0.5);
-    border-left: 1px solid rgba(0, 180, 160, 0.5);
-  }
- 
-  .lqr-ritual-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; right: 0;
-    width: 30px; height: 30px;
-    border-bottom: 1px solid rgba(0, 180, 160, 0.5);
-    border-right: 1px solid rgba(0, 180, 160, 0.5);
-  }
- 
-  /* Top-right and bottom-left corners via inner elements */
-  .lqr-card-corner-tr {
-    position: absolute;
-    top: 0; right: 0;
-    width: 30px; height: 30px;
-    border-top: 1px solid rgba(0, 180, 160, 0.5);
-    border-right: 1px solid rgba(0, 180, 160, 0.5);
-  }
- 
-  .lqr-card-corner-bl {
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 30px; height: 30px;
-    border-bottom: 1px solid rgba(0, 180, 160, 0.5);
-    border-left: 1px solid rgba(0, 180, 160, 0.5);
-  }
- 
-  .lqr-card-title {
-    font-family: 'Cinzel', serif;
-    font-size: 0.75rem;
-    letter-spacing: 5px;
-    color: #00ccb8;
-    text-align: center;
-    margin: 0 0 38px;
-    text-transform: uppercase;
-    opacity: 0.9;
-  }
- 
-  .lqr-steps {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
- 
-  .lqr-step {
-    display: flex;
-    gap: 22px;
-    align-items: flex-start;
-    padding: 18px 0;
-    border-bottom: 1px solid rgba(0, 160, 140, 0.12);
-    transition: background 0.2s;
-  }
- 
-  .lqr-step:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
- 
-  .lqr-step:first-child {
-    padding-top: 0;
-  }
- 
-  .lqr-step-num {
-    font-family: 'Cinzel', serif;
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    color: #00a898;
-    padding-top: 4px;
-    min-width: 24px;
-    opacity: 0.85;
-  }
- 
-  .lqr-step-text {
-    font-size: 1.08rem;
-    color: #8aa8a4;
-    line-height: 1.6;
-  }
- 
-  .lqr-step-text strong {
-    color: #c8dcd8;
-    font-weight: 600;
-  }
- 
-  /* ─── FOOTER BADGE ─── */
-  .lqr-footer-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: rgba(6, 14, 12, 0.9);
-    border: 1px solid rgba(0, 160, 140, 0.18);
-    border-radius: 2px;
-    padding: 11px 26px;
-    font-family: 'Cinzel', serif;
-    font-size: 0.68rem;
-    letter-spacing: 3px;
-    color: #4a7870;
-    text-transform: uppercase;
-  }
- 
-  .lqr-badge-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #00cc88;
-    box-shadow: 0 0 6px rgba(0, 200, 136, 0.8), 0 0 12px rgba(0, 200, 136, 0.4);
-    animation: badgePulse 2.5s ease-in-out infinite;
-    flex-shrink: 0;
-  }
- 
-  @keyframes badgePulse {
-    0%, 100% { opacity: 1;    transform: scale(1); }
-    50%       { opacity: 0.4; transform: scale(0.8); }
-  }
- 
-  /* Responsive */
-  @media (max-width: 560px) {
-    .lqr-ritual-card { padding: 32px 24px; }
-    .lqr-seal-wrap   { width: 270px; height: 270px; }
-    .lqr-frame       { width: 210px; height: 210px; }
-    .lqr-qr-img      { width: 162px; height: 162px; }
-  }
- 
-  @media (prefers-reduced-motion: reduce) {
-    .lqr-ring-outer,
-    .lqr-ring-mid,
-    .lqr-scan-line,
-    .lqr-particle    { animation: none; }
-  }
+/* ==========================================================================
+   PORTAL ACCESS SECTION STYLING (LEGARYN ESTHETIC)
+   ========================================================================== */
+
+.portal-access-section {
+  padding: 100px 20px;
+  background: #030505; /* Matches core website backdrop */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.portal-container {
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Typography Continuity */
+.portal-subtitle {
+  font-family: 'Cinzel', 'Cinzel Decorative', serif; /* Use your main serif headline font token here */
+  color: #a3763c; /* Runic gold secondary color */
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  margin-bottom: 8px;
+}
+
+.portal-title {
+  font-family: 'Cinzel', 'Cinzel Decorative', serif;
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.portal-description {
+  color: #8fa0a0;
+  font-size: 1.1rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  max-width: 500px;
+  margin-bottom: 40px;
+}
+
+.highlight-text {
+  color: #00f2fe; /* Your vibrant neon cyan/teal theme glow */
+  font-weight: 600;
+}
+
+.highlight-text-alt {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Scannable Grimdark QR Framework Setup */
+.qr-seal-wrapper {
+  position: relative;
+  background: rgba(4, 8, 8, 0.6);
+  border: 1px solid rgba(0, 242, 254, 0.15); /* Sleek translucent teal frame */
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 242, 254, 0.03);
+  margin-bottom: 50px;
+}
+
+/* Custom Frame Corner Accents */
+.qr-seal-border-top-left, .qr-seal-border-top-right,
+.qr-seal-border-bottom-left, .qr-seal-border-bottom-right {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #00f2fe;
+}
+.qr-seal-border-top-left     { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+.qr-seal-border-top-right    { top: -2px; right: -2px; border-left: none; border-bottom: none; }
+.qr-seal-border-bottom-left  { bottom: -2px; left: -2px; border-right: none; border-top: none; }
+.qr-seal-border-bottom-right { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+.qr-matrix-container {
+  background: #000000; /* Pure black backdrop provides maximum optical scanning contrast */
+  padding: 16px; /* Quiet-zone padding layout needed for mobile phone sensors */
+  border-radius: 2px;
+  display: inline-block;
+  box-shadow: 0 0 25px rgba(0, 242, 254, 0.1);
+}
+
+.qr-matrix-image {
+  width: 220px;
+  height: 220px;
+  display: block;
+  /* If utilizing an Expo link that defaults to black-on-white graphics, 
+     uncomment the line below to elegantly turn it white-on-black for layout continuity */
+  /* filter: invert(1); */
+}
+
+.qr-seal-caption {
+  font-family: 'Cinzel', serif;
+  color: #00f2fe;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  margin-top: 20px;
+  margin-bottom: 0;
+  text-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+}
+
+/* The Ritual Card Container Box */
+.ritual-box {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(10, 15, 15, 0.4);
+  border: 1px solid rgba(163, 118, 60, 0.2); /* Subdued golden border match */
+  border-radius: 6px;
+  padding: 30px;
+}
+
+.ritual-title {
+  font-family: 'Cinzel', serif;
+  color: #a3763c;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 25px;
+}
+
+.ritual-steps-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 25px 0;
+  text-align: left;
+}
+
+.ritual-step-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.ritual-step-item:last-child {
+  margin-bottom: 0;
+}
+
+.step-numeral {
+  font-family: 'Cinzel', serif;
+  color: #00f2fe;
+  font-size: 1.1rem;
+  font-weight: bold;
+  min-width: 35px;
+  display: inline-block;
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+}
+
+.step-text {
+  color: #b0c0c0;
+  font-size: 0.95rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.ritual-footer {
+  border-top: 1px solid rgba(143, 160, 160, 0.1);
+  padding-top: 20px;
+  font-size: 0.8rem;
+  color: #5c6e6e;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.divider-dot {
+  margin: 0 10px;
+  color: #a3763c;
+}
+
 
     /* ── FAQ ── */
     .faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
@@ -1013,135 +765,67 @@
       </div>
     </div>
   </section>
-<section class="lqr-root">
- 
-  <!-- Floating ambient particles -->
-  <div class="lqr-particles" aria-hidden="true">
-    <span class="lqr-particle"></span>
-    <span class="lqr-particle"></span>
-    <span class="lqr-particle"></span>
-    <span class="lqr-particle"></span>
-    <span class="lqr-particle"></span>
-    <span class="lqr-particle"></span>
-    <span class="lqr-particle"></span>
-    <span class="lqr-particle"></span>
-    <span class="lqr-particle"></span>
-    <span class="lqr-particle"></span>
-  </div>
- 
-  <div class="lqr-content">
- 
-    <p class="lqr-eyebrow">Portal Access</p>
-    <h2 class="lqr-headline">Enter the Realm</h2>
-    <p class="lqr-sub">Scan the seal below with <strong>Expo Go</strong> — no App Store required.</p>
- 
-    <!-- ── SEAL ── -->
-    <div class="lqr-seal-wrap" aria-label="QR code seal">
- 
-      <!-- Spinning rings -->
-      <div class="lqr-ring-outer" aria-hidden="true">
-        <div class="lqr-gem top"></div>
-        <div class="lqr-gem bottom"></div>
-        <div class="lqr-gem left"></div>
-        <div class="lqr-gem right"></div>
-      </div>
-      <div class="lqr-ring-mid" aria-hidden="true"></div>
- 
-      <!-- Octagon QR frame -->
-      <div class="lqr-frame">
- 
-        <!-- Octagon SVG border -->
-        <svg class="lqr-frame-border" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <polygon
-            points="20,0 220,0 240,20 240,220 220,240 20,240 0,220 0,20"
-            fill="none"
-            stroke="rgba(0,180,160,0.45)"
-            stroke-width="1.5"
-          />
-          <polygon
-            points="26,4 214,4 236,26 236,214 214,236 26,236 4,214 4,26"
-            fill="none"
-            stroke="rgba(0,140,120,0.2)"
-            stroke-width="1"
-          />
-          <!-- Corner accent lines -->
-          <line x1="20"  y1="0"   x2="36"  y2="0"   stroke="rgba(0,200,180,0.7)" stroke-width="2"/>
-          <line x1="0"   y1="20"  x2="0"   y2="36"  stroke="rgba(0,200,180,0.7)" stroke-width="2"/>
-          <line x1="220" y1="0"   x2="204" y2="0"   stroke="rgba(0,200,180,0.7)" stroke-width="2"/>
-          <line x1="240" y1="20"  x2="240" y2="36"  stroke="rgba(0,200,180,0.7)" stroke-width="2"/>
-          <line x1="20"  y1="240" x2="36"  y2="240" stroke="rgba(0,200,180,0.7)" stroke-width="2"/>
-          <line x1="0"   y1="220" x2="0"   y2="204" stroke="rgba(0,200,180,0.7)" stroke-width="2"/>
-          <line x1="220" y1="240" x2="204" y2="240" stroke="rgba(0,200,180,0.7)" stroke-width="2"/>
-          <line x1="240" y1="220" x2="240" y2="204" stroke="rgba(0,200,180,0.7)" stroke-width="2"/>
-        </svg>
- 
-        <!-- QR Image — points to the real file on your server -->
-        <img
-          class="lqr-qr-img"
-          src="legaryn_qr_code.png"
-          alt="Legaryn Expo Go QR Code — Scan to enter the realm"
+<!-- START: Portal Access Section -->
+<section class="portal-access-section" id="portal-access">
+  <div class="portal-container">
+    
+    <div class="portal-header">
+      <p class="portal-subtitle">PORTAL ACCESS</p>
+      <h2 class="portal-title">ENTER THE REALM</h2>
+      <p class="portal-description">
+        Scan the seal below with <span class="highlight-text">Expo Go</span> — no App Store required.
+      </p>
+    </div>
+
+    <!-- Grimdark Sealed QR Framework -->
+    <div class="qr-seal-wrapper">
+      <div class="qr-seal-border-top-left"></div>
+      <div class="qr-seal-border-top-right"></div>
+      <div class="qr-seal-border-bottom-left"></div>
+      <div class="qr-seal-border-bottom-right"></div>
+      
+      <div class="qr-matrix-container">
+        <!-- CRITICAL: Dark background with crisp white QR ensures high-contrast device scanning -->
+        <img 
+          src="https://expo.dev" 
+          alt="Legaryn Expo Go QR Code" 
+          class="qr-matrix-image"
         />
- 
-        <!-- Animated scan line -->
-        <div class="lqr-scan-line" aria-hidden="true"></div>
- 
-        <!-- Corner targeting brackets -->
-        <div class="lqr-corners" aria-hidden="true">
-          <svg class="lqr-corner-svg tl" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <polyline points="0,13 0,0 13,0" fill="none" stroke="rgba(0,200,180,0.85)" stroke-width="2.5" stroke-linecap="square"/>
-          </svg>
-          <svg class="lqr-corner-svg tr" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <polyline points="0,13 0,0 13,0" fill="none" stroke="rgba(0,200,180,0.85)" stroke-width="2.5" stroke-linecap="square"/>
-          </svg>
-          <svg class="lqr-corner-svg bl" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <polyline points="0,13 0,0 13,0" fill="none" stroke="rgba(0,200,180,0.85)" stroke-width="2.5" stroke-linecap="square"/>
-          </svg>
-          <svg class="lqr-corner-svg br" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <polyline points="0,13 0,0 13,0" fill="none" stroke="rgba(0,200,180,0.85)" stroke-width="2.5" stroke-linecap="square"/>
-          </svg>
-        </div>
- 
-      </div><!-- /.lqr-frame -->
- 
-      <span class="lqr-scan-label">Scan to Summon</span>
-    </div><!-- /.lqr-seal-wrap -->
- 
-    <!-- Divider -->
-    <div class="lqr-divider" aria-hidden="true">
-      <div class="lqr-divider-line"></div>
-      <span class="lqr-divider-glyph">✦</span>
-      <div class="lqr-divider-line"></div>
+      </div>
+      
+      <p class="qr-seal-caption">SCAN TO SUMMON</p>
     </div>
- 
-    <!-- Ritual card -->
-    <div class="lqr-ritual-card">
-      <div class="lqr-card-corner-tr" aria-hidden="true"></div>
-      <div class="lqr-card-corner-bl" aria-hidden="true"></div>
-      <p class="lqr-card-title">The Ritual of Entry</p>
-      <ol class="lqr-steps">
-        <li class="lqr-step">
-          <span class="lqr-step-num">I</span>
-          <span class="lqr-step-text"><strong>Open Expo Go</strong> on your iPhone or Android device.</span>
+
+    <!-- The Ritual Steps Layout -->
+    <div class="ritual-box">
+      <h3 class="ritual-title">THE RITUAL OF ENTRY</h3>
+      
+      <ul class="ritual-steps-list">
+        <li class="ritual-step-item">
+          <span class="step-numeral">I</span>
+          <p class="step-text">Open <strong class="highlight-text">Expo Go</strong> on your iPhone or Android device.</p>
         </li>
-        <li class="lqr-step">
-          <span class="lqr-step-num">II</span>
-          <span class="lqr-step-text">Point your camera at the seal above and hold steady.</span>
+        <li class="ritual-step-item">
+          <span class="step-numeral">II</span>
+          <p class="step-text">Point your camera at the seal above and hold steady.</p>
         </li>
-        <li class="lqr-step">
-          <span class="lqr-step-num">III</span>
-          <span class="lqr-step-text">Tap the link that appears — and enter <strong>Legaryn</strong>.</span>
+        <li class="ritual-step-item">
+          <span class="step-numeral">III</span>
+          <p class="step-text">Tap the link that appears — and enter <strong class="highlight-text-alt">Legaryn</strong>.</p>
         </li>
-      </ol>
+      </ul>
+      
+      <div class="ritual-footer">
+        <span>iOS & Android</span>
+        <span class="divider-dot">•</span>
+        <span>Always the latest build</span>
+      </div>
     </div>
- 
-    <!-- Footer badge -->
-    <div class="lqr-footer-badge">
-      <span class="lqr-badge-dot" aria-hidden="true"></span>
-      iOS &amp; Android &nbsp;·&nbsp; Always the latest build
-    </div>
- 
-  </div><!-- /.lqr-content -->
+
+  </div>
 </section>
+<!-- END: Portal Access Section -->
+
   <!-- ── FAQ ── -->
   <section id="faq">
     <div class="section-eyebrow">ANSWERS FROM THE VOID</div>
