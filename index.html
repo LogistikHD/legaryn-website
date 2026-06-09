@@ -588,41 +588,54 @@
   </section>
 ## Test Legaryn on Your Phone
 
-Scan the QR code with **Expo Go** to play the game instantly — no App Store needed.
+<div style="text-align: center; margin: 60px 0 80px 0;">
+  <p style="font-size: 1.45rem; color: #d4af7e; margin-bottom: 40px; letter-spacing: 1px;">
+    Scan the QR code with <strong style="color: #ffcc00;">Expo Go</strong> to enter the realm instantly
+  </p>
 
-<div style="background: #111111; padding: 40px; border-radius: 20px; display: inline-block; border: 6px solid #4a2c2c; box-shadow: 0 0 60px rgba(255, 60, 60, 0.3); margin: 30px 0;">
-  <img 
-    src="expo_qr_code.png" 
-    alt="Legaryn Expo Go QR Code" 
-    style="width: 320px; height: 320px; border: 16px solid #000; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.9);"
-  />
+  <!-- QR CODE WITH SUBTLE PULSE -->
+  <div style="background: #0f0b0b; padding: 40px; border-radius: 24px; display: inline-block; 
+              border: 8px solid #522d2d; box-shadow: 0 0 70px rgba(255, 60, 60, 0.35);">
+    
+    <img 
+      src="expo_qr_code.png" 
+      alt="Legaryn Expo Go QR Code - Scan to play instantly"
+      style="width: 320px; height: 320px; border: 18px solid #000000; border-radius: 16px; 
+             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.95); 
+             animation: pulse 4s ease-in-out infinite;
+             image-rendering: crisp-edges;"
+    />
+  </div>
 </div>
 
-<div style="max-width: 500px; margin: 0 auto; background: rgba(30, 20, 20, 0.8); padding: 35px; border-radius: 16px; border: 1px solid #5c3a3a; text-align: left;">
-  <h3 style="color: #ffcc00; text-align: center; margin-bottom: 25px;">How to Enter the Realm:</h3>
-  <ol style="color: #e8d5b8; line-height: 2.1; font-size: 1.2rem;">
-    <li><strong>Open the Expo Go app</strong> on your iPhone or Android.</li>
+<div style="max-width: 520px; margin: 0 auto; background: rgba(20, 15, 15, 0.85); padding: 40px; 
+            border-radius: 20px; border: 2px solid #522d2d; text-align: left;">
+  <h3 style="color: #ffcc00; text-align: center; margin-bottom: 28px; font-size: 1.65rem; letter-spacing: 2px;">
+    HOW TO ENTER THE REALM
+  </h3>
+  <ol style="color: #e8d5b8; line-height: 2.2; font-size: 1.22rem; padding-left: 28px;">
+    <li><strong>Open the Expo Go app</strong> on your iPhone or Android phone.</li>
     <li>Point your camera at the QR code above.</li>
-    <li>Tap the link that appears to load <strong>Legaryn</strong>.</li>
+    <li>Tap the link to load <strong>Legaryn</strong> and step into the myth.</li>
   </ol>
 </div>
 
-<p style="margin-top: 40px; color: #888; font-size: 1.1rem;">
-  ✅ Works on both iOS & Android • Always the latest version
+<p style="text-align: center; margin-top: 50px; color: #777; font-size: 1.1rem;">
+  ✅ Works on iOS &amp; Android • Always the latest build • No App Store required
 </p>
 
-    <div style="max-width: 460px; margin: 0 auto; text-align: left; background: rgba(20, 20, 30, 0.6); padding: 30px; border-radius: 12px; border: 1px solid #3a1f1f;">
-      <h3 style="color: #ffcc00; margin-bottom: 20px; text-align: center;">How to Play Right Now:</h3>
-      <ol style="color: #ddd; line-height: 1.8; font-size: 1.15rem; padding-left: 20px;">
-        <li><strong>Open the Expo Go app</strong> on your iPhone or Android.</li>
-        <li>Point your camera at the QR code above.</li>
-        <li>Tap the notification to load <strong>Legaryn</strong>.</li>
-      </ol>
-    </div>
-
-    <p style="margin-top: 40px; color: #888; font-style: italic;">
-      Works on both iOS &amp; Android • Instant access to the latest build
-    </p>
+<style>
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1); 
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.95);
+  }
+  50% { 
+    transform: scale(1.04); 
+    box-shadow: 0 25px 50px rgba(255, 80, 80, 0.4);
+  }
+}
+</style>
 
   </div>
 </section>
