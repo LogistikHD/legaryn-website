@@ -2,1282 +2,690 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Legaryn Mythic Legends — Summon creatures of ancient power. Build your empire. Dominate the dark realm." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Legaryn — Mythic Legends</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
-
+  <meta name="description" content="The Hollow Realm is dying. Bind mythic beasts, forge them into legends and lead your Blood Pact to war. Coming to iPhone and Android." />
+  <meta name="theme-color" content="#08090A" />
+  <link rel="icon" href="art/favicon.jpg" />
+  <link rel="apple-touch-icon" href="art/app-icon.jpg" />
+  <meta property="og:title" content="Legaryn — Mythic Legends" />
+  <meta property="og:description" content="The Hollow Realm is dying. Take what the dead left behind." />
+  <meta property="og:image" content="art/hero-pale-widow.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;700;900&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --neon:    #00ffaa;
-      --blood:   #c0263e;
-      --gold:    #e8b84b;
-      --void:    #04040a;
-      --surface: rgba(255,255,255,0.028);
-      --border:  rgba(255,255,255,0.06);
-      --purple:  #7c3aed;
+      --abyss: #08090A;
+      --iron: #121214;
+      --iron-2: #1A1915;
+      --gold: #C9A45C;
+      --gold-bright: #F0D995;
+      --gold-dim: #8C7340;
+      --gold-rule: rgba(201,164,92,0.28);
+      --ember: #E0703A;
+      --blood: #A3202F;
+      --bone: #EDE4D0;
+      --parchment: #CDBF9F;
+      --dim: #8E8473;
+      --display: 'Cinzel Decorative', 'Cinzel', serif;
+      --title: 'Cinzel', serif;
+      --body: 'Manrope', system-ui, sans-serif;
     }
-
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'Crimson Pro', Georgia, serif;
-      background: var(--void);
-      color: #c8c8d0;
+      background: var(--abyss);
+      color: var(--parchment);
+      font-family: var(--body);
+      line-height: 1.6;
       overflow-x: hidden;
-      line-height: 1.7;
-      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
     }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0,255,170,0.06) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 40% at 80% 90%, rgba(192,38,62,0.07) 0%, transparent 55%),
-        radial-gradient(ellipse 50% 50% at 10% 60%, rgba(124,58,237,0.05) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
     body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      opacity: 0.025;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 1;
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    /* ── PARTICLES ── */
-    #particles { position: fixed; inset: 0; pointer-events: none; z-index: 2; overflow: hidden; }
-    .particle {
-      position: absolute; width: 2px; height: 2px;
-      background: var(--neon); border-radius: 50%;
-      box-shadow: 0 0 6px var(--neon), 0 0 14px var(--neon);
-      animation: rise linear infinite;
+    /* Embers */
+    #embers { position: fixed; inset: 0; pointer-events: none; z-index: 2; overflow: hidden; }
+    .ember {
+      position: absolute; bottom: -10px; width: 3px; height: 3px; border-radius: 50%;
+      background: radial-gradient(circle, #FFD9A0 0%, var(--ember) 60%, transparent 100%);
+      box-shadow: 0 0 6px rgba(224,112,58,0.8);
+      animation: rise linear forwards;
     }
-    .particle.blood { background: var(--blood); box-shadow: 0 0 6px var(--blood), 0 0 14px var(--blood); }
-    .particle.gold  { background: var(--gold); box-shadow: 0 0 6px var(--gold); width: 3px; height: 3px; }
     @keyframes rise {
-      0%   { opacity: 0; transform: translateY(105vh) scale(0.3); }
-      15%  { opacity: 1; }
-      85%  { opacity: 0.6; }
-      100% { opacity: 0; transform: translateY(-40px) scale(1.8) rotate(180deg); }
+      0% { transform: translate(0, 0); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translate(var(--drift), -110vh); opacity: 0; }
     }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      background: rgba(4,4,10,0.92);
-      backdrop-filter: blur(24px);
-      z-index: 100;
-      border-bottom: 1px solid rgba(0,255,170,0.12);
+    /* Nav */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px clamp(16px, 4vw, 40px);
+      padding-top: max(14px, env(safe-area-inset-top));
+      background: linear-gradient(180deg, rgba(8,9,10,0.92), rgba(8,9,10,0));
+      transition: background 0.3s;
     }
-    nav .inner {
-      max-width: 1240px; margin: 0 auto;
-      padding: 0.85rem 1.5rem;
-      display: flex; justify-content: space-between; align-items: center;
+    .nav.solid { background: rgba(8,9,10,0.94); border-bottom: 1px solid var(--gold-rule); }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-brand img { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--gold-dim); }
+    .nav-brand span { font-family: var(--title); font-weight: 900; letter-spacing: 4px; color: var(--gold-bright); font-size: 14px; }
+    .nav-links { display: flex; gap: 22px; }
+    .nav-links a { font-family: var(--title); font-size: 12px; letter-spacing: 2.5px; color: var(--parchment); text-decoration: none; }
+    .nav-links a:hover { color: var(--gold-bright); }
+    .nav-cta {
+      font-family: var(--title); font-weight: 700; font-size: 11px; letter-spacing: 2px; text-decoration: none;
+      color: #1A1308; background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+      padding: 10px 16px; border-radius: 8px; min-height: 44px; display: inline-flex; align-items: center;
     }
-    .nav-brand { display: flex; align-items: center; gap: 11px; text-decoration: none; }
-    .nav-brand img { height: 40px; border-radius: 6px; filter: drop-shadow(0 0 8px rgba(0,255,170,0.4)); }
-    .nav-brand span { font-family: 'Cinzel', serif; color: var(--gold); font-weight: 700; font-size: 1.25rem; letter-spacing: 0.08em; }
-    .nav-links { display: flex; gap: 2rem; align-items: center; }
-    .nav-links a { color: #aaa; text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.12em; transition: color 0.2s; }
-    .nav-links a:hover { color: #ddd; }
-    .nav-links a.discord { color: var(--neon); border: 1px solid rgba(0,255,170,0.3); padding: 0.4rem 1rem; border-radius: 4px; transition: all 0.25s; }
-    .nav-links a.discord:hover { background: rgba(0,255,170,0.1); border-color: var(--neon); }
+    @media (max-width: 760px) { .nav-links { display: none; } }
 
-    /* ── HERO ── */
+    /* Hero */
     .hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 140px 1.2rem 80px;
-      position: relative; z-index: 3;
+      position: relative; min-height: 100svh; display: flex; align-items: flex-end; justify-content: center;
+      padding: 120px 20px 64px; overflow: hidden; z-index: 3;
     }
+    .hero-art {
+      position: absolute; inset: 0; background: url('art/hero-pale-widow.jpg') center 22% / cover no-repeat;
+      transform: scale(1.06); animation: breathe 18s ease-in-out infinite alternate;
+    }
+    @keyframes breathe { to { transform: scale(1.0); } }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background:
+        radial-gradient(ellipse at 50% 30%, rgba(8,9,10,0) 0%, rgba(8,9,10,0.55) 60%, rgba(8,9,10,0.95) 100%),
+        linear-gradient(180deg, rgba(8,9,10,0.2) 0%, rgba(8,9,10,0) 30%, rgba(8,9,10,0.85) 75%, var(--abyss) 100%);
+    }
+    .hero-inner { position: relative; z-index: 2; width: 100%; max-width: 640px; text-align: center; }
+    .wordmark { width: min(420px, 82vw); margin: 0 auto 18px; filter: drop-shadow(0 6px 24px rgba(0,0,0,0.9)); }
+    .tagline {
+      font-family: var(--title); font-size: clamp(13px, 2.4vw, 16px); letter-spacing: 6px; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 18px;
+    }
+    .hero-line { font-size: clamp(16px, 2.6vw, 19px); color: var(--bone); max-width: 520px; margin: 0 auto 26px; text-shadow: 0 2px 10px #000; }
 
-    .rune-divider {
-      width: 100%; max-width: 480px; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--blood) 20%, var(--neon) 50%, var(--blood) 80%, transparent);
-      margin: 2rem auto; position: relative;
+    .counter {
+      display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 999px;
+      border: 1px solid var(--gold-rule); background: rgba(10,9,8,0.7); font-family: var(--title);
+      font-size: 11px; letter-spacing: 2.5px; color: var(--parchment); margin-bottom: 18px;
     }
-    .rune-divider::before {
-      content: '✦'; position: absolute; left: 50%; top: 50%;
-      transform: translate(-50%, -50%);
-      background: var(--void); padding: 0 0.6rem; color: var(--gold); font-size: 0.65rem;
-    }
+    .counter-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ember); box-shadow: 0 0 10px var(--ember); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 50% { opacity: 0.35; } }
+    .counter strong { color: var(--gold-bright); }
 
-    .sigil-wrap { position: relative; width: 200px; height: 200px; margin: 0 auto 2.5rem; }
-    .sigil-ring {
-      position: absolute; inset: 0; border-radius: 50%;
-      border: 2px solid transparent;
-      background: linear-gradient(var(--void), var(--void)) padding-box,
-                  linear-gradient(135deg, var(--neon), var(--purple), var(--blood), var(--gold)) border-box;
-      animation: spin-ring 18s linear infinite;
-      box-shadow: 0 0 40px rgba(0,255,170,0.2), 0 0 80px rgba(124,58,237,0.15), inset 0 0 30px rgba(0,0,0,0.8);
+    /* Reward + form */
+    .reward {
+      position: relative; margin: 0 auto 16px; max-width: 520px; padding: 18px 20px; border-radius: 14px; text-align: center;
+      background: linear-gradient(180deg, rgba(40,30,14,0.85), rgba(14,12,9,0.92));
+      border: 1px solid var(--gold-dim); border-top-color: var(--gold);
     }
-    .sigil-ring-inner {
-      position: absolute; inset: 12px; border-radius: 50%;
-      border: 1px solid rgba(0,255,170,0.15);
-      animation: spin-ring 8s linear infinite reverse;
+    .reward::before, .reward::after {
+      content: '✦'; position: absolute; top: -10px; color: var(--gold-bright); font-size: 14px; background: var(--abyss); padding: 0 6px;
     }
-    @keyframes spin-ring { to { transform: rotate(360deg); } }
-    .sigil-logo { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-    .sigil-logo img {
-      width: 140px; height: 140px; object-fit: contain; border-radius: 50%;
-      filter: drop-shadow(0 0 20px rgba(0,255,170,0.5)) drop-shadow(0 0 40px rgba(192,38,62,0.4));
-    }
+    .reward::before { left: 18px; } .reward::after { right: 18px; }
+    .reward-label { font-family: var(--title); font-size: 10px; letter-spacing: 3px; color: var(--gold); }
+    .reward-headline { font-family: var(--title); font-weight: 900; font-size: clamp(17px, 3vw, 21px); color: var(--bone); margin: 6px 0; letter-spacing: 1px; }
+    .reward-headline em { font-style: normal; color: var(--gold-bright); }
+    .reward-body { font-size: 14px; color: var(--parchment); }
 
-    .game-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(2.8rem, 9vw, 6rem); font-weight: 900;
-      background: linear-gradient(160deg, #fde68a 0%, var(--gold) 40%, #c0263e 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      line-height: 1.05; letter-spacing: 0.04em;
-      filter: drop-shadow(0 2px 30px rgba(232,184,75,0.3));
+    .signup { display: flex; gap: 8px; max-width: 520px; margin: 0 auto; }
+    .signup input {
+      flex: 1; min-width: 0; min-height: 50px; padding: 0 16px; border-radius: 10px; font: 500 15px var(--body);
+      color: var(--bone); background: rgba(10,9,8,0.85); border: 1px solid var(--gold-rule); outline: none;
     }
-    .game-subtitle {
-      font-family: 'Cinzel', serif; color: var(--neon);
-      letter-spacing: 0.55em; text-transform: uppercase;
-      font-size: 0.9rem; font-weight: 400; margin-top: 0.6rem; opacity: 0.85;
+    .signup input::placeholder { color: var(--dim); }
+    .signup input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,164,92,0.18); }
+    .btn-gold {
+      min-height: 50px; padding: 0 20px; border: none; border-radius: 10px; cursor: pointer;
+      font-family: var(--title); font-weight: 900; font-size: 13px; letter-spacing: 2px; color: #1A1308;
+      background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 60%, #9C7A3A 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 6px 18px rgba(201,164,92,0.25);
+      transition: transform 0.15s, box-shadow 0.15s;
     }
+    .btn-gold:hover { transform: translateY(-1px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 10px 26px rgba(201,164,92,0.35); }
+    .btn-gold:active { transform: translateY(1px); }
+    @media (max-width: 480px) { .signup { flex-direction: column; } }
+    .success { display: none; max-width: 520px; margin: 0 auto; padding: 18px; border-radius: 12px; border: 1px solid var(--gold-dim); background: rgba(14,12,9,0.9); text-align: center; }
+    .success-title { font-family: var(--title); font-weight: 900; letter-spacing: 3px; color: var(--gold-bright); margin-bottom: 4px; }
+    .scroll-cue { margin-top: 26px; font-family: var(--title); font-size: 10px; letter-spacing: 3px; color: var(--dim); }
+    .scroll-cue::after { content: ''; display: block; width: 1px; height: 34px; margin: 8px auto 0; background: linear-gradient(var(--gold), transparent); animation: cue 2.4s ease-in-out infinite; }
+    @keyframes cue { 50% { transform: translateY(6px); opacity: 0.4; } }
 
-    /* ── COUNTER STRIP ── */
-    .counter-strip {
-      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
-      margin: 1.2rem auto 0;
-      font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.2em;
-      color: #555568;
-    }
-    .counter-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--neon);
-      box-shadow: 0 0 8px var(--neon);
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.7); }
-    }
-    #soul-count { color: var(--neon); font-weight: 700; }
+    /* Sections */
+    section { position: relative; z-index: 3; padding: clamp(72px, 10vw, 120px) clamp(16px, 5vw, 48px); }
+    .wrap { max-width: 1120px; margin: 0 auto; }
+    .eyebrow { font-family: var(--title); font-size: 11px; letter-spacing: 4px; color: var(--gold); text-align: center; }
+    .h2 { font-family: var(--display); font-weight: 900; font-size: clamp(28px, 5vw, 46px); color: var(--bone); text-align: center; line-height: 1.15; margin: 10px 0 12px; text-shadow: 0 2px 0 #000; }
+    .lead { max-width: 620px; margin: 0 auto; text-align: center; color: var(--parchment); font-size: 16px; }
+    .rule { width: 180px; height: 12px; margin: 18px auto 0; background:
+      linear-gradient(90deg, transparent, var(--gold) 40%, transparent 40%, transparent 60%, var(--gold) 60%, transparent) center/100% 1px no-repeat; position: relative; }
+    .rule::after { content: '◆'; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -54%); color: var(--gold-bright); font-size: 10px; }
 
-    .reward-box {
-      position: relative; margin: 2.8rem auto; max-width: 520px;
-      padding: 2rem; border-radius: 12px;
-      background: linear-gradient(145deg, rgba(12,10,22,0.98), rgba(8,6,16,0.98));
-      border: 1px solid rgba(232,184,75,0.35);
-      box-shadow: 0 0 0 1px rgba(0,0,0,0.5), 0 0 60px rgba(192,38,62,0.18), inset 0 1px 0 rgba(232,184,75,0.1);
-    }
-    .reward-box::before {
-      content: ''; position: absolute; inset: -1px; border-radius: 13px;
-      background: linear-gradient(135deg, rgba(232,184,75,0.2), transparent 40%, rgba(0,255,170,0.1));
-      pointer-events: none;
-    }
-    .reward-label { font-family: 'Cinzel', serif; color: var(--gold); letter-spacing: 0.35em; font-size: 0.72rem; margin-bottom: 0.75rem; opacity: 0.8; }
-    .reward-headline { font-family: 'Cinzel', serif; font-size: clamp(1.1rem, 3.5vw, 1.45rem); font-weight: 700; line-height: 1.35; color: #f0f0f0; margin-bottom: 0.75rem; }
-    .reward-headline em { color: #e11d48; font-style: normal; }
-    .reward-body { color: #8a8a9a; font-size: 0.95rem; font-style: italic; line-height: 1.6; }
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.9s ease, transform 0.9s ease; }
+    .reveal.in { opacity: 1; transform: none; }
 
-    .email-form { display: flex; max-width: 520px; margin: 0 auto 2rem; gap: 10px; flex-wrap: wrap; justify-content: center; }
-    .email-input {
-      flex: 1; min-width: 240px; padding: 18px 20px; font-size: 15px;
-      font-family: 'Crimson Pro', serif;
-      background: rgba(8,8,18,0.95); color: #ddd;
-      border: 1px solid rgba(0,255,170,0.3); border-radius: 8px; outline: none;
-      transition: border-color 0.25s, box-shadow 0.25s;
-    }
-    .email-input::placeholder { color: #555; }
-    .email-input:focus { border-color: rgba(0,255,170,0.7); box-shadow: 0 0 20px rgba(0,255,170,0.12); }
-    .join-btn {
-      padding: 18px 36px;
-      background: linear-gradient(135deg, #00e896 0%, #00ffaa 50%, #00cc7a 100%);
-      color: #030a06; font-family: 'Cinzel', serif; font-weight: 700;
-      font-size: 0.82rem; letter-spacing: 0.2em;
-      border: none; border-radius: 8px; cursor: pointer; white-space: nowrap;
-      box-shadow: 0 0 25px rgba(0,255,170,0.4), inset 0 1px 0 rgba(255,255,255,0.25);
-      transition: all 0.3s ease; position: relative; overflow: hidden;
-    }
-    .join-btn::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%); pointer-events: none; }
-    .join-btn:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(0,255,170,0.65), 0 8px 30px rgba(0,0,0,0.4); }
-    .join-btn:active { transform: translateY(0); }
+    /* Story */
+    .story { background: linear-gradient(180deg, var(--abyss), #0D0B09 50%, var(--abyss)); }
+    .story-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(28px, 5vw, 64px); align-items: center; margin-top: 48px; }
+    @media (max-width: 860px) { .story-grid { grid-template-columns: 1fr; } }
+    .story-art { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--gold-dim); aspect-ratio: 3/4; max-height: 620px; }
+    .story-art img { width: 100%; height: 100%; object-fit: cover; }
+    .story-art::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(8,9,10,0.85)); }
+    .story-art figcaption { position: absolute; left: 18px; right: 18px; bottom: 16px; z-index: 1; font-style: italic; color: var(--bone); font-size: 14px; }
+    .chapters { display: grid; gap: 14px; }
+    .chapter { display: grid; grid-template-columns: 54px 1fr; gap: 16px; padding: 18px; border-radius: 14px; border: 1px solid var(--gold-rule); background: rgba(18,17,14,0.75); }
+    .chapter-num { font-family: var(--display); font-size: 26px; color: var(--gold); text-align: center; line-height: 1; padding-top: 2px; }
+    .chapter h3 { font-family: var(--title); font-weight: 700; color: var(--gold-bright); letter-spacing: 1.5px; font-size: 16px; margin-bottom: 4px; }
+    .chapter p { font-size: 14.5px; }
 
-    .success-message {
-      display: none; margin: 2rem auto; padding: 2.5rem 2rem;
-      background: rgba(0,255,170,0.04); border: 1px solid rgba(0,255,170,0.25);
-      border-radius: 12px; max-width: 480px; text-align: center;
-      box-shadow: 0 0 50px rgba(0,255,170,0.15); animation: fadeIn 0.6s ease;
+    /* Beasts */
+    .beast-track {
+      display: grid; grid-auto-flow: column; grid-auto-columns: minmax(240px, 300px); gap: 18px;
+      overflow-x: auto; scroll-snap-type: x mandatory; padding: 40px 4px 20px; scrollbar-width: none;
     }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-    .success-glyph { font-size: 3rem; color: var(--neon); display: block; margin-bottom: 1rem; filter: drop-shadow(0 0 15px var(--neon)); }
-    .success-title { font-family: 'Cinzel', serif; color: var(--neon); font-size: 1.1rem; letter-spacing: 0.2em; margin-bottom: 0.75rem; }
+    .beast-track::-webkit-scrollbar { display: none; }
+    .beast {
+      scroll-snap-align: center; position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 3/4.4;
+      border: 1px solid #8C7340; background: var(--iron); transition: transform 0.35s, box-shadow 0.35s;
+    }
+    .beast:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(0,0,0,0.6), 0 0 0 1px var(--gold); }
+    .beast img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+    .beast::before { content: ''; position: absolute; inset: 6px; border: 1px solid rgba(240,217,149,0.35); border-radius: 11px; z-index: 1; pointer-events: none; }
+    .beast::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,9,10,0) 40%, rgba(8,9,10,0.95) 88%); }
+    .beast-info { position: absolute; left: 18px; right: 18px; bottom: 16px; z-index: 2; }
+    .beast-tier { font-family: var(--title); font-size: 10px; letter-spacing: 3px; color: var(--gold-bright); }
+    .beast-name { font-family: var(--title); font-weight: 900; font-size: 20px; color: var(--bone); margin: 2px 0 6px; }
+    .beast-legend { font-size: 13px; color: var(--parchment); line-height: 1.5; }
+    .track-hint { text-align: center; font-size: 12px; color: var(--dim); letter-spacing: 1px; }
 
-    .character-showcase {
-      max-width: 500px; margin: 3rem auto 0;
-      border-radius: 14px; overflow: hidden; position: relative;
-      box-shadow: 0 0 0 1px rgba(0,255,170,0.15), 0 0 60px rgba(0,255,170,0.25), 0 0 120px rgba(192,38,62,0.2);
-    }
-    .character-showcase::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 50%; background: linear-gradient(transparent, var(--void)); pointer-events: none;
-    }
-    .character-showcase img { width: 100%; height: auto; display: block; }
+    /* Wars */
+    .wars { background: radial-gradient(ellipse at 50% 0%, rgba(163,32,47,0.14), transparent 60%), var(--abyss); }
+    .war-hero { position: relative; margin-top: 44px; border-radius: 18px; overflow: hidden; border: 1px solid var(--gold-dim); min-height: 380px; display: flex; align-items: flex-end; }
+    .war-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .war-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8,9,10,0.95) 0%, rgba(8,9,10,0.6) 50%, rgba(8,9,10,0.1) 100%); }
+    .war-copy { position: relative; z-index: 1; max-width: 460px; padding: clamp(22px, 4vw, 40px); }
+    .war-copy h3 { font-family: var(--title); font-weight: 900; font-size: 26px; color: var(--gold-bright); letter-spacing: 2px; margin-bottom: 8px; }
+    .war-copy p { color: var(--bone); font-size: 15px; }
+    .war-split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
+    @media (max-width: 860px) { .war-split { grid-template-columns: 1fr; } }
+    .dom { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--gold-dim); min-height: 440px; display: flex; align-items: flex-end; }
+    .dom img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .dom::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,9,10,0.1) 30%, rgba(8,9,10,0.95)); }
+    .places { display: grid; gap: 12px; }
+    .place { display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: center; padding: 12px; border-radius: 14px; border: 1px solid var(--gold-rule); background: rgba(18,17,14,0.8); }
+    .place img { width: 96px; height: 96px; object-fit: cover; border-radius: 10px; border: 1px solid var(--gold-dim); }
+    .place h4 { font-family: var(--title); font-weight: 700; color: var(--bone); letter-spacing: 1.5px; font-size: 15px; }
+    .place h4 span { color: var(--ember); font-size: 11px; letter-spacing: 2px; margin-left: 6px; }
+    .place p { font-size: 13.5px; }
 
-    /* ── SECTIONS ── */
-    section { padding: 100px 20px; position: relative; z-index: 3; }
-    section + section { border-top: 1px solid var(--border); }
+    /* Features */
+    .features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 44px; }
+    @media (max-width: 900px) { .features { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .features { grid-template-columns: 1fr; } }
+    .feature { padding: 22px 18px; border-radius: 14px; border: 1px solid var(--gold-rule); background: linear-gradient(180deg, rgba(26,25,21,0.9), rgba(14,13,11,0.9)); }
+    .feature-glyph { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; border: 1px solid var(--gold-dim); background: rgba(201,164,92,0.08); color: var(--gold-bright); margin-bottom: 14px; }
+    .feature h3 { font-family: var(--title); font-weight: 900; letter-spacing: 3px; color: var(--bone); font-size: 15px; margin-bottom: 6px; }
+    .feature p { font-size: 14px; }
 
-    .section-eyebrow { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.5em; color: var(--neon); text-align: center; margin-bottom: 0.75rem; opacity: 0.7; }
-    .section-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(1.8rem, 5vw, 2.8rem); text-align: center; margin-bottom: 0.5rem; color: #f0ece0; letter-spacing: 0.02em; }
-    .section-sub { text-align: center; color: #4a4a5a; letter-spacing: 0.4em; font-size: 0.75rem; font-family: 'Cinzel', serif; margin-bottom: 70px; }
+    /* Coming soon */
+    .coming { text-align: center; background: radial-gradient(ellipse at 50% 40%, rgba(201,164,92,0.12), transparent 60%), var(--abyss); }
+    .icon-frame {
+      width: 168px; height: 168px; margin: 36px auto 22px; padding: 8px; border-radius: 40px; position: relative;
+      background: linear-gradient(145deg, var(--gold-bright), var(--gold) 45%, #6E5626);
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.6), 0 20px 50px rgba(0,0,0,0.7), 0 0 60px rgba(201,164,92,0.25);
+      animation: glow 4s ease-in-out infinite;
+    }
+    @keyframes glow { 50% { box-shadow: 0 0 0 1px rgba(0,0,0,0.6), 0 20px 50px rgba(0,0,0,0.7), 0 0 90px rgba(201,164,92,0.4); } }
+    .icon-frame img { width: 100%; height: 100%; border-radius: 33px; object-fit: cover; }
+    .stores { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 26px 0 14px; }
+    .store {
+      display: inline-flex; align-items: center; gap: 12px; min-width: 210px; min-height: 58px; padding: 10px 18px; border-radius: 12px;
+      border: 1px solid #3A3427; background: #111110; color: var(--dim); text-decoration: none; cursor: not-allowed; position: relative;
+    }
+    .store svg { width: 26px; height: 26px; fill: currentColor; flex-shrink: 0; }
+    .store small { display: block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; }
+    .store strong { display: block; font-family: var(--title); font-size: 17px; color: #A39983; letter-spacing: 0.5px; }
+    .store .soon { position: absolute; top: -9px; right: 10px; font-family: var(--title); font-size: 9px; letter-spacing: 2px; color: #1A1308; background: var(--gold); padding: 2px 8px; border-radius: 999px; }
+    .store.live { cursor: pointer; color: var(--parchment); border-color: var(--gold-dim); }
+    .store.live strong { color: var(--bone); }
+    .store.live .soon { display: none; }
+    .founding { max-width: 560px; margin: 30px auto 0; padding: 24px 20px; border-radius: 16px; border: 1px solid var(--gold-dim); background: rgba(14,12,9,0.9); }
+    .founding h3 { font-family: var(--title); font-weight: 900; color: var(--gold-bright); letter-spacing: 2.5px; font-size: 18px; margin-bottom: 6px; }
+    .founding p { font-size: 14.5px; margin-bottom: 16px; }
 
-    /* ── CREATURE SHOWCASE ── */
-    .creatures-section { background: linear-gradient(180deg, var(--void) 0%, rgba(10,5,20,0.98) 50%, var(--void) 100%); }
+    /* FAQ */
+    .faq { max-width: 760px; margin: 40px auto 0; display: grid; gap: 10px; }
+    details { border: 1px solid var(--gold-rule); border-radius: 12px; background: rgba(18,17,14,0.8); padding: 0 18px; }
+    summary { cursor: pointer; list-style: none; min-height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-family: var(--title); font-weight: 700; color: var(--bone); letter-spacing: 0.5px; font-size: 15px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '+'; color: var(--gold); font-size: 22px; transition: transform 0.25s; }
+    details[open] summary::after { transform: rotate(45deg); }
+    details p { padding: 0 0 16px; font-size: 14.5px; }
 
-    .creature-track-wrap {
-      max-width: 1200px; margin: 0 auto;
-      position: relative; overflow: hidden;
-    }
-    .creature-track-wrap::before,
-    .creature-track-wrap::after {
-      content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none;
-    }
-    .creature-track-wrap::before { left: 0; background: linear-gradient(90deg, var(--void), transparent); }
-    .creature-track-wrap::after  { right: 0; background: linear-gradient(-90deg, var(--void), transparent); }
+    /* Footer */
+    footer { position: relative; z-index: 3; border-top: 1px solid var(--gold-rule); padding: 40px 20px calc(40px + env(safe-area-inset-bottom)); text-align: center; }
+    .socials { display: flex; justify-content: center; gap: 14px; margin-bottom: 18px; }
+    .socials a { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--gold-rule); color: var(--gold); transition: color 0.2s, border-color 0.2s; }
+    .socials a:hover { color: var(--gold-bright); border-color: var(--gold); }
+    .socials svg { width: 18px; height: 18px; fill: currentColor; }
+    .copy { font-family: var(--title); font-size: 11px; letter-spacing: 2px; color: var(--dim); }
+    .legal { display: flex; gap: 20px; justify-content: center; margin-top: 10px; }
+    .legal a { font-family: var(--title); font-size: 11px; letter-spacing: 2px; color: var(--parchment); text-decoration: none; padding: 10px 0; }
 
-    .creature-track {
-      display: flex; gap: 24px;
-      overflow-x: auto; scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      padding: 20px 60px 30px;
-      scrollbar-width: none;
-    }
-    .creature-track::-webkit-scrollbar { display: none; }
-
-    .creature-card {
-      flex: 0 0 280px; scroll-snap-align: center;
-      border-radius: 16px; overflow: hidden;
-      position: relative; cursor: pointer;
-      border: 1px solid rgba(255,255,255,0.07);
-      transition: all 0.4s ease;
-      background: rgba(0,0,0,0.4);
-    }
-    .creature-card:hover {
-      transform: translateY(-12px) scale(1.02);
-      border-color: var(--neon);
-      box-shadow: 0 0 0 1px rgba(0,255,170,0.2), 0 30px 80px rgba(0,0,0,0.7), 0 0 40px rgba(0,255,170,0.15);
-    }
-    .creature-card img {
-      width: 100%; height: 340px; object-fit: cover; object-position: top;
-      display: block; transition: transform 0.5s ease;
-    }
-    .creature-card:hover img { transform: scale(1.06); }
-
-    .creature-info {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 50px 20px 20px;
-      background: linear-gradient(transparent, rgba(0,0,0,0.92));
-    }
-    .creature-rarity {
-      font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.4em;
-      color: var(--gold); margin-bottom: 4px;
-      text-shadow: 0 0 12px rgba(232,184,75,0.6);
-    }
-    .creature-name {
-      font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700;
-      color: #f0ece0; line-height: 1.2;
-    }
-    .creature-type {
-      font-size: 0.8rem; color: #666; margin-top: 4px; font-style: italic;
-    }
-    .mythic-badge {
-      position: absolute; top: 14px; right: 14px;
-      background: linear-gradient(135deg, #7c3aed, #c0263e);
-      color: #fff; font-family: 'Cinzel', serif;
-      font-size: 0.55rem; letter-spacing: 0.25em;
-      padding: 4px 10px; border-radius: 20px;
-      box-shadow: 0 0 15px rgba(124,58,237,0.5);
-    }
-
-    /* Dot nav for carousel */
-    .creature-dots {
-      display: flex; justify-content: center; gap: 8px; margin-top: 24px;
-    }
-    .creature-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: rgba(255,255,255,0.15); border: none; cursor: pointer;
-      transition: all 0.3s; padding: 0;
-    }
-    .creature-dot.active { background: var(--neon); box-shadow: 0 0 8px var(--neon); width: 20px; border-radius: 3px; }
-
-    /* ── FEATURE GRID ── */
-    .feature-grid { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-    .feature-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; padding: 36px 28px;
-      position: relative; overflow: hidden; transition: all 0.4s ease; cursor: default;
-    }
-    .feature-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,255,170,0.04) 0%, transparent 60%); opacity: 0; transition: opacity 0.4s; }
-    .feature-card:hover::before { opacity: 1; }
-    .feature-card:hover { border-color: rgba(0,255,170,0.25); transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(0,255,170,0.1); }
-    .feature-card::after { content: ''; position: absolute; top: 0; right: 0; width: 40px; height: 40px; border-top: 2px solid rgba(0,255,170,0); border-right: 2px solid rgba(0,255,170,0); border-radius: 0 12px 0 0; transition: border-color 0.4s; }
-    .feature-card:hover::after { border-color: rgba(0,255,170,0.4); }
-    .card-icon { width: 52px; height: 52px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; }
-    .card-icon svg { width: 36px; height: 36px; filter: drop-shadow(0 0 8px currentColor); }
-    .card-title { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1rem; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 10px; }
-    .card-body { color: #7a7a8a; font-size: 0.95rem; line-height: 1.65; }
-  
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
- 
-.lqr-root {
-  /* FIXED: Stripped the hard color fill. Letting body background layers pass through cleanly */
-  background: transparent !important;
-  font-family: 'Crimson Text', Georgia, serif;
-  padding: 80px 20px 90px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-/* ─── OPTIMIZED LIGHT BOX CONTRAST FIX ─── */
-.lqr-qr-img {
-  width: 185px;
-  height: 185px;
-  border-radius: 2px;
-  display: block;
-  image-rendering: crisp-edges;
-  position: relative;
-  z-index: 1;
-  
-  /* FIXED: Keeps phone camera capability intact while removing the design break */
-  filter: invert(1);
-  background: #000000;
-  padding: 12px;
-  box-sizing: border-box;
-}
-
- 
-  /* Floating particle dots */
-  .lqr-particles {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-  }
- 
-  .lqr-particle {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    border-radius: 50%;
-    background: rgba(0, 220, 200, 0.5);
-    animation: floatUp linear infinite;
-  }
- 
-  .lqr-particle:nth-child(1)  { left: 8%;  animation-duration: 12s; animation-delay: 0s;    width: 1px; height: 1px; }
-  .lqr-particle:nth-child(2)  { left: 18%; animation-duration: 16s; animation-delay: 3s; }
-  .lqr-particle:nth-child(3)  { left: 28%; animation-duration: 10s; animation-delay: 1s;    width: 3px; height: 3px; background: rgba(0,200,180,0.3); }
-  .lqr-particle:nth-child(4)  { left: 42%; animation-duration: 14s; animation-delay: 5s; }
-  .lqr-particle:nth-child(5)  { left: 55%; animation-duration: 18s; animation-delay: 2s;    width: 1px; height: 1px; }
-  .lqr-particle:nth-child(6)  { left: 67%; animation-duration: 11s; animation-delay: 7s; }
-  .lqr-particle:nth-child(7)  { left: 78%; animation-duration: 15s; animation-delay: 4s;    width: 3px; height: 3px; background: rgba(0,200,180,0.3); }
-  .lqr-particle:nth-child(8)  { left: 88%; animation-duration: 13s; animation-delay: 6s; }
-  .lqr-particle:nth-child(9)  { left: 33%; animation-duration: 20s; animation-delay: 9s;    width: 1px; height: 1px; }
-  .lqr-particle:nth-child(10) { left: 72%; animation-duration: 17s; animation-delay: 1.5s; }
- 
-  @keyframes floatUp {
-    0%   { transform: translateY(100vh) scale(1); opacity: 0; }
-    10%  { opacity: 1; }
-    90%  { opacity: 0.6; }
-    100% { transform: translateY(-20px) scale(0.5); opacity: 0; }
-  }
- 
-  .lqr-content {
-    position: relative;
-    z-index: 1;
-  }
- 
-  /* EYEBROW */
-  .lqr-eyebrow {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 6px;
-    color: #00b8a8;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    opacity: 0.8;
-  }
- 
-  /* HEADLINE */
-  .lqr-headline {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
-    font-weight: 900;
-    color: #e8d8b0;
-    margin: 0 0 14px;
-    line-height: 1.15;
-    text-shadow: 0 0 40px rgba(0, 200, 180, 0.15);
-    letter-spacing: 2px;
-  }
- 
-  /* SUBTEXT */
-  .lqr-sub {
-    font-size: 1.15rem;
-    color: #7a8e8c;
-    margin: 0 auto 58px;
-    max-width: 440px;
-    line-height: 1.65;
-  }
- 
-  .lqr-sub strong {
-    color: #00ccb8;
-    font-weight: 600;
-  }
- 
-  /* ─── SEAL WRAPPER ─── */
-  .lqr-seal-wrap {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 80px;
-    width: 310px;
-    height: 310px;
-  }
- 
-  /* Outer slow-spinning teal ring */
-  .lqr-ring-outer {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    border: 1px solid rgba(0, 180, 160, 0.18);
-    animation: spinSlow 35s linear infinite;
-  }
- 
-  /* Tick marks on the outer ring */
-  .lqr-ring-outer::before {
-    content: '';
-    position: absolute;
-    inset: 6px;
-    border-radius: 50%;
-    border: 1px dashed rgba(0, 160, 140, 0.12);
-  }
- 
-  @keyframes spinSlow {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-  }
- 
-  /* Counter-spinning middle ring */
-  .lqr-ring-mid {
-    position: absolute;
-    inset: 18px;
-    border-radius: 50%;
-    border: 1px solid rgba(0, 200, 180, 0.10);
-    animation: spinSlow 20s linear infinite reverse;
-  }
- 
-  /* Corner diamond gems */
-  .lqr-gem {
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    background: #00a898;
-    transform: rotate(45deg);
-    box-shadow: 0 0 10px rgba(0, 200, 180, 0.8), 0 0 20px rgba(0, 180, 160, 0.4);
-  }
- 
-  .lqr-gem.top    { top: 12px;    left: calc(50% - 3.5px); }
-  .lqr-gem.bottom { bottom: 12px; left: calc(50% - 3.5px); }
-  .lqr-gem.left   { left: 12px;   top: calc(50% - 3.5px); }
-  .lqr-gem.right  { right: 12px;  top: calc(50% - 3.5px); }
- 
-  /* Main QR frame — octagon clipped */
-  .lqr-frame {
-    position: relative;
-    width: 240px;
-    height: 240px;
-    background: linear-gradient(145deg, #0a1412, #060e0c);
-    clip-path: polygon(20px 0%, calc(100% - 20px) 0%, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0% calc(100% - 20px), 0% 20px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: framePulse 4s ease-in-out infinite;
-  }
- 
-  @keyframes framePulse {
-    0%,  100% { box-shadow: 0 0 30px rgba(0, 180, 160, 0.20), 0 0 80px rgba(0, 140, 120, 0.08), inset 0 0 30px rgba(0, 160, 140, 0.04); }
-    50%        { box-shadow: 0 0 55px rgba(0, 210, 190, 0.35), 0 0 120px rgba(0, 170, 150, 0.15), inset 0 0 50px rgba(0, 180, 160, 0.08); }
-  }
- 
-  /* SVG octagon border overlay */
-  .lqr-frame-border {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
- 
-/* QR image */
-.lqr-qr-img {
-  width: 185px;
-  height: 185px;
-  border-radius: 2px;
-  display: block;
-  image-rendering: crisp-edges;
-  position: relative;
-  z-index: 1;
-  
-  /* FIX: Flips black pixels to white, adds a pure black backdrop 
-     and clear padding boundary to protect camera sensor scanning */
-  filter: invert(1);
-  background: #000000;
-  padding: 12px; 
-  box-sizing: border-box;
-}
-
- 
-  /* Scanning line animation over QR */
-  .lqr-scan-line {
-    position: absolute;
-    left: 30px;
-    right: 30px;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(0, 220, 200, 0.7), transparent);
-    box-shadow: 0 0 8px rgba(0, 220, 200, 0.5);
-    z-index: 3;
-    animation: scanMove 3s ease-in-out infinite;
-    pointer-events: none;
-  }
- 
-  @keyframes scanMove {
-    0%   { top: 30px;  opacity: 0; }
-    10%  { opacity: 1; }
-    90%  { opacity: 1; }
-    100% { top: 210px; opacity: 0; }
-  }
- 
-  /* Corner targeting brackets */
-  .lqr-corners {
-    position: absolute;
-    inset: 28px;
-    pointer-events: none;
-    z-index: 2;
-  }
- 
-  .lqr-corner-svg {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-  }
- 
-  .lqr-corner-svg.tl { top: 0;    left: 0; }
-  .lqr-corner-svg.tr { top: 0;    right: 0;  transform: rotate(90deg); }
-  .lqr-corner-svg.bl { bottom: 0; left: 0;   transform: rotate(-90deg); }
-  .lqr-corner-svg.br { bottom: 0; right: 0;  transform: rotate(180deg); }
- 
-  /* "Scan to Summon" label below frame */
-  .lqr-scan-label {
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Cinzel', serif;
-    font-size: 8.5px;
-    letter-spacing: 5px;
-    color: #00a898;
-    white-space: nowrap;
-    text-transform: uppercase;
-    opacity: 0.7;
-  }
- 
-  /* ─── DIVIDER ─── */
-  .lqr-divider {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    max-width: 480px;
-    margin: 0 auto 52px;
-  }
- 
-  .lqr-divider-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(0, 160, 140, 0.35), transparent);
-  }
- 
-  .lqr-divider-glyph {
-    color: #00a898;
-    font-size: 14px;
-    opacity: 0.7;
-  }
- 
-  /* ─── RITUAL CARD ─── */
-  .lqr-ritual-card {
-    max-width: 500px;
-    margin: 0 auto 52px;
-    background: rgba(6, 14, 12, 0.95);
-    border: 1px solid rgba(0, 160, 140, 0.2);
-    border-radius: 2px;
-    padding: 42px 44px;
-    position: relative;
-    text-align: left;
-    box-shadow:
-      0 0 40px rgba(0, 160, 140, 0.06),
-      inset 0 0 60px rgba(0, 140, 120, 0.03);
-  }
- 
-  /* Teal corner accents */
-  .lqr-ritual-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 30px; height: 30px;
-    border-top: 1px solid rgba(0, 180, 160, 0.5);
-    border-left: 1px solid rgba(0, 180, 160, 0.5);
-  }
- 
-  .lqr-ritual-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; right: 0;
-    width: 30px; height: 30px;
-    border-bottom: 1px solid rgba(0, 180, 160, 0.5);
-    border-right: 1px solid rgba(0, 180, 160, 0.5);
-  }
- 
-  /* Top-right and bottom-left corners via inner elements */
-  .lqr-card-corner-tr {
-    position: absolute;
-    top: 0; right: 0;
-    width: 30px; height: 30px;
-    border-top: 1px solid rgba(0, 180, 160, 0.5);
-    border-right: 1px solid rgba(0, 180, 160, 0.5);
-  }
- 
-  .lqr-card-corner-bl {
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 30px; height: 30px;
-    border-bottom: 1px solid rgba(0, 180, 160, 0.5);
-    border-left: 1px solid rgba(0, 180, 160, 0.5);
-  }
- 
-  .lqr-card-title {
-    font-family: 'Cinzel', serif;
-    font-size: 0.75rem;
-    letter-spacing: 5px;
-    color: #00ccb8;
-    text-align: center;
-    margin: 0 0 38px;
-    text-transform: uppercase;
-    opacity: 0.9;
-  }
- 
-  .lqr-steps {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
- 
-  .lqr-step {
-    display: flex;
-    gap: 22px;
-    align-items: flex-start;
-    padding: 18px 0;
-    border-bottom: 1px solid rgba(0, 160, 140, 0.12);
-    transition: background 0.2s;
-  }
- 
-  .lqr-step:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
- 
-  .lqr-step:first-child {
-    padding-top: 0;
-  }
- 
-  .lqr-step-num {
-    font-family: 'Cinzel', serif;
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    color: #00a898;
-    padding-top: 4px;
-    min-width: 24px;
-    opacity: 0.85;
-  }
- 
-  .lqr-step-text {
-    font-size: 1.08rem;
-    color: #8aa8a4;
-    line-height: 1.6;
-  }
- 
-  .lqr-step-text strong {
-    color: #c8dcd8;
-    font-weight: 600;
-  }
- 
-  /* ─── FOOTER BADGE ─── */
-  .lqr-footer-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: rgba(6, 14, 12, 0.9);
-    border: 1px solid rgba(0, 160, 140, 0.18);
-    border-radius: 2px;
-    padding: 11px 26px;
-    font-family: 'Cinzel', serif;
-    font-size: 0.68rem;
-    letter-spacing: 3px;
-    color: #4a7870;
-    text-transform: uppercase;
-  }
- 
-  .lqr-badge-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #00cc88;
-    box-shadow: 0 0 6px rgba(0, 200, 136, 0.8), 0 0 12px rgba(0, 200, 136, 0.4);
-    animation: badgePulse 2.5s ease-in-out infinite;
-    flex-shrink: 0;
-  }
- 
-  @keyframes badgePulse {
-    0%, 100% { opacity: 1;    transform: scale(1); }
-    50%       { opacity: 0.4; transform: scale(0.8); }
-  }
-
-
-    /* ── FAQ ── */
-    .faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
-    .faq-item {
-      position: relative; padding: 28px 28px 28px 36px;
-      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-      transition: background 0.3s, border-color 0.3s;
-    }
-    .faq-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; border-radius: 3px 0 0 3px; background: linear-gradient(180deg, var(--blood), var(--purple)); }
-    .faq-item:hover { background: rgba(255,255,255,0.035); border-color: rgba(192,38,62,0.2); }
-    .faq-q { font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 600; color: #d0ccc0; letter-spacing: 0.04em; margin-bottom: 10px; line-height: 1.45; }
-    .faq-a { color: #666678; font-size: 0.95rem; line-height: 1.7; font-style: italic; }
-
-    /* ── FOOTER ── */
-    footer {
-      text-align: center; padding: 50px 20px 40px;
-      background: #020205;
-      border-top: 1px solid rgba(255,255,255,0.04);
-      position: relative; z-index: 3;
-    }
-    .footer-social {
-      display: flex; justify-content: center; gap: 1.4rem;
-      margin-bottom: 2rem;
-    }
-    .footer-social a {
-      display: flex; align-items: center; justify-content: center;
-      width: 44px; height: 44px; border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.08);
-      color: #555568;
-      transition: all 0.25s ease;
-      text-decoration: none;
-    }
-    .footer-social a:hover {
-      border-color: var(--neon);
-      color: var(--neon);
-      background: rgba(0,255,170,0.06);
-      box-shadow: 0 0 16px rgba(0,255,170,0.2);
-      transform: translateY(-2px);
-    }
-    .footer-social svg { width: 18px; height: 18px; fill: currentColor; }
-    .footer-copy {
-      font-family: 'Cinzel', serif; font-size: 0.7rem;
-      letter-spacing: 0.2em; color: #333340;
-      margin-bottom: 1.2rem;
-    }
-    .footer-links {
-      display: flex; justify-content: center; gap: 2.5rem;
-    }
-    .footer-links a {
-      font-family: 'Cinzel', serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      color: var(--neon);
-      text-decoration: underline;
-      text-underline-offset: 5px;
-      text-decoration-color: rgba(0,255,170,0.35);
-      transition: text-decoration-color 0.2s, text-shadow 0.2s;
-    }
-    .footer-links a:hover {
-      text-decoration-color: var(--neon);
-      text-shadow: 0 0 14px rgba(0,255,170,0.5);
-    }
-
-    /* ── SCROLL ANIMATION ── */
-    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .fade-in.visible { opacity: 1; transform: none; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 640px) {
-      .hero { padding-top: 120px; }
-      .sigil-wrap { width: 164px; height: 164px; }
-      .sigil-logo img { width: 115px; height: 115px; }
-      .email-form { flex-direction: column; align-items: stretch; }
-      .join-btn { width: 100%; }
-      .feature-grid { grid-template-columns: 1fr; }
-      .nav-links { gap: 1.2rem; }
-      .nav-links a:not(.discord) { display: none; }
-      .creature-card { flex: 0 0 240px; }
-      .creature-card img { height: 280px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      #embers { display: none; }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
+  <div id="embers" aria-hidden="true"></div>
 
-  <div id="particles"></div>
-
-  <!-- ── NAV ── -->
-  <nav>
-    <div class="inner">
-      <a class="nav-brand" href="#">
-        <img src="legaryn_logo.jpeg" alt="Legaryn">
-        <span>LEGARYN</span>
-      </a>
-      <div class="nav-links">
-        <a href="#creatures">Creatures</a>
-        <a href="#features">Features</a>
-        <a href="#faq">FAQ</a>
-        <a href="https://discord.gg/Vp4Rs6zDxu" target="_blank" class="discord">Discord</a>
-      </div>
+  <nav class="nav" id="nav">
+    <a class="nav-brand" href="#top" aria-label="Legaryn home">
+      <img src="art/app-icon.jpg" alt="" />
+      <span>LEGARYN</span>
+    </a>
+    <div class="nav-links">
+      <a href="#story">Story</a>
+      <a href="#beasts">Beasts</a>
+      <a href="#wars">Wars</a>
+      <a href="#faq">FAQ</a>
     </div>
+    <a class="nav-cta" href="#join">JOIN THE REALM</a>
   </nav>
 
-  <!-- ── HERO ── -->
-  <main class="hero">
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="hero-art" role="img" aria-label="The Pale Widow on her throne"></div>
+    <div class="hero-inner" id="join">
+      <img class="wordmark" src="art/wordmark.webp" alt="Legaryn" width="420" height="145" />
+      <p class="hero-line">The Hollow Realm is dying. Bind the beasts mortals once feared, forge them into legends, and take what the dead left behind.</p>
 
-    <div class="sigil-wrap">
-      <div class="sigil-ring"></div>
-      <div class="sigil-ring-inner"></div>
-      <div class="sigil-logo">
-        <img src="legaryn_logo.jpeg" alt="Legaryn Skull Logo">
-      </div>
-    </div>
-
-    <h1 class="game-title">LEGARYN</h1>
-    <p class="game-subtitle">Mythic Legends</p>
-
-    <div class="counter-strip">
-      <div class="counter-dot"></div>
-      <span><span id="soul-count">2,847</span> SOULS HAVE JOINED THE REALM</span>
-    </div>
-
-    <div class="rune-divider"></div>
-
-    <div class="reward-box">
-      <div class="reward-label">EARLY ACCESS REWARD</div>
-      <div class="reward-headline">CLAIM A FREE <em>EPIC SUMMON</em> ON LAUNCH</div>
-      <div class="reward-body">
-        Join the vanguard, mortal. Your activation code shall be delivered<br>
-        the moment the gates of the realm tear open.
-      </div>
-    </div>
-
-    <form id="realm-form" class="email-form">
-      <input type="email" name="email" id="email-input" placeholder="Enter thy mortal email…" required class="email-input">
-      <button type="submit" id="submit-btn" class="join-btn">JOIN THE REALM</button>
-    </form>
-
-    <div id="success-message" class="success-message">
-      <span class="success-glyph">🜁</span>
-      <div class="success-title">THE RITUAL IS COMPLETE</div>
-      <p style="color:#4a6a52;font-style:italic;">You have been marked.<br><strong style="color:#6a9a72;">Your Epic Summon awaits in the void.</strong></p>
-    </div>
-
-    <div class="character-showcase">
-      <img src="character.jpg" alt="Legaryn Vanguard">
-    </div>
-
-  </main>
-
-  <!-- ── CREATURE SHOWCASE ── -->
-  <section id="creatures" class="creatures-section">
-    <div class="section-eyebrow">MYTHIC RARITY</div>
-    <h2 class="section-title">Beasts of the Realm</h2>
-    <div class="section-sub">A GLIMPSE INTO THE VOID</div>
-
-    <div class="creature-track-wrap">
-      <div class="creature-track" id="creatureTrack">
-
-        <div class="creature-card fade-in">
-          <div class="mythic-badge">✦ MYTHIC</div>
-          <img src="creature1.jpeg" alt="Chernobog">
-          <div class="creature-info">
-            <div class="creature-name">Chernobog</div>
-            <div class="creature-type">Cursed</div>
-          </div>
-        </div>
-
-        <div class="creature-card fade-in" style="transition-delay:0.1s">
-          <div class="mythic-badge">✦ MYTHIC</div>
-          <img src="creature2.jpeg" alt="The Morrigan">
-          <div class="creature-info">
-            <div class="creature-name">The Morrigan</div>
-            <div class="creature-type">Ethereal</div>
-          </div>
-        </div>
-
-        <div class="creature-card fade-in" style="transition-delay:0.2s">
-          <div class="mythic-badge">✦ MYTHIC</div>
-          <img src="creature3.jpeg" alt="The Pale Rider">
-          <div class="creature-info">
-            <div class="creature-name">The Pale Rider</div>
-            <div class="creature-type">Cursed</div>
-          </div>
-        </div>
-
-        <div class="creature-card fade-in" style="transition-delay:0.3s">
-          <div class="mythic-badge">✦ MYTHIC</div>
-          <img src="creature4.jpeg" alt="Ancient Behemoth">
-          <div class="creature-info">
-            <div class="creature-name">Ancient Behemoth</div>
-            <div class="creature-type">Primal</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="creature-dots" id="creatureDots">
-      <button class="creature-dot active" data-index="0"></button>
-      <button class="creature-dot" data-index="1"></button>
-      <button class="creature-dot" data-index="2"></button>
-      <button class="creature-dot" data-index="3"></button>
-    </div>
-  </section>
-
-  <!-- ── FEATURES ── -->
-  <section id="features">
-    <div class="section-eyebrow">THE REALM HOLDS MANY SECRETS</div>
-    <h2 class="section-title">What Awaits You</h2>
-    <div class="section-sub">DESCEND INTO DARKNESS</div>
-
-    <div class="feature-grid">
-      <div class="feature-card fade-in">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#c0263e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14.5 17.5L3 6V3h3l11.5 11.5"/><path d="M13 19l6-6"/><path d="M16 16l4 4"/><path d="M19 21l2-2"/>
-          </svg>
-        </div>
-        <div class="card-title">Battle</div>
-        <div class="card-body">Clash with summoners across the realm. Rise through blood-soaked arena combat and carve your name into legend.</div>
+      <div class="counter" aria-live="polite">
+        <span class="counter-dot"></span>
+        <span><strong id="soul-count">2,847</strong> SOULS HAVE JOINED THE REALM</span>
       </div>
 
-      <div class="feature-card fade-in" style="transition-delay:0.1s">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"/><path d="M12 3v4"/><path d="M12 17v4"/><path d="M3 12h4"/><path d="M17 12h4"/>
-            <circle cx="12" cy="12" r="3" fill="#7c3aed" opacity="0.3"/>
-          </svg>
-        </div>
-        <div class="card-title">Summon</div>
-        <div class="card-body">Open forbidden portals. Call forth mythic warriors and ancient creatures from the abyss — Cursed, Primal, or Ethereal.</div>
+      <div class="reward">
+        <div class="reward-label">EARLY ACCESS REWARD</div>
+        <div class="reward-headline">CLAIM A FREE <em>EPIC SUMMON</em> ON LAUNCH</div>
+        <div class="reward-body">Join the vanguard, Warlord. Your activation code shall be delivered the moment the gates of the realm tear open.</div>
       </div>
 
-      <div class="feature-card fade-in" style="transition-delay:0.2s">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#e8b84b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-        </div>
-        <div class="card-title">Alliance</div>
-        <div class="card-body">Forge blood oaths with ruthless tacticians. Coordinate your war machine and dominate global conquest.</div>
+      <form class="signup realm-form" novalidate>
+        <input type="email" name="email" placeholder="Enter thy mortal email…" required autocomplete="email" aria-label="Email address" />
+        <button type="submit" class="btn-gold">JOIN THE REALM</button>
+      </form>
+      <div class="success" role="status">
+        <div class="success-title">THE RITUAL IS COMPLETE</div>
+        <p>You have been marked. <strong style="color:var(--gold-bright)">Your Epic Summon awaits in the void.</strong></p>
       </div>
 
-      <div class="feature-card fade-in" style="transition-delay:0.3s">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#00ffaa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><line x1="12" y1="12" x2="12" y2="16"/>
-          </svg>
+      <div class="scroll-cue">DESCEND</div>
+    </div>
+  </header>
+
+  <!-- STORY -->
+  <section class="story" id="story">
+    <div class="wrap">
+      <p class="eyebrow reveal">THE SAGA OF THE BLOODSTONES</p>
+      <h2 class="h2 reveal">Every Legend Became Real</h2>
+      <p class="lead reveal">In the Hollow Realm, fear has weight. Every tale told long enough took a body. Now a storm called the Hollow Tide swallows a little more of the land each night, and only ground lit by a Bloodstone survives.</p>
+      <div class="rule"></div>
+
+      <div class="story-grid">
+        <figure class="story-art reveal">
+          <img src="art/story-chronicle.jpg" alt="The Chronicle of the Hollow Realm" loading="lazy" />
+          <figcaption>"You asked why the stone was warm. I told you it was the fire. I lied. Keep descending." — K.</figcaption>
+        </figure>
+        <div class="chapters">
+          <article class="chapter reveal">
+            <div class="chapter-num">I</div>
+            <div>
+              <h3>The Last City</h3>
+              <p>You wake in Ashmoor as the bells ring. Fog on the walls, the Tide at the gates. Bind your first beast before the dark comes in.</p>
+            </div>
+          </article>
+          <article class="chapter reveal">
+            <div class="chapter-num">II</div>
+            <div>
+              <h3>The Warlords</h3>
+              <p>You carry Legaryn, the ancient bond that lets a mortal bind beasts. Few still do. Fewer survive it.</p>
+            </div>
+          </article>
+          <article class="chapter reveal">
+            <div class="chapter-num">III</div>
+            <div>
+              <h3>The Blood Pact</h3>
+              <p>There are not enough Bloodstones for everyone. Swear an oath with other Warlords, feed your stones, and hold your ground.</p>
+            </div>
+          </article>
+          <article class="chapter reveal">
+            <div class="chapter-num">IV</div>
+            <div>
+              <h3>The Price</h3>
+              <p>Every bond makes you stronger, and the Realm a little weaker. The Pale Horseman rides at the head of the Tide. Nobody knows what he wants.</p>
+            </div>
+          </article>
         </div>
-        <div class="card-title">Empire</div>
-        <div class="card-body">Seize properties. Amass shadow wealth. Unlock forbidden weapons that bend the laws of the realm.</div>
       </div>
     </div>
   </section>
 
-<section class="lqr-root">
- 
-  <!-- Floating ambient particles -->
-  <div class="lqr-particles" aria-hidden="true">
-    <span class="lqr-particle"></span>
-    <span class="lqr-particle"></span>
-    <span class="lqr-particle"></span>
-    <span class="lqr-particle"></span>
-    <span class="lqr-particle"></span>
-    <span class="lqr-particle"></span>
-    <span class="lqr-particle"></span>
-    <span class="lqr-particle"></span>
-    <span class="lqr-particle"></span>
-    <span class="lqr-particle"></span>
-  </div>
- 
-  <div class="lqr-content">
- 
-    <p class="lqr-eyebrow">Portal Access</p>
-    <h2 class="lqr-headline">Enter the Realm</h2>
-    <p class="lqr-sub">Scan the seal below with <strong>Phone Camera</strong> — Type "Legaryn" when prompted. You're in!</p>
- 
-    <!-- ── SEAL ── -->
-    <div class="lqr-seal-wrap" aria-label="QR code seal">
- 
-      <!-- Spinning rings -->
-      <div class="lqr-ring-outer" aria-hidden="true">
-        <div class="lqr-gem top"></div>
-        <div class="lqr-gem bottom"></div>
-        <div class="lqr-gem left"></div>
-        <div class="lqr-gem right"></div>
-      </div>
-      <div class="lqr-ring-mid" aria-hidden="true"></div>
- 
-      <!-- Octagon QR frame -->
-      <div class="lqr-frame">
- 
-        <!-- Octagon SVG border -->
-        <svg class="lqr-frame-border" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <polygon
-            points="20,0 220,0 240,20 240,220 220,240 20,240 0,220 0,20"
-            fill="none"
-            stroke="rgba(0,180,160,0.45)"
-            stroke-width="1.5"
-          />
-          <polygon
-            points="26,4 214,4 236,26 236,214 214,236 26,236 4,214 4,26"
-            fill="none"
-            stroke="rgba(0,140,120,0.2)"
-            stroke-width="1"
-          />
-          <!-- Corner accent lines -->
-          <line x1="20"  y1="0"   x2="36"  y2="0"   stroke="rgba(0,200,180,0.7)" stroke-width="2"/>
-          <line x1="0"   y1="20"  x2="0"   y2="36"  stroke="rgba(0,200,180,0.7)" stroke-width="2"/>
-          <line x1="220" y1="0"   x2="204" y2="0"   stroke="rgba(0,200,180,0.7)" stroke-width="2"/>
-          <line x1="240" y1="20"  x2="240" y2="36"  stroke="rgba(0,200,180,0.7)" stroke-width="2"/>
-          <line x1="20"  y1="240" x2="36"  y2="240" stroke="rgba(0,200,180,0.7)" stroke-width="2"/>
-          <line x1="0"   y1="220" x2="0"   y2="204" stroke="rgba(0,200,180,0.7)" stroke-width="2"/>
-          <line x1="220" y1="240" x2="204" y2="240" stroke="rgba(0,200,180,0.7)" stroke-width="2"/>
-          <line x1="240" y1="220" x2="240" y2="204" stroke="rgba(0,200,180,0.7)" stroke-width="2"/>
-        </svg>
- 
-        <!-- QR Image — points to the real file on your server -->
-        <img
-          class="lqr-qr-img"
-          src="LEGARYN_QR.png"
-          alt="Legaryn Expo Go QR Code — Scan to enter the realm"
-        />
- 
-        <!-- Animated scan line -->
-        <div class="lqr-scan-line" aria-hidden="true"></div>
- 
-        <!-- Corner targeting brackets -->
-        <div class="lqr-corners" aria-hidden="true">
-          <svg class="lqr-corner-svg tl" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <polyline points="0,13 0,0 13,0" fill="none" stroke="rgba(0,200,180,0.85)" stroke-width="2.5" stroke-linecap="square"/>
-          </svg>
-          <svg class="lqr-corner-svg tr" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <polyline points="0,13 0,0 13,0" fill="none" stroke="rgba(0,200,180,0.85)" stroke-width="2.5" stroke-linecap="square"/>
-          </svg>
-          <svg class="lqr-corner-svg bl" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <polyline points="0,13 0,0 13,0" fill="none" stroke="rgba(0,200,180,0.85)" stroke-width="2.5" stroke-linecap="square"/>
-          </svg>
-          <svg class="lqr-corner-svg br" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <polyline points="0,13 0,0 13,0" fill="none" stroke="rgba(0,200,180,0.85)" stroke-width="2.5" stroke-linecap="square"/>
-          </svg>
-        </div>
- 
-      </div><!-- /.lqr-frame -->
- 
-      <span class="lqr-scan-label">Scan to Summon</span>
-    </div><!-- /.lqr-seal-wrap -->
- 
-    <!-- Divider -->
-    <div class="lqr-divider" aria-hidden="true">
-      <div class="lqr-divider-line"></div>
-      <span class="lqr-divider-glyph">✦</span>
-      <div class="lqr-divider-line"></div>
-    </div>
- 
-    <!-- Ritual card -->
-    <div class="lqr-ritual-card">
-      <div class="lqr-card-corner-tr" aria-hidden="true"></div>
-      <div class="lqr-card-corner-bl" aria-hidden="true"></div>
-      <p class="lqr-card-title">The Ritual of Entry</p>
-      <ol class="lqr-steps">
-        <li class="lqr-step">
-          <span class="lqr-step-num">I</span>
-          <span class="lqr-step-text"><strong>Open Expo Go</strong> on your iPhone or Android device.</span>
-        </li>
-        <li class="lqr-step">
-          <span class="lqr-step-num">II</span>
-          <span class="lqr-step-text">Point your camera at the seal above and hold steady.</span>
-        </li>
-        <li class="lqr-step">
-          <span class="lqr-step-num">III</span>
-          <span class="lqr-step-text">Tap the link that appears — and enter <strong>Legaryn</strong>.</span>
-        </li>
-      </ol>
-    </div>
- 
-    <!-- Footer badge -->
-    <div class="lqr-footer-badge">
-      <span class="lqr-badge-dot" aria-hidden="true"></span>
-      iOS &amp; Android &nbsp;·&nbsp; Always the latest build
-    </div>
- 
+  <!-- BEASTS -->
+  <section id="beasts">
+    <div class="wrap">
+      <p class="eyebrow reveal">MYTHIC RARITY</p>
+      <h2 class="h2 reveal">Beasts of the Realm</h2>
+      <p class="lead reveal">Over seventy creatures of myth answer the bond. Summon them, forge them to three stars, and some wake in their Awakened form.</p>
+      <div class="rule"></div>
 
-  <!-- ── FAQ ── -->
+      <div class="beast-track" tabindex="0" aria-label="Mythic beasts gallery">
+        <article class="beast">
+          <img src="art/beast-pale-widow.jpg" alt="The Pale Widow" loading="lazy" />
+          <div class="beast-info">
+            <div class="beast-tier">✦ MYTHIC · CURSED</div>
+            <div class="beast-name">The Pale Widow</div>
+            <p class="beast-legend">A queen who buried seven husbands before anyone asked why. She fled into the catacombs and never came out the same.</p>
+          </div>
+        </article>
+        <article class="beast">
+          <img src="art/beast-hollow-king.jpg" alt="The Hollow King" loading="lazy" />
+          <div class="beast-info">
+            <div class="beast-tier">✦ MYTHIC</div>
+            <div class="beast-name">The Hollow King</div>
+            <p class="beast-legend">He traded his heart, his name and his face to the void beneath the world. The void kept its side of the bargain.</p>
+          </div>
+        </article>
+        <article class="beast">
+          <img src="art/beast-morrigan.jpg" alt="The Morrígan" loading="lazy" />
+          <div class="beast-info">
+            <div class="beast-tier">✦ MYTHIC · ETHEREAL</div>
+            <div class="beast-name">The Morrígan</div>
+            <p class="beast-legend">Phantom Queen of war and fate. Three in one, a crow above every battlefield, washing the armour of those about to die.</p>
+          </div>
+        </article>
+        <article class="beast">
+          <img src="art/beast-chernobog.jpg" alt="Chernobog" loading="lazy" />
+          <div class="beast-info">
+            <div class="beast-tier">✦ MYTHIC · CURSED</div>
+            <div class="beast-name">Chernobog</div>
+            <p class="beast-legend">The Black God of darkness and calamity. At feasts the old Slavs spoke curses in his name, so he would pass them by.</p>
+          </div>
+        </article>
+        <article class="beast">
+          <img src="art/beast-void-leviathan.jpg" alt="Void Leviathan" loading="lazy" />
+          <div class="beast-info">
+            <div class="beast-tier">✦ MYTHIC · PRIMAL</div>
+            <div class="beast-name">Void Leviathan</div>
+            <p class="beast-legend">Scales like shields sealed so tight no air can pass. Smoke from its nostrils, and the deep boils where it swims.</p>
+          </div>
+        </article>
+        <article class="beast">
+          <img src="art/beast-shadow-phoenix.jpg" alt="Shadow Phoenix" loading="lazy" />
+          <div class="beast-info">
+            <div class="beast-tier">✦ MYTHIC</div>
+            <div class="beast-name">Shadow Phoenix</div>
+            <p class="beast-legend">Once, in a cathedral in the Hollow Realm, the fire that remakes the phoenix burned wrong. What rose was not young again.</p>
+          </div>
+        </article>
+      </div>
+      <p class="track-hint">Swipe to see more →</p>
+    </div>
+  </section>
+
+  <!-- WARS -->
+  <section class="wars" id="wars">
+    <div class="wrap">
+      <p class="eyebrow reveal">ALLIANCE WARFARE</p>
+      <h2 class="h2 reveal">Pacts Go to War</h2>
+      <p class="lead reveal">Every war is a fight for living ground. Rally your Blood Pact, scout the rival Warlords, and strike together in real time.</p>
+      <div class="rule"></div>
+
+      <div class="war-hero reveal">
+        <img src="art/war-onslaught.jpg" alt="Warlords clash on the war field" loading="lazy" />
+        <div class="war-copy">
+          <h3>Onslaught</h3>
+          <p>A blood feud. Break the rival pact's Warlords, chain your strikes, and take the Legaryn they spill. Every hit lands live for both sides.</p>
+        </div>
+      </div>
+
+      <div class="war-split">
+        <div class="dom reveal">
+          <img src="art/war-domination.jpg" alt="The storm valley of Domination" loading="lazy" />
+          <div class="war-copy">
+            <h3>Domination</h3>
+            <p>Three Bloodstones in a valley the Tide is closing on. Hold them all and your pact's ground stands.</p>
+          </div>
+        </div>
+        <div class="places">
+          <div class="place reveal">
+            <img src="art/place-tower.jpg" alt="The Bell Tower" loading="lazy" />
+            <div>
+              <h4>The Bell Tower <span>WORTH DOUBLE</span></h4>
+              <p>The richest stone in the valley. Whoever rings its bell scores twice as fast.</p>
+            </div>
+          </div>
+          <div class="place reveal">
+            <img src="art/place-bridge.jpg" alt="The Bridge" loading="lazy" />
+            <div>
+              <h4>The Bridge</h4>
+              <p>The only crossing over the drowned river. Hold it and the enemy must go the long way round.</p>
+            </div>
+          </div>
+          <div class="place reveal">
+            <img src="art/place-forge.jpg" alt="The Forge" loading="lazy" />
+            <div>
+              <h4>The Forge</h4>
+              <p>Old fires that never went out. The Hollowed still guard it, and they fall hard.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow reveal">THE REALM HOLDS MANY SECRETS</p>
+      <h2 class="h2 reveal">What Awaits You</h2>
+      <div class="features">
+        <div class="feature reveal">
+          <div class="feature-glyph"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></svg></div>
+          <h3>SUMMON</h3>
+          <p>Open the portal and call forth beasts of myth, from graveyard ghouls to gods. Rare Awakened forms shine in pale gold.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="feature-glyph"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 18h16M7 18v-3h10v3M9 15V9h6v6M12 9V4"/></svg></div>
+          <h3>FORGE</h3>
+          <p>Feed copies into the Ascension Forge. Each star makes a beast stronger, and three-star Mythics change your whole Pack.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="feature-glyph"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4M19 21l2-2"/></svg></div>
+          <h3>RAID</h3>
+          <p>Hunt rival Warlords, claim bounties from the Bounty Board, and descend the Catacombs toward the Master Keeper's light.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="feature-glyph"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 18l2-10 5 5 2-7 2 7 5-5 2 10z"/></svg></div>
+          <h3>RULE</h3>
+          <p>Seize haunted properties, bank your fortune, and earn titles like Soulforger and Eternal that every Warlord can see.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMING SOON -->
+  <section class="coming" id="download">
+    <div class="wrap">
+      <p class="eyebrow reveal">THE GATES ARE OPENING</p>
+      <h2 class="h2 reveal">Legaryn Is Coming to iPhone and Android</h2>
+      <div class="icon-frame reveal"><img src="art/app-icon.jpg" alt="Legaryn app icon" /></div>
+
+      <div class="stores">
+        <!-- AT LAUNCH: put your App Store link in href, change aria-disabled to "false" and add the class "live". -->
+        <a class="store" id="store-apple" href="#" aria-disabled="true" aria-label="Download on the App Store, coming soon">
+          <span class="soon">COMING SOON</span>
+          <svg viewBox="0 0 24 24"><path d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.87-.76-1.47.02-2.83.86-3.59 2.18-1.53 2.66-.39 6.6 1.1 8.76.73 1.06 1.6 2.24 2.73 2.2 1.1-.05 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.07 2.65-2.13.84-1.22 1.18-2.41 1.2-2.47-.03-.01-2.3-.88-2.32-3.5zM14.2 6.13c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.65-1.05 1.68-.92 2.67.97.08 1.96-.49 2.56-1.22z"/></svg>
+          <span><small>Download on the</small><strong>App Store</strong></span>
+        </a>
+        <!-- AT LAUNCH: put your Google Play link in href, change aria-disabled to "false" and add the class "live". -->
+        <a class="store" id="store-google" href="#" aria-disabled="true" aria-label="Get it on Google Play, coming soon">
+          <span class="soon">COMING SOON</span>
+          <svg viewBox="0 0 24 24"><path d="M3.6 2.3c-.2.2-.3.6-.3 1v17.4c0 .4.1.8.3 1l9.6-9.7-9.6-9.7zm10.7 10.8l2.6 2.6-11.6 6.6 9-9.2zm3.6-3.6l3 1.7c.9.5.9 1.3 0 1.8l-3 1.7-2.8-2.6 2.8-2.6zM5.3 1.6l11.6 6.6-2.6 2.6-9-9.2z"/></svg>
+          <span><small>Get it on</small><strong>Google Play</strong></span>
+        </a>
+      </div>
+
+      <div class="founding reveal">
+        <h3>BE A FOUNDING WARLORD</h3>
+        <p>Sign up before launch and claim a <strong style="color:var(--gold-bright)">free Epic Summon</strong> the day the gates open.</p>
+        <form class="signup realm-form" novalidate>
+          <input type="email" name="email" placeholder="Enter thy mortal email…" required autocomplete="email" aria-label="Email address" />
+          <button type="submit" class="btn-gold">CLAIM MY SUMMON</button>
+        </form>
+        <div class="success" role="status">
+          <div class="success-title">THE RITUAL IS COMPLETE</div>
+          <p>You have been marked. <strong style="color:var(--gold-bright)">Your Epic Summon awaits in the void.</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
   <section id="faq">
-    <div class="section-eyebrow">ANSWERS FROM THE VOID</div>
-    <h2 class="section-title">Frequently Asked</h2>
-    <div class="section-sub">QUESTIONS</div>
-
-    <div class="faq-list">
-      <div class="faq-item fade-in">
-        <div class="faq-q">What platforms is the Legaryn Beta available on?</div>
-        <div class="faq-a">The closed beta runs on iOS via Apple TestFlight. Android descends soon.</div>
-      </div>
-      <div class="faq-item fade-in">
-        <div class="faq-q">How do I claim my Launch Day Promo Code?</div>
-        <div class="faq-a">Enter your email above to bind your soul to the realm. Your exclusive activation code will be delivered the moment servers go live.</div>
-      </div>
-      <div class="faq-item fade-in">
-        <div class="faq-q">Is Legaryn Free-to-Play?</div>
-        <div class="faq-a">Free to enter. Free to conquer. Optional offerings unlock cosmetics, summon portals, and mythic rarities for those who seek greater power.</div>
-      </div>
-      <div class="faq-item fade-in">
-        <div class="faq-q">How can I report bugs or submit suggestions?</div>
-        <div class="faq-a">Join our Discord for direct access to the Dev Forge channels — where the realm is shaped.</div>
+    <div class="wrap">
+      <p class="eyebrow reveal">ANSWERS FROM THE VOID</p>
+      <h2 class="h2 reveal">Frequently Asked</h2>
+      <div class="faq">
+        <details>
+          <summary>What platforms is Legaryn coming to?</summary>
+          <p>The closed beta runs on iPhone through Apple TestFlight. Android follows soon after.</p>
+        </details>
+        <details>
+          <summary>How do I claim my free Epic Summon?</summary>
+          <p>Enter your email above to bind your soul to the realm. Your activation code will be delivered the moment the game goes live.</p>
+        </details>
+        <details>
+          <summary>Is Legaryn free to play?</summary>
+          <p>Free to enter. Free to conquer. Optional offerings save time and unlock looks, and everything that makes you stronger can also be earned by playing.</p>
+        </details>
+        <details>
+          <summary>How can I report bugs or send ideas?</summary>
+          <p>Message us on any of our socials below. Every report helps shape the realm.</p>
+        </details>
       </div>
     </div>
   </section>
 
-  <!-- ── FOOTER ── -->
   <footer>
-    <div class="footer-social">
-      <!-- TikTok -->
-      <a href="https://www.tiktok.com/@legaryn.com" target="_blank" aria-label="TikTok">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.77a4.85 4.85 0 0 1-1.01-.08z"/>
-        </svg>
+    <div class="socials">
+      <a href="https://www.tiktok.com/@legaryn.com" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-2.88-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 1 0 5.54 6.29V8.69a8.18 8.18 0 0 0 4.78 1.52V6.77a4.85 4.85 0 0 1-1.01-.08z"/></svg>
       </a>
-      <!-- X / Twitter -->
-      <a href="https://x.com/legaryn" target="_blank" aria-label="X">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-        </svg>
+      <a href="https://x.com/legaryn" target="_blank" rel="noopener" aria-label="X">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       </a>
-      <!-- Instagram -->
-      <a href="https://instagram.com/legaryn" target="_blank" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-        </svg>
+      <a href="https://instagram.com/legaryn" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
       </a>
     </div>
-
-    <div class="footer-copy">&copy; 2026 LEGARYN MYTHIC LEGENDS. ALL RIGHTS RESERVED.</div>
-
-    <div class="footer-links">
+    <div class="copy">&copy; 2026 LEGARYN MYTHIC LEGENDS. ALL RIGHTS RESERVED.</div>
+    <div class="legal">
       <a href="https://legaryn.com/privacy">PRIVACY POLICY</a>
       <a href="https://legaryn.com/terms">TERMS OF SERVICE</a>
     </div>
   </footer>
 
   <script>
-    // ── Particles ──
-    const pContainer = document.getElementById('particles');
-    const pTypes = ['', '', 'blood', 'gold'];
-    function spawnParticle() {
-      const p = document.createElement('div');
-      const t = pTypes[Math.floor(Math.random() * pTypes.length)];
-      p.className = 'particle' + (t ? ' ' + t : '');
-      p.style.cssText = `left:${Math.random()*100}vw;animation-duration:${Math.random()*22+14}s;animation-delay:${Math.random()*4}s;opacity:${Math.random()*0.6+0.2}`;
-      pContainer.appendChild(p);
-      setTimeout(() => p.remove(), 40000);
-    }
-    for (let i = 0; i < 18; i++) spawnParticle();
-    setInterval(spawnParticle, 800);
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // ── Scroll fade-in ──
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-    // ── Soul counter ──
-    let count = 2847;
-    const countEl = document.getElementById('soul-count');
-    function formatCount(n) { return n.toLocaleString(); }
-    setInterval(() => {
-      if (Math.random() < 0.3) {
-        count += Math.floor(Math.random() * 3) + 1;
-        countEl.textContent = formatCount(count);
+      // Drifting embers
+      var box = document.getElementById('embers');
+      function ember() {
+        var e = document.createElement('span');
+        e.className = 'ember';
+        var size = Math.random() * 3 + 1.5;
+        var dur = Math.random() * 14 + 12;
+        e.style.left = Math.random() * 100 + 'vw';
+        e.style.width = e.style.height = size + 'px';
+        e.style.setProperty('--drift', (Math.random() * 120 - 60) + 'px');
+        e.style.animationDuration = dur + 's';
+        box.appendChild(e);
+        setTimeout(function () { e.remove(); }, dur * 1000);
       }
-    }, 4000);
+      if (!reduce) {
+        for (var i = 0; i < 14; i++) setTimeout(ember, i * 300);
+        setInterval(ember, 900);
+      }
 
-    // ── Creature carousel dots ──
-    const track = document.getElementById('creatureTrack');
-    const dots  = document.querySelectorAll('.creature-dot');
-    const cards = track.querySelectorAll('.creature-card');
+      // Solid nav after scrolling
+      var nav = document.getElementById('nav');
+      window.addEventListener('scroll', function () { nav.classList.toggle('solid', window.scrollY > 40); }, { passive: true });
 
-    dots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        const idx = parseInt(dot.dataset.index);
-        const card = cards[idx];
-        track.scrollTo({ left: card.offsetLeft - 60, behavior: 'smooth' });
+      // Reveal on scroll
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+      // Souls counter
+      var count = 2847;
+      var countEl = document.getElementById('soul-count');
+      setInterval(function () {
+        if (Math.random() < 0.3) {
+          count += Math.floor(Math.random() * 3) + 1;
+          countEl.textContent = count.toLocaleString();
+        }
+      }, 4000);
+
+      // Store buttons stay inert until they're made live
+      document.querySelectorAll('.store').forEach(function (a) {
+        a.addEventListener('click', function (e) { if (!a.classList.contains('live')) e.preventDefault(); });
       });
-    });
 
-    track.addEventListener('scroll', () => {
-      const center = track.scrollLeft + track.clientWidth / 2;
-      let closest = 0, minDist = Infinity;
-      cards.forEach((card, i) => {
-        const dist = Math.abs(card.offsetLeft + card.offsetWidth / 2 - center);
-        if (dist < minDist) { minDist = dist; closest = i; }
-      });
-      dots.forEach((d, i) => d.classList.toggle('active', i === closest));
-    });
-
-    // ── Form (Web3Forms AJAX — no page redirect) ──
-    document.getElementById('realm-form').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const btn = document.getElementById('submit-btn');
-      btn.textContent = 'SUMMONING…';
-      btn.disabled = true;
-      btn.style.opacity = '0.7';
-
-      try {
-        await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({
-            access_key: '919defc1-e688-4460-bd6c-bb54450b9edf',
-            email: document.getElementById('email-input').value,
-            subject: '🜁 New Soul Bound — Legaryn',
-            from_name: 'Legaryn Realm'
-          })
+      // Sign-up forms (Web3Forms, same as before, so no sign-ups are lost)
+      document.querySelectorAll('.realm-form').forEach(function (form) {
+        form.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          var input = form.querySelector('input[type="email"]');
+          var btn = form.querySelector('button');
+          if (!input.value || !input.checkValidity()) {
+            input.focus();
+            input.style.borderColor = '#C0263E';
+            return;
+          }
+          var label = btn.textContent;
+          btn.textContent = 'SUMMONING…';
+          btn.disabled = true;
+          btn.style.opacity = '0.7';
+          try {
+            await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+              body: JSON.stringify({
+                access_key: '919defc1-e688-4460-bd6c-bb54450b9edf',
+                email: input.value,
+                subject: '🜁 New Soul Bound — Legaryn',
+                from_name: 'Legaryn Realm'
+              })
+            });
+          } catch (_) {}
+          btn.textContent = label;
+          form.style.display = 'none';
+          form.nextElementSibling.style.display = 'block';
         });
-      } catch(_) {}
-
-      this.style.display = 'none';
-      document.getElementById('success-message').style.display = 'block';
-    });
+      });
+    })();
   </script>
-
 </body>
 </html>
