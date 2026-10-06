@@ -1,40 +1,259 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Legaryn</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
-        h1, h2, h3 { color: #111; }
-        ul { padding-left: 20px; }
-        .contact-box { background: #f9f9f9; padding: 15px; border-left: 4px solid #0066cc; margin-top: 20px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Privacy Policy — Legaryn</title>
+  <meta name="description" content="How Legaryn: Mythic Legends collects, uses and protects your information, and how to delete your account." />
+  <meta name="theme-color" content="#08090A" />
+  <link rel="icon" href="/art/favicon.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --abyss: #08090A; --iron: #121214; --iron-2: #1A1915;
+      --gold: #C9A45C; --gold-bright: #F0D995; --gold-rule: rgba(201,164,92,0.28);
+      --ember: #E0703A; --bone: #EDE4D0; --parchment: #CDBF9F; --dim: #8E8473;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: radial-gradient(ellipse at top, #1A1712 0%, var(--abyss) 60%) fixed;
+      color: var(--parchment); font-family: 'Manrope', system-ui, sans-serif; line-height: 1.7;
+      -webkit-font-smoothing: antialiased; min-height: 100vh;
+    }
+    a { color: var(--gold-bright); }
+    .wrap { max-width: 780px; margin: 0 auto; padding: 56px 20px calc(56px + env(safe-area-inset-bottom)); }
+    .back { display: inline-block; font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 2px; color: var(--gold); text-decoration: none; margin-bottom: 28px; }
+    .eyebrow { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 4px; color: var(--ember); }
+    h1 { font-family: 'Cinzel', serif; font-weight: 900; color: var(--gold-bright); font-size: clamp(30px, 6vw, 44px); letter-spacing: 2px; margin-top: 6px; }
+    .sub { color: var(--dim); margin: 8px 0 32px; font-size: 14px; }
+    .card {
+      border: 1px solid var(--gold-rule); background: linear-gradient(180deg, var(--iron-2), var(--iron));
+      border-radius: 14px; padding: 22px 24px; margin-bottom: 28px; box-shadow: 0 0 40px rgba(224,112,58,0.06);
+    }
+    .card h2 { font-family: 'Cinzel', serif; color: var(--bone); font-size: 17px; letter-spacing: 1px; margin-bottom: 10px; }
+    .glance { list-style: none; padding: 0; }
+    .glance li { position: relative; padding-left: 22px; margin: 6px 0; }
+    .glance li::before { content: '◆'; position: absolute; left: 0; top: 1px; color: var(--gold); font-size: 11px; }
+    .toc { columns: 2; column-gap: 24px; padding-left: 20px; font-size: 14px; }
+    .toc a { color: var(--parchment); text-decoration: none; }
+    .toc a:hover { color: var(--gold-bright); }
+    section { scroll-margin-top: 20px; }
+    h3 {
+      font-family: 'Cinzel', serif; color: var(--gold-bright); font-size: 18px; letter-spacing: 1px;
+      margin: 40px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--gold-rule);
+    }
+    h3 span { color: var(--ember); margin-right: 8px; }
+    h4 { color: var(--bone); font-size: 15px; margin: 18px 0 6px; }
+    p, li { font-size: 15px; }
+    p + p { margin-top: 10px; }
+    ul, ol { padding-left: 20px; margin: 8px 0; }
+    li { margin: 4px 0; }
+    strong { color: var(--bone); }
+    .table-wrap { overflow-x: auto; margin: 12px 0; border: 1px solid var(--gold-rule); border-radius: 10px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 520px; }
+    th { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 1px; color: var(--gold); text-align: left; background: rgba(201,164,92,0.06); }
+    th, td { padding: 10px 12px; border-bottom: 1px solid rgba(201,164,92,0.12); vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    .btn {
+      display: inline-block; margin-top: 12px; padding: 12px 22px; border-radius: 999px; text-decoration: none;
+      background: linear-gradient(180deg, var(--gold-bright), var(--gold)); color: #1A1408;
+      font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 1px; font-size: 14px;
+    }
+    .rule { height: 1px; background: var(--gold-rule); margin: 48px 0 20px; }
+    footer { text-align: center; font-size: 12px; color: var(--dim); letter-spacing: 1px; }
+    footer a { color: var(--gold); margin: 0 10px; text-decoration: none; }
+    @media (max-width: 560px) { .toc { columns: 1; } }
+  </style>
 </head>
 <body>
+  <main class="wrap">
+    <a class="back" href="/">&larr; LEGARYN</a>
+    <div class="eyebrow">THE CODE OF THE REALM</div>
     <h1>Privacy Policy</h1>
-    <p>Last Updated: June 3, 2026</p>
-    <p>Legaryn ("we", "our", or "us") operates the Legaryn mobile application. This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our App.</p>
+    <p class="sub">Effective October 6, 2026 &middot; Applies to the Legaryn: Mythic Legends app and legaryn.com</p>
 
-       <h2>1. Data Collection and Authentication</h2>
-    <p>To provide game progression, cross-device syncing, and multiplayer interaction, we process data using the following methods:</p>
-    <ul>
-        <li><strong>Anonymous Profiles:</strong> When you first open the App, a unique, anonymous user identifier (UID) is generated. This profile contains no personal identifiers and tracks local gameplay progress.</li>
-        <li><strong>Third-Party Authentication (Google & Apple):</strong> You may choose to bind your anonymous profile to a Google or Apple account. When you authenticate using these services, we collect your unique provider user ID, email address, and profile name to securely save your progress and verify your identity for social interactions. If you choose Sign in with Apple, you may also opt to hide your private email address using Apple's private relay system.</li>
-        <li><strong>Social Interaction Data:</strong> If you interact with other users within the App, data related to those interactions (such as public profile names or scores) may be displayed to other users.</li>
-    </ul>
-
-
-    <h2>2. Infrastructure and Data Processing (Supabase)</h2>
-    <p>Our app backend is powered by <strong>Supabase</strong>. All authentication tokens, database records, and user progression states are securely stored and processed on Supabase cloud infrastructure. Your data is handled in strict accordance with infrastructure security standards and is never sold to third parties.</p>
-
-    <h2>3. Data Retention and Account Deletion</h2>
-    <p>We retain your data for as long as your account remains active. Apple App Store rules require that you can delete your data at any time. If you wish to permanently delete your account, saved game progress, and all associated authenticated data, you may do so through the settings menu inside the App or by contacting us directly.</p>
-
-    <h2>4. Contact Us</h2>
-    <div class="contact-box">
-        <p>If you have questions about your data, or wish to submit a data deletion request, contact us at:</p>
-        <p><strong>Email:</strong> <a href="mailto:support@legaryn.com">support@legaryn.com</a></p>
+    <div class="card">
+      <h2>At a glance</h2>
+      <ul class="glance">
+        <li>You can play without giving us your name or email. Linking Google or Apple is optional.</li>
+        <li><strong>We never sell or share your data for advertising.</strong> There are no ads and no ad tracking in Legaryn.</li>
+        <li>We don't access your location, contacts, photos, camera or microphone.</li>
+        <li>Your Warlord name, level, alliance and chat messages are visible to other players.</li>
+        <li>Apple or Google handle all payments. We never see your card details.</li>
+        <li>Delete your account any time in <strong>Settings &rarr; Danger Zone &rarr; Delete Account</strong>.</li>
+      </ul>
     </div>
+
+    <div class="card">
+      <h2>Contents</h2>
+      <ol class="toc">
+        <li><a href="#who">Who we are</a></li>
+        <li><a href="#collect">What we collect</a></li>
+        <li><a href="#notcollect">What we don't collect</a></li>
+        <li><a href="#use">How we use it</a></li>
+        <li><a href="#public">What other players see</a></li>
+        <li><a href="#share">Who we share it with</a></li>
+        <li><a href="#retention">How long we keep it</a></li>
+        <li><a href="#delete">Deleting your account</a></li>
+        <li><a href="#rights">Your rights</a></li>
+        <li><a href="#children">Children</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="#transfers">Where data is stored</a></li>
+        <li><a href="#changes">Changes to this policy</a></li>
+        <li><a href="#contact">Contact us</a></li>
+      </ol>
+    </div>
+
+    <section id="who">
+      <h3><span>I.</span>Who we are</h3>
+      <p>Legaryn: Mythic Legends ("Legaryn", "we", "us") is an online fantasy strategy game for iPhone and Android. We are responsible for the personal information described in this policy. If you have any question about it, email <a href="mailto:support@legaryn.com">support@legaryn.com</a>.</p>
+    </section>
+
+    <section id="collect">
+      <h3><span>II.</span>What we collect</h3>
+      <h4>Information you give us or create while playing</h4>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Information</th><th>Examples</th><th>Why</th></tr>
+          <tr><td><strong>Game account</strong></td><td>An anonymous account ID created when you first open the game</td><td>To save your progress and run the game</td></tr>
+          <tr><td><strong>Sign-in details (optional)</strong></td><td>If you link Google or Apple: your account ID from that service, email address and name. Apple lets you hide your email with a private relay address.</td><td>To restore your Warlord on a new phone and keep your account secure</td></tr>
+          <tr><td><strong>Warlord profile</strong></td><td>Warlord name, avatar, level, power, alliance, titles, beasts, gear, battle and war records</td><td>To run the game, leaderboards, PvP and alliance wars</td></tr>
+          <tr><td><strong>Messages</strong></td><td>World, Alliance and War chat, private messages, and profile wall posts</td><td>To deliver them and keep chat safe</td></tr>
+          <tr><td><strong>Safety records</strong></td><td>Players you mute or block, reports you send or receive, and the reported message</td><td>To protect players and enforce our Terms</td></tr>
+          <tr><td><strong>Settings</strong></td><td>Sound, Reduce Visual Intensity, Appear Offline, alert choices, and that you accepted the photosensitivity warning</td><td>To remember your choices</td></tr>
+          <tr><td><strong>Gravatar (optional)</strong></td><td>If you choose to use a Gravatar picture, your email is scrambled (hashed) on your phone. Only that scrambled code is stored, never the email itself.</td><td>To show the avatar you chose</td></tr>
+          <tr><td><strong>Support emails</strong></td><td>Anything you include when you write to us</td><td>To answer you</td></tr>
+          <tr><td><strong>Website waitlist</strong></td><td>The email address you enter on legaryn.com</td><td>To tell you when Legaryn launches and send the early reward. You can unsubscribe any time.</td></tr>
+        </table>
+      </div>
+      <h4>Information collected automatically</h4>
+      <ul>
+        <li><strong>Activity times:</strong> when you were last online, so alliance members can see who is active. Turn on <strong>Appear Offline</strong> in Settings to hide this.</li>
+        <li><strong>Purchase records:</strong> which item you bought, when, and a transaction ID from Apple or Google, so we can deliver and restore your purchases.</li>
+        <li><strong>Technical data:</strong> basic data our servers need to work, such as IP address, device type, operating system and app version. This is used for security, fixing errors and preventing cheating.</li>
+      </ul>
+      <p>Alerts such as "you were attacked" are scheduled on your phone. We don't collect a push notification token.</p>
+    </section>
+
+    <section id="notcollect">
+      <h3><span>III.</span>What we don't collect</h3>
+      <ul>
+        <li>Your precise or approximate location</li>
+        <li>Your contacts, photos, camera or microphone</li>
+        <li>Your advertising ID. We don't track you across other apps or websites.</li>
+        <li>Payment card or bank details, which stay with Apple or Google</li>
+        <li>Health, financial or other sensitive information</li>
+      </ul>
+    </section>
+
+    <section id="use">
+      <h3><span>IV.</span>How we use it</h3>
+      <ul>
+        <li>To run the game: saving progress, battles, alliances, wars, events, leaderboards and chat.</li>
+        <li>To deliver, restore and verify in-app purchases.</li>
+        <li>To keep players safe: filtering harmful words, reviewing reports, and stopping cheating, fraud and abuse.</li>
+        <li>To fix bugs, balance the game and improve it.</li>
+        <li>To answer support requests and send important notices about your account or these terms.</li>
+        <li>To meet legal obligations.</li>
+      </ul>
+      <p><strong>Legal bases (UK and EEA players).</strong> We process data to perform our contract with you (running the game), for our legitimate interests (safety, anti-cheat, improving the game), with your consent where we ask for it (for example, linking Google or Apple, Gravatar, or the waitlist), and to comply with the law.</p>
+    </section>
+
+    <section id="public">
+      <h3><span>V.</span>What other players see</h3>
+      <p>Legaryn is a multiplayer game. Other players can see your Warlord name, avatar, level, power, alliance, title and aura, showcase beasts and gear, battle and war results, and whether you're online (unless you turn on Appear Offline). Messages you post in World, Alliance or War chat, and on profile walls, can be seen by the players in that channel. Private messages are seen by you and the person you're writing to.</p>
+      <p>Please don't share personal information such as your real name, address, phone number or social media in chat.</p>
+    </section>
+
+    <section id="share">
+      <h3><span>VI.</span>Who we share it with</h3>
+      <p><strong>We do not sell your personal information, and we do not share it for targeted advertising.</strong> We only share it with service providers that help us run Legaryn, and only as needed:</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Provider</th><th>What they do</th></tr>
+          <tr><td><strong>Supabase</strong></td><td>Hosts our servers, game database, sign-in and chat</td></tr>
+          <tr><td><strong>RevenueCat</strong></td><td>Checks and records in-app purchases, using your anonymous account ID</td></tr>
+          <tr><td><strong>Apple and Google</strong></td><td>App stores, payments, and optional sign-in. Their own privacy policies apply.</td></tr>
+          <tr><td><strong>Gravatar (Automattic)</strong></td><td>Shows your Gravatar picture, only if you choose it</td></tr>
+          <tr><td><strong>Web3Forms</strong></td><td>Receives website waitlist sign-ups</td></tr>
+        </table>
+      </div>
+      <p>We may also share information if the law requires it, to protect players or the public from harm, to enforce our Terms, or as part of a merger, sale or transfer of the game. In that case, this policy keeps protecting your data.</p>
+      <p>If you join our Discord server, Discord's own privacy policy applies there.</p>
+    </section>
+
+    <section id="retention">
+      <h3><span>VII.</span>How long we keep it</h3>
+      <ul>
+        <li><strong>Account and game data:</strong> while your account exists. It's deleted when you delete your account.</li>
+        <li><strong>Chat messages:</strong> while your account exists, or until removed by moderation.</li>
+        <li><strong>Reports you send:</strong> may be kept without your name after you delete your account, so our safety decisions stay on record.</li>
+        <li><strong>Purchase records:</strong> as long as tax and accounting law requires.</li>
+        <li><strong>Backups:</strong> deleted data can stay in encrypted server backups for up to 30 days before it's overwritten.</li>
+        <li><strong>Unlinked guest accounts:</strong> if you never link Google or Apple and don't play for 24 months, we may delete the account.</li>
+      </ul>
+    </section>
+
+    <section id="delete">
+      <h3><span>VIII.</span>Deleting your account</h3>
+      <p>Open <strong>Settings &rarr; Danger Zone &rarr; Delete Account</strong> in the game. This permanently deletes your account, progress, profile, chat history, friends and alliance membership straight away. It cannot be undone, and purchased items are lost.</p>
+      <p>You can also email <a href="mailto:support@legaryn.com">support@legaryn.com</a> from the address linked to your account, or include your Warlord name. We'll confirm when it's done, usually within 30 days.</p>
+      <p>Deleting the app from your phone doesn't delete your account. If you subscribe to anything through Apple or Google, cancel it in your store settings as well.</p>
+    </section>
+
+    <section id="rights">
+      <h3><span>IX.</span>Your rights</h3>
+      <p>Depending on where you live, you may have the right to:</p>
+      <ul>
+        <li>See a copy of the personal information we hold about you</li>
+        <li>Correct it, or delete it</li>
+        <li>Move it to another service (data portability)</li>
+        <li>Object to or limit how we use it</li>
+        <li>Withdraw consent you've given, at any time</li>
+        <li>Complain to your local data protection authority</li>
+      </ul>
+      <p><strong>California and other US state residents:</strong> you have the right to know, access, correct and delete your personal information, and to opt out of its "sale" or "sharing". We don't sell or share personal information, so there's nothing to opt out of. We won't treat you differently for using these rights.</p>
+      <p>To use any of these rights, email <a href="mailto:support@legaryn.com">support@legaryn.com</a>. We may ask you to confirm the request is yours. We reply within 30 days, or sooner if the law requires.</p>
+    </section>
+
+    <section id="children">
+      <h3><span>X.</span>Children</h3>
+      <p>Legaryn is not made for children under 13 and we don't knowingly collect personal information from them. If you're under the age needed to agree to data use where you live (16 in some countries), you need a parent or guardian's permission to play. If you believe a child has given us personal information, email us and we'll delete it.</p>
+    </section>
+
+    <section id="security">
+      <h3><span>XI.</span>Security</h3>
+      <p>Data is encrypted when sent between the app and our servers, access to our systems is restricted, and database rules stop players from reading other players' private data. No system is perfectly secure, but if a breach ever affects your personal information, we'll tell you and the authorities as the law requires.</p>
+    </section>
+
+    <section id="transfers">
+      <h3><span>XII.</span>Where data is stored</h3>
+      <p>Our service providers may store and process data in the United States and other countries. Where data leaves the UK or EEA, we rely on safeguards the law allows, such as the European Commission's Standard Contractual Clauses.</p>
+    </section>
+
+    <section id="changes">
+      <h3><span>XIII.</span>Changes to this policy</h3>
+      <p>If we change this policy, we'll update the date at the top. For important changes, we'll also tell you in the game before they take effect.</p>
+    </section>
+
+    <section id="contact">
+      <h3><span>XIV.</span>Contact us</h3>
+      <div class="card" style="margin-top:12px">
+        <p>Questions about your data, or a request to see or delete it? A real person will reply.</p>
+        <a class="btn" href="mailto:support@legaryn.com">support@legaryn.com</a>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+    <footer>
+      <a href="/support/">SUPPORT</a>
+      <a href="/terms/">TERMS OF USE</a>
+      <div style="margin-top:12px">&copy; 2026 LEGARYN MYTHIC LEGENDS</div>
+    </footer>
+  </main>
 </body>
 </html>
