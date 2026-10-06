@@ -1,46 +1,295 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Use / EULA - Legaryn</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
-        h1, h2 { color: #111; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        .alert-box { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Terms of Use (EULA) — Legaryn</title>
+  <meta name="description" content="The Terms of Use and End User License Agreement for Legaryn: Mythic Legends." />
+  <meta name="theme-color" content="#08090A" />
+  <link rel="icon" href="/art/favicon.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --abyss: #08090A; --iron: #121214; --iron-2: #1A1915;
+      --gold: #C9A45C; --gold-bright: #F0D995; --gold-rule: rgba(201,164,92,0.28);
+      --ember: #E0703A; --bone: #EDE4D0; --parchment: #CDBF9F; --dim: #8E8473;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: radial-gradient(ellipse at top, #1A1712 0%, var(--abyss) 60%) fixed;
+      color: var(--parchment); font-family: 'Manrope', system-ui, sans-serif; line-height: 1.7;
+      -webkit-font-smoothing: antialiased; min-height: 100vh;
+    }
+    a { color: var(--gold-bright); }
+    .wrap { max-width: 780px; margin: 0 auto; padding: 56px 20px calc(56px + env(safe-area-inset-bottom)); }
+    .back { display: inline-block; font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 2px; color: var(--gold); text-decoration: none; margin-bottom: 28px; }
+    .eyebrow { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 4px; color: var(--ember); }
+    h1 { font-family: 'Cinzel', serif; font-weight: 900; color: var(--gold-bright); font-size: clamp(30px, 6vw, 44px); letter-spacing: 2px; margin-top: 6px; }
+    .sub { color: var(--dim); margin: 8px 0 32px; font-size: 14px; }
+    .card {
+      border: 1px solid var(--gold-rule); background: linear-gradient(180deg, var(--iron-2), var(--iron));
+      border-radius: 14px; padding: 22px 24px; margin-bottom: 28px; box-shadow: 0 0 40px rgba(224,112,58,0.06);
+    }
+    .card h2 { font-family: 'Cinzel', serif; color: var(--bone); font-size: 17px; letter-spacing: 1px; margin-bottom: 10px; }
+    .card.ember { border-color: rgba(224,112,58,0.35); }
+    .glance { list-style: none; padding: 0; }
+    .glance li { position: relative; padding-left: 22px; margin: 6px 0; }
+    .glance li::before { content: '◆'; position: absolute; left: 0; top: 1px; color: var(--gold); font-size: 11px; }
+    .toc { columns: 2; column-gap: 24px; padding-left: 20px; font-size: 14px; }
+    .toc a { color: var(--parchment); text-decoration: none; }
+    .toc a:hover { color: var(--gold-bright); }
+    section { scroll-margin-top: 20px; }
+    h3 {
+      font-family: 'Cinzel', serif; color: var(--gold-bright); font-size: 18px; letter-spacing: 1px;
+      margin: 40px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--gold-rule);
+    }
+    h3 span { color: var(--ember); margin-right: 8px; }
+    p, li { font-size: 15px; }
+    p + p { margin-top: 10px; }
+    ul, ol { padding-left: 20px; margin: 8px 0; }
+    li { margin: 4px 0; }
+    strong { color: var(--bone); }
+    .caps { font-size: 13px; letter-spacing: 0.2px; }
+    .btn {
+      display: inline-block; margin-top: 12px; padding: 12px 22px; border-radius: 999px; text-decoration: none;
+      background: linear-gradient(180deg, var(--gold-bright), var(--gold)); color: #1A1408;
+      font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 1px; font-size: 14px;
+    }
+    .rule { height: 1px; background: var(--gold-rule); margin: 48px 0 20px; }
+    footer { text-align: center; font-size: 12px; color: var(--dim); letter-spacing: 1px; }
+    footer a { color: var(--gold); margin: 0 10px; text-decoration: none; }
+    @media (max-width: 560px) { .toc { columns: 1; } }
+  </style>
 </head>
 <body>
-    <h1>End User License Agreement (EULA) & Terms of Use</h1>
-    <p>Last Updated: June 4, 2026</p>
-    
-    <p>Welcome to Legaryn. This End User License Agreement ("Agreement") is a legal contract between you ("User") and Legaryn ("we", "our", or "us") governing your use of the Legaryn mobile application ("Game"). By installing or playing the Game, you agree to be bound by these terms.</p>
+  <main class="wrap">
+    <a class="back" href="/">&larr; LEGARYN</a>
+    <div class="eyebrow">THE CODE OF THE REALM</div>
+    <h1>Terms of Use</h1>
+    <p class="sub">End User License Agreement (EULA) &middot; Effective October 6, 2026</p>
 
-    <div class="alert-box">
-        <strong>IMPORTANT NOTICE:</strong> THIS AGREEMENT CONTAINS A BINDING INDIVIDUAL ARBITRATION CLAUSE AND CLASS ACTION WAIVER. IT AFFECTS YOUR LEGAL RIGHTS ON HOW TO RESOLVE DISPUTES WITH THE DEVELOPER.
+    <div class="card">
+      <h2>At a glance</h2>
+      <ul class="glance">
+        <li>Legaryn is free to play. You may buy optional items with real money through Apple or Google.</li>
+        <li>Gems, scrolls, passes and other virtual items have no cash value and can't be sold or traded.</li>
+        <li>Summon odds are always shown in the game before you summon.</li>
+        <li>Be decent in chat. Hate, harassment, threats and cheating get accounts suspended or banned.</li>
+        <li>You must be at least 13 to play.</li>
+        <li>Refunds for purchases are handled by Apple or Google.</li>
+      </ul>
     </div>
 
-    <h2>1. Scope of License</h2>
-    <p>We grant you a non-exclusive, non-transferable, revocable, limited license to download, install, and play the Game for personal, non-commercial entertainment purposes on a compatible mobile device owned or controlled by you.</p>
+    <div class="card">
+      <h2>Contents</h2>
+      <ol class="toc">
+        <li><a href="#agreement">The agreement</a></li>
+        <li><a href="#eligibility">Who can play</a></li>
+        <li><a href="#account">Your account</a></li>
+        <li><a href="#license">Your license to play</a></li>
+        <li><a href="#virtual">Virtual items and purchases</a></li>
+        <li><a href="#odds">Summons and random rewards</a></li>
+        <li><a href="#conduct">Code of conduct</a></li>
+        <li><a href="#ugc">Chat and player content</a></li>
+        <li><a href="#enforcement">Suspensions and bans</a></li>
+        <li><a href="#changes-game">Changes to the game</a></li>
+        <li><a href="#ip">Ownership</a></li>
+        <li><a href="#health">Health warning</a></li>
+        <li><a href="#thirdparty">Third-party services</a></li>
+        <li><a href="#warranty">Disclaimers</a></li>
+        <li><a href="#liability">Limitation of liability</a></li>
+        <li><a href="#indemnity">Your responsibility</a></li>
+        <li><a href="#termination">Ending this agreement</a></li>
+        <li><a href="#disputes">Disputes and governing law</a></li>
+        <li><a href="#apple">Apple App Store terms</a></li>
+        <li><a href="#google">Google Play terms</a></li>
+        <li><a href="#changes">Changes to these terms</a></li>
+        <li><a href="#general">General</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ol>
+    </div>
 
-    <h2>2. Virtual Currency and Items (Gems & Passes)</h2>
-    <p>The Game may allow you to purchase virtual currency ("Gems") or access seasonal milestones ("Premium Pass") using real-world currency via Apple App Store in-app purchases. You acknowledge that virtual currency and items are licensed, not sold, and possess no real-world monetary value. Gems and virtual goods are non-refundable, non-transferable, and cannot be exchanged for cash under any circumstances.</p>
+    <section id="agreement">
+      <h3><span>I.</span>The agreement</h3>
+      <p>These Terms of Use ("Terms") are a legal agreement between you and the developer of Legaryn: Mythic Legends ("Legaryn", "we", "us"). They cover the Legaryn app, its online features, and legaryn.com (together, the "Game"). By downloading, installing or playing the Game, you agree to these Terms and our <a href="/privacy/">Privacy Policy</a>. If you don't agree, please don't play.</p>
+    </section>
 
-    <h2>3. User Conduct & Anti-Cheat Rules</h2>
-    <p>To ensure a balanced environment for all players, you strictly agree not to:
-        <br>• Deploy, distribute, or use cheats, automation software (bots), hacks, mods, or any unauthorized third-party software designed to modify or automate the gameplay loop.
-        <br>• Exploit bugs, mechanical glitches, or infrastructure vulnerabilities to gain an unfair advantage in PvP combat, Alliance Wars, or fusion sequences.
-        <br>• Sell, trade, or transfer your user account or virtual currency to another individual.
-        <br>Violation of these rules will result in immediate termination of your license and a permanent ban of your Supabase authentication profile.
-    </p>
+    <section id="eligibility">
+      <h3><span>II.</span>Who can play</h3>
+      <p>You must be at least 13 years old. If you're under 18, or under the age of adulthood where you live, a parent or guardian must agree to these Terms for you and supervise any purchases. Parents can block or limit in-app purchases in their phone's settings.</p>
+      <p>You can't play if you've been banned from the Game before, or if the law where you live doesn't allow it.</p>
+    </section>
 
-    <h2>4. Limitation of Liability & Disclaimers</h2>
-    <p>THE GAME IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND. TO THE MAXIMUM EXTENT PERMITTED BY LAW, LEGARYN SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, INCLUDING LOSS OF DATA, DEVICE DAMAGE, SYSTEM OUTAGES, OR FINANCIAL LOSS RESULTING FROM THE USE OF THE GAME.</p>
+    <section id="account">
+      <h3><span>III.</span>Your account</h3>
+      <ul>
+        <li>When you first play, we create a guest account on your device. Link Google or Apple in Settings to keep your progress safe. If a guest account is lost (for example, the app is deleted or the phone is reset), we may not be able to recover it.</li>
+        <li>You're responsible for everything that happens on your account. Keep your sign-in secure.</li>
+        <li>Your account is personal. You can't sell, trade, share, give away or buy an account.</li>
+        <li>Your Warlord name and alliance name must follow the Code of Conduct. We may change a name that breaks it.</li>
+      </ul>
+    </section>
 
-    <h2>5. Governing Law and Disputes</h2>
-    <p>This Agreement is governed by the laws of your local jurisdiction. Any dispute arising out of or relating to this Agreement shall be resolved through final, binding individual arbitration rather than in a court of law, waving your right to participate in class-action lawsuits.</p>
+    <section id="license">
+      <h3><span>IV.</span>Your license to play</h3>
+      <p>We give you a personal, limited, non-exclusive, non-transferable, revocable license to download and play the Game for your own non-commercial entertainment, on a device you own or control and as allowed by the app store you got it from. The Game is licensed, not sold. You may not copy, change, reverse-engineer, decompile, resell, rent, or make derivative works from the Game, except where the law says you must be allowed to.</p>
+    </section>
 
-    <h2>6. Contact</h2>
-    <p>For any inquiries or legal notices regarding these terms, please contact us immediately at: <strong>support@legaryn.com</strong></p>
+    <section id="virtual">
+      <h3><span>V.</span>Virtual items and purchases</h3>
+      <ul>
+        <li><strong>What you're buying.</strong> The Game includes virtual items such as gems, summon scrolls, passes, cosmetics and other content ("Virtual Items"). Some can be earned by playing, and some can be bought with real money. When you get a Virtual Item, you receive a limited license to use it in the Game. You don't own it.</li>
+        <li><strong>No cash value.</strong> Virtual Items have no real-world value. They can't be exchanged for money, sold, traded, or moved between accounts, except where the Game itself allows it (for example, gifting inside an alliance).</li>
+        <li><strong>Payments.</strong> All purchases go through the Apple App Store or Google Play and follow their payment terms. Prices are shown in the Game before you buy and may change.</li>
+        <li><strong>Subscriptions and passes.</strong> If we offer an auto-renewing subscription, the price, length and what you get will be shown before you buy. It renews automatically unless you cancel at least 24 hours before the end of the current period, in your Apple or Google account settings. Deleting the app doesn't cancel it.</li>
+        <li><strong>Restoring purchases.</strong> One-time unlocks can be restored with <strong>Restore Purchases</strong> in the store. Used consumables, such as spent gems, can't be restored.</li>
+        <li><strong>Refunds.</strong> Except where the law requires, purchases are final. Refund requests go to Apple (<a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a>) or Google Play. If a refund is given or a payment is reversed, we may remove the matching Virtual Items, which can make your balance go below zero.</li>
+        <li><strong>EU and UK players.</strong> Digital content is delivered straight away when you buy it. By completing a purchase, you agree to immediate delivery and acknowledge that you lose your 14-day right of withdrawal once delivery starts. This doesn't affect your rights if an item is faulty or not delivered.</li>
+        <li><strong>Loss of items.</strong> Virtual Items may be lost if you delete your account, if your account is banned for breaking these Terms, or if the Game shuts down. If we ever close the Game, we'll give at least 60 days' notice in the Game and stop selling Virtual Items first.</li>
+        <li><strong>Mistakes.</strong> If Virtual Items are given in error (for example, through a bug or exploit), we may correct the balance.</li>
+      </ul>
+    </section>
+
+    <section id="odds">
+      <h3><span>VI.</span>Summons and random rewards</h3>
+      <p>Some features give random rewards, such as summons. The odds of each result, and any guarantee (such as a pity counter), are shown in the Game on the Summon screen under <strong>Odds &amp; Guarantees</strong> before you summon. Each summon is independent unless a guarantee says otherwise. Summons can be done with items earned by playing.</p>
+    </section>
+
+    <section id="conduct">
+      <h3><span>VII.</span>Code of conduct</h3>
+      <p>Warlords fight hard but play fair. You agree <strong>not</strong> to:</p>
+      <ul>
+        <li>Post or send anything hateful, racist, sexist, homophobic or otherwise discriminatory, or anything that harasses, bullies, threatens or encourages self-harm.</li>
+        <li>Post sexual, obscene or graphic violent content, or anything illegal.</li>
+        <li>Pretend to be another person, a Legaryn team member, or a moderator.</li>
+        <li>Share anyone's personal information, including your own, such as real names, addresses, phone numbers or photos.</li>
+        <li>Spam, advertise, phish, scam, or offer to buy or sell accounts, items or services for real money.</li>
+        <li>Use cheats, bots, macros, mods, hacks or any unauthorised software, or exploit bugs to gain an advantage. Please report bugs to us instead.</li>
+        <li>Attack, overload or interfere with our servers, or try to access accounts or data that aren't yours.</li>
+        <li>Use multiple accounts to boost, farm or manipulate wars, leaderboards, bounties or rewards.</li>
+        <li>Break any law while using the Game.</li>
+      </ul>
+    </section>
+
+    <section id="ugc">
+      <h3><span>VIII.</span>Chat and player content</h3>
+      <ul>
+        <li><strong>Zero tolerance.</strong> We do not tolerate objectionable content or abusive players.</li>
+        <li><strong>Tools for you.</strong> In any chat, press and hold a player's name to <strong>mute, block or report</strong> them. Blocking hides their messages and stops them from messaging you.</li>
+        <li><strong>Filtering.</strong> Hateful and harmful words are blocked automatically and swearing is hidden. Filters aren't perfect, so please report anything that gets through.</li>
+        <li><strong>Reports.</strong> We review reports and act on objectionable content within 24 hours, by removing the content and, where appropriate, suspending or banning the player who posted it.</li>
+        <li><strong>Your content.</strong> You keep any rights you have in what you post, such as chat messages, names and alliance mottos. You give us a worldwide, free, non-exclusive license to host, show, store and use it to run and promote the Game. You're responsible for what you post.</li>
+        <li><strong>No guarantee.</strong> Other players' content isn't ours and doesn't reflect our views. We may remove any content at any time.</li>
+      </ul>
+    </section>
+
+    <section id="enforcement">
+      <h3><span>IX.</span>Suspensions and bans</h3>
+      <p>If you break these Terms, we may warn you, remove content, mute you, reset progress or items gained unfairly, or suspend or permanently ban your account and devices. Depending on how serious it is, this may happen without warning. Banned players lose access to their Virtual Items with no refund, except where the law requires one. If you think we made a mistake, email <a href="mailto:support@legaryn.com">support@legaryn.com</a> and we'll take another look.</p>
+    </section>
+
+    <section id="changes-game">
+      <h3><span>X.</span>Changes to the game</h3>
+      <p>Legaryn is a live game. We may update, balance, add or remove features, beasts, items, events and rewards, and we may need to take servers down for maintenance. You may need to install updates to keep playing. We'll try to give notice of major changes.</p>
+    </section>
+
+    <section id="ip">
+      <h3><span>XI.</span>Ownership</h3>
+      <p>The Game, including its name, logo, artwork, beasts, story, music, sounds and code, belongs to us or our licensors and is protected by copyright, trademark and other laws. Except for the license in section IV, these Terms don't give you any rights to it. Ideas or feedback you send us may be used freely, without payment to you.</p>
+    </section>
+
+    <section id="health">
+      <h3><span>XII.</span>Health warning</h3>
+      <p>The Game contains flashing lights and fast-moving effects. A small number of people may have seizures when exposed to them, even without a history of epilepsy. If you feel dizzy or unwell, or notice twitching, stop playing and see a doctor. <strong>Reduce Visual Intensity</strong> in Settings tones down these effects. Take regular breaks.</p>
+    </section>
+
+    <section id="thirdparty">
+      <h3><span>XIII.</span>Third-party services</h3>
+      <p>The Game uses services from others, such as Apple, Google, Supabase, RevenueCat and Gravatar, and links to places like our Discord server. Their own terms apply, and we're not responsible for their services or content.</p>
+    </section>
+
+    <section id="warranty">
+      <h3><span>XIV.</span>Disclaimers</h3>
+      <p class="caps">TO THE FULLEST EXTENT ALLOWED BY LAW, THE GAME IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. WE DON'T PROMISE THE GAME WILL ALWAYS BE AVAILABLE, ERROR-FREE OR SECURE, OR THAT PROGRESS OR DATA WILL NEVER BE LOST.</p>
+    </section>
+
+    <section id="liability">
+      <h3><span>XV.</span>Limitation of liability</h3>
+      <p class="caps">TO THE FULLEST EXTENT ALLOWED BY LAW, WE ARE NOT LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, OR FOR LOSS OF PROFITS, DATA, GOODWILL OR VIRTUAL ITEMS, ARISING FROM YOUR USE OF THE GAME. OUR TOTAL LIABILITY FOR ANY CLAIM IS LIMITED TO THE GREATER OF (A) THE AMOUNT YOU PAID US IN THE 6 MONTHS BEFORE THE CLAIM, OR (B) US $50.</p>
+      <p>Some places don't allow these limits, so they may not apply to you. Nothing in these Terms limits liability for death or personal injury caused by negligence, for fraud, or anything else that can't be limited by law, and nothing removes the legal rights you have as a consumer where you live.</p>
+    </section>
+
+    <section id="indemnity">
+      <h3><span>XVI.</span>Your responsibility</h3>
+      <p>To the extent the law allows, you agree to cover our reasonable costs and losses from claims made by others because you broke these Terms or the law, or because of content you posted.</p>
+    </section>
+
+    <section id="termination">
+      <h3><span>XVII.</span>Ending this agreement</h3>
+      <p>You can stop playing and delete your account any time in <strong>Settings &rarr; Danger Zone &rarr; Delete Account</strong>. We may end these Terms or your access as described in section IX, or if we close the Game. Sections that by their nature should continue (such as ownership, disclaimers, limitation of liability and disputes) still apply afterwards.</p>
+    </section>
+
+    <section id="disputes">
+      <h3><span>XVIII.</span>Disputes and governing law</h3>
+      <p><strong>Talk to us first.</strong> Most problems can be fixed quickly. Before starting any legal claim, please email <a href="mailto:support@legaryn.com">support@legaryn.com</a> with a short description and give us 30 days to try to resolve it.</p>
+      <p><strong>Governing law.</strong> These Terms are governed by the laws of the United States and the state where Legaryn's developer is based, without regard to conflict-of-law rules. If you live in the EU, UK or another country with mandatory consumer protection laws, you keep those protections and may bring a claim in the courts where you live. Either side may take a qualifying claim to small claims court.</p>
+    </section>
+
+    <section id="apple">
+      <h3><span>XIX.</span>Apple App Store terms</h3>
+      <p>If you downloaded the Game from the Apple App Store:</p>
+      <ul>
+        <li>These Terms are between you and us only, not Apple. We, not Apple, are solely responsible for the Game and its content.</li>
+        <li>Your license is limited to using the Game on Apple-branded devices you own or control, as allowed by the Usage Rules in the Apple Media Services Terms and Conditions. Accounts may also be used through Family Sharing where it's supported.</li>
+        <li>Apple has no obligation to provide maintenance or support for the Game.</li>
+        <li>If the Game fails to meet any applicable warranty, you may notify Apple, and Apple will refund the purchase price (if any). To the fullest extent the law allows, Apple has no other warranty obligation for the Game.</li>
+        <li>We, not Apple, are responsible for handling any claims about the Game, including product liability claims, claims that it fails to meet legal or regulatory requirements, and consumer protection or privacy claims.</li>
+        <li>If anyone claims the Game or your use of it infringes their intellectual property, we, not Apple, are responsible for investigating, defending, settling and discharging that claim.</li>
+        <li>You confirm that you are not located in a country subject to a US Government embargo or designated as a "terrorist supporting" country, and that you are not on any US Government list of prohibited or restricted parties.</li>
+        <li>You must follow any applicable third-party terms when using the Game, such as your mobile carrier's terms.</li>
+        <li>Apple and its subsidiaries are third-party beneficiaries of these Terms. Once you accept them, Apple has the right to enforce them against you.</li>
+      </ul>
+    </section>
+
+    <section id="google">
+      <h3><span>XX.</span>Google Play terms</h3>
+      <p>If you downloaded the Game from Google Play, the Google Play Terms of Service also apply to your purchases. Google is not a party to these Terms and is not responsible for the Game.</p>
+    </section>
+
+    <section id="changes">
+      <h3><span>XXI.</span>Changes to these terms</h3>
+      <p>We may update these Terms from time to time. We'll change the date at the top and, for important changes, tell you in the Game before they take effect. If you keep playing after that, you accept the new Terms. If you don't agree, you can stop playing and delete your account.</p>
+    </section>
+
+    <section id="general">
+      <h3><span>XXII.</span>General</h3>
+      <ul>
+        <li>These Terms and the Privacy Policy are the whole agreement between you and us about the Game.</li>
+        <li>If any part is found unenforceable, the rest still applies.</li>
+        <li>If we don't enforce a right straight away, we haven't given it up.</li>
+        <li>You can't transfer your rights under these Terms. We may transfer ours, for example if the Game is sold or moved to a company we set up.</li>
+        <li>We're not responsible for delays or failures caused by things outside our reasonable control.</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h3><span>XXIII.</span>Contact</h3>
+      <div class="card ember" style="margin-top:12px">
+        <p>Questions, legal notices or appeals go to the Legaryn team. A real person will reply.</p>
+        <a class="btn" href="mailto:support@legaryn.com">support@legaryn.com</a>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+    <footer>
+      <a href="/support/">SUPPORT</a>
+      <a href="/privacy/">PRIVACY POLICY</a>
+      <div style="margin-top:12px">&copy; 2026 LEGARYN MYTHIC LEGENDS</div>
+    </footer>
+  </main>
 </body>
 </html>
