@@ -92,7 +92,7 @@
       padding: 120px 20px 64px; overflow: hidden; z-index: 3;
     }
     .hero-art {
-      position: absolute; inset: 0; background: url('art/hero-pale-widow.jpg') center 22% / cover no-repeat;
+      position: absolute; inset: 0; background: url('art/hero_dragon.webp') center 22% / cover no-repeat;
       transform: scale(1.06); animation: breathe 18s ease-in-out infinite alternate;
     }
     @keyframes breathe { to { transform: scale(1.0); } }
@@ -110,6 +110,7 @@
     }
     .hero-line { font-size: clamp(16px, 2.6vw, 19px); color: var(--bone); max-width: 520px; margin: 0 auto 26px; text-shadow: 0 2px 10px #000; }
 
+    .counter[hidden] { display: none; }
     .counter {
       display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 999px;
       border: 1px solid var(--gold-rule); background: rgba(10,9,8,0.7); font-family: var(--title);
@@ -278,6 +279,100 @@
     .legal { display: flex; gap: 20px; justify-content: center; margin-top: 10px; }
     .legal a { font-family: var(--title); font-size: 11px; letter-spacing: 2px; color: var(--parchment); text-decoration: none; padding: 10px 0; }
 
+
+    /* ---- Merged chapters (P-219) ---- */
+    .codex { background: linear-gradient(180deg, var(--abyss), #0D0B09 60%, var(--abyss)); }
+    .codex-grid { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; margin: 40px auto 0; max-width: 760px; border: 1px solid var(--gold-rule); border-radius: 16px; overflow: hidden; background: rgba(18,18,20,0.7); }
+    .codex-grid a { display: flex; flex-direction: column; gap: 10px; padding: 22px 20px; min-height: 96px; text-decoration: none; border: 1px solid rgba(201,164,92,0.12); margin: -1px 0 0 -1px; transition: background 0.2s, color 0.2s; }
+    .codex-grid a:hover, .codex-grid a:focus-visible { background: rgba(201,164,92,0.08); outline: none; }
+    .codex-grid .num { font-family: var(--display); font-size: 26px; color: var(--gold-dim); line-height: 1; }
+    .codex-grid .nm { font-family: var(--title); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--bone); }
+    @media (min-width: 720px) { .codex-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    .chap { position: relative; }
+    .chap-head { display: flex; align-items: center; gap: 12px; font-family: var(--title); font-size: 11px; letter-spacing: 4px; color: var(--gold); }
+    .chap-head b { font-family: var(--display); font-size: 15px; color: var(--gold-bright); letter-spacing: 2px; }
+    .chap-head i { flex: 0 0 44px; height: 1px; background: var(--gold-rule); }
+    .chap h2 { font-family: var(--display); font-weight: 900; font-size: clamp(26px, 4.6vw, 44px); line-height: 1.15; color: var(--bone); margin: 12px 0 14px; text-shadow: 0 2px 0 #000; }
+    .chap p.body { color: var(--parchment); max-width: 520px; font-size: 16px; }
+    .chips { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .chips li { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 10px; border: 1px solid rgba(201,164,92,0.4); background: rgba(10,9,8,0.72); font-family: var(--title); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-bright); }
+    .chips svg, .rows svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 1.8; flex-shrink: 0; }
+
+    .plate { position: relative; border: 1px solid var(--gold-dim); border-radius: 18px; overflow: hidden; min-height: 520px; display: flex; align-items: flex-end; box-shadow: 0 30px 80px -30px rgba(0,0,0,0.9); }
+    .plate > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% center; }
+    .plate::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(5,5,5,0.97) 0%, rgba(5,5,5,0.72) 38%, rgba(5,5,5,0.05) 78%); }
+    .plate-copy { position: relative; z-index: 2; padding: 28px 24px; width: 100%; }
+    @media (min-width: 900px) { .plate { min-height: 600px; } .plate-copy { padding: 48px 56px; max-width: 640px; } .plate::after { background: linear-gradient(0deg, rgba(5,5,5,0.9) 0%, rgba(5,5,5,0.1) 60%), linear-gradient(90deg, rgba(5,5,5,0.85) 0%, rgba(5,5,5,0) 62%); } }
+
+    .split { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: center; }
+    @media (min-width: 900px) { .split { grid-template-columns: 0.9fr 1.1fr; gap: 64px; } .split.flip { grid-template-columns: 1.1fr 0.9fr; } .split.flip .split-art { order: 2; } }
+    .split-art { border: 1px solid var(--gold-dim); border-radius: 16px; overflow: hidden; box-shadow: 0 30px 80px -30px rgba(0,0,0,0.9); }
+    .split-art img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+    .rows { list-style: none; margin-top: 26px; max-width: 520px; border-top: 1px solid rgba(201,164,92,0.2); border-bottom: 1px solid rgba(201,164,92,0.2); }
+    .rows li { display: flex; align-items: center; gap: 16px; padding: 16px 0; font-family: var(--title); font-size: 16px; letter-spacing: 1px; color: var(--parchment); }
+    .rows li + li { border-top: 1px solid rgba(201,164,92,0.1); }
+    .rows .ic { width: 42px; height: 42px; flex-shrink: 0; display: grid; place-items: center; border-radius: 10px; border: 1px solid rgba(201,164,92,0.4); background: var(--iron); }
+    .rows .ic svg { width: 20px; height: 20px; }
+
+    .empire { position: relative; isolation: isolate; overflow: hidden; text-align: center; padding: 120px 20px; border-top: 1px solid var(--gold-rule); border-bottom: 1px solid var(--gold-rule); }
+    .empire > img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+    .empire::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, var(--abyss) 0%, rgba(5,5,5,0.55) 22%, rgba(5,5,5,0.5) 60%, var(--abyss) 100%); }
+    .empire .chap-head { justify-content: center; }
+    .empire p.body { margin: 0 auto; color: var(--bone); }
+
+    .banner { position: relative; max-width: 420px; margin: 0 auto; }
+    .banner-rod { height: 12px; width: 108%; margin: 0 0 -6px -4%; border-radius: 999px; background: linear-gradient(180deg, var(--gold-bright), var(--gold-dim)); box-shadow: 0 6px 20px rgba(0,0,0,0.8); position: relative; z-index: 2; }
+    .banner-cloth { position: relative; overflow: hidden; border-left: 1px solid rgba(201,164,92,0.4); border-right: 1px solid rgba(201,164,92,0.4); background: var(--iron); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 92%, 0 100%); }
+    .banner-cloth img { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
+    .banner-cloth::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,5,5,0) 55%, rgba(5,5,5,0.85) 100%); }
+    .banner-cloth span { position: absolute; z-index: 2; left: 0; right: 0; bottom: 16%; text-align: center; font-family: var(--title); font-size: 13px; letter-spacing: 6px; color: var(--gold-bright); text-transform: uppercase; }
+    .join-line { display: flex; align-items: center; gap: 14px; margin-top: 26px; font-family: var(--title); font-size: 18px; letter-spacing: 1px; color: var(--gold-bright); }
+    .join-line .ic { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(201,164,92,0.5); background: var(--iron); }
+    .join-line svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.8; }
+
+    .bounties { position: relative; isolation: isolate; overflow: hidden; }
+    .bounties > img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; opacity: 0.4; }
+    .bounties::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, var(--abyss) 0%, rgba(11,10,15,0.82) 30%, rgba(11,10,15,0.9) 70%, var(--abyss) 100%); }
+    .notices { display: grid; grid-template-columns: 1fr; gap: 44px; margin-top: 64px; }
+    @media (min-width: 800px) { .notices { grid-template-columns: repeat(3, 1fr); gap: 28px; } }
+    .notice { position: relative; padding: 52px 26px 30px; border-radius: 18px; text-align: center; background: linear-gradient(180deg, #1c1915, #13110f); border: 1px solid rgba(201,164,92,0.3); box-shadow: 0 30px 60px -25px rgba(0,0,0,0.9), inset 0 1px 0 rgba(240,217,160,0.08); }
+    .notice.red { border-color: rgba(217,83,63,0.45); }
+    .notice .seal { position: absolute; left: 50%; top: 0; transform: translate(-50%, -50%); width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 35% 30%, #f0d9a0, #c9a45c 45%, #6d5223 100%); box-shadow: 0 8px 24px rgba(0,0,0,0.7), inset 0 -2px 4px rgba(0,0,0,0.4); }
+    .notice.red .seal { background: radial-gradient(circle at 35% 30%, #f07a63, #d9533f 45%, #7a2216 100%); }
+    .notice .seal svg { width: 24px; height: 24px; stroke: #1A1308; fill: none; stroke-width: 2.2; }
+    .notice h3 { font-family: var(--title); font-size: 22px; letter-spacing: 2px; color: var(--gold-bright); }
+    .notice .nr { width: 80px; height: 1px; margin: 16px auto; background: var(--gold-rule); }
+    .notice.red .nr { background: rgba(217,83,63,0.5); }
+    .notice p { color: var(--parchment); font-size: 15px; }
+
+    .descent { border: 1px solid var(--gold-dim); border-radius: 18px; overflow: hidden; display: grid; grid-template-columns: 1fr; background: var(--abyss); box-shadow: 0 30px 80px -30px rgba(0,0,0,0.9); }
+    .descent-art { position: relative; min-height: 420px; }
+    .descent-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .descent-art::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, #050505 0%, rgba(5,5,5,0) 45%); }
+    .descent-copy { padding: 28px 24px 36px; }
+    .descent-copy .light { display: flex; align-items: center; gap: 12px; margin-top: 22px; font-family: var(--title); font-size: 17px; color: var(--gold-bright); letter-spacing: 1px; }
+    @media (min-width: 900px) { .descent { grid-template-columns: 1fr 1fr; } .descent-art { order: 2; min-height: 600px; } .descent-art::after { background: linear-gradient(90deg, #050505 0%, rgba(5,5,5,0) 40%); } .descent-copy { padding: 56px; align-self: center; } }
+
+    .comfort-panel { position: relative; border: 1px solid var(--gold-rule); border-radius: 18px; padding: 28px 24px; background: linear-gradient(180deg, #1c1915, #13110f); overflow: hidden; }
+    .comfort-panel::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--ember), transparent); }
+    @media (min-width: 900px) { .comfort-panel { padding: 56px 64px; } }
+    .switch-card { border: 1px solid rgba(201,164,92,0.25); border-radius: 18px; padding: 24px; background: rgba(8,9,10,0.8); }
+    .switch-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+    .switch-row strong { display: block; font-family: var(--title); font-size: 18px; color: var(--gold-bright); letter-spacing: 1px; }
+    .switch-row small { display: block; margin-top: 6px; color: var(--dim); font-size: 14px; }
+    .switch { flex-shrink: 0; position: relative; width: 56px; height: 32px; border-radius: 999px; border: 1px solid rgba(201,164,92,0.4); background: #26241d; cursor: pointer; transition: background 0.2s; padding: 0; }
+    .switch::after { content: ''; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: var(--gold-bright); transition: left 0.2s; }
+    .switch[aria-checked="true"] { background: var(--gold); border-color: var(--gold); }
+    .switch[aria-checked="true"]::after { left: 27px; background: #1A1308; }
+    .switch:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 3px; }
+    .switch-note { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--gold-rule); color: var(--dim); font-size: 14px; }
+    html.reduce *, html.reduce *::before, html.reduce *::after { animation: none !important; transition: none !important; }
+    html.reduce #embers { display: none; }
+    html.reduce .reveal { opacity: 1; transform: none; }
+    .closing-line { margin-top: 28px; font-family: var(--title); letter-spacing: 2px; color: var(--parchment); font-size: 14px; text-align: center; }
+    section.pad { padding: 72px 20px; }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
       #embers { display: none; }
@@ -304,14 +399,14 @@
 
   <!-- HERO -->
   <header class="hero" id="top">
-    <div class="hero-art" role="img" aria-label="The Pale Widow on her throne"></div>
+    <div class="hero-art" role="img" aria-label="A colossal dragon perched on the spire of a dark citadel at night"></div>
     <div class="hero-inner" id="join">
       <img class="wordmark" src="art/wordmark.webp" alt="Legaryn" width="420" height="145" />
       <p class="hero-line">The Hollow Realm is dying. Bind the beasts mortals once feared, forge them into legends, and take what the dead left behind.</p>
 
-      <div class="counter" aria-live="polite">
+      <div class="counter" id="soul-line" aria-live="polite" hidden>
         <span class="counter-dot"></span>
-        <span><strong id="soul-count">2,847</strong> SOULS HAVE JOINED THE REALM</span>
+        <span><strong id="soul-count"></strong> SOULS HAVE JOINED THE REALM</span>
       </div>
 
       <div class="reward">
@@ -380,6 +475,40 @@
     </div>
   </section>
 
+  <!-- EIGHT PATHS -->
+  <section class="codex pad" id="codex">
+    <div class="wrap">
+      <p class="eyebrow reveal">THE CODEX</p>
+      <h2 class="h2 reveal">Eight Paths to Legend</h2>
+      <div class="rule"></div>
+      <ol class="codex-grid reveal">
+        <li><a href="#battle"><span class="num">I</span><span class="nm">Battle</span></a></li>
+        <li><a href="#beasts"><span class="num">II</span><span class="nm">Beasts</span></a></li>
+        <li><a href="#arsenal"><span class="num">III</span><span class="nm">Arsenal</span></a></li>
+        <li><a href="#empire"><span class="num">IV</span><span class="nm">Empire</span></a></li>
+        <li><a href="#alliance"><span class="num">V</span><span class="nm">Alliance</span></a></li>
+        <li><a href="#bounties"><span class="num">VI</span><span class="nm">Bounties</span></a></li>
+        <li><a href="#descent"><span class="num">VII</span><span class="nm">Descent</span></a></li>
+        <li><a href="#accessibility"><span class="num">VIII</span><span class="nm">Accessibility</span></a></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- I BATTLE -->
+  <section class="chap pad" id="battle">
+    <div class="wrap">
+      <div class="plate reveal">
+        <img src="art/battle_boss.webp" alt="A lone warrior facing an enormous horned titan in a burning arena" loading="lazy" />
+        <div class="plate-copy">
+          <div class="chap-head"><b>I</b><i></i>BATTLE</div>
+          <h2>Stand Against the Colossal</h2>
+          <p class="body">Lead your beasts into battle and face the bosses that tower over the field. Each fight is a test of the legend you are building.</p>
+          <ul class="chips"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4M19 21l2-2"/></svg>Battles</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a7 7 0 0 0-7 7c0 2.3 1 3.7 2.5 4.8V18h9v-3.2C18 13.7 19 12.3 19 10a7 7 0 0 0-7-7z"/><circle cx="9.3" cy="10.5" r="1"/><circle cx="14.7" cy="10.5" r="1"/><path d="M10 18v2M14 18v2"/></svg>Boss fights</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- BEASTS -->
   <section id="beasts">
     <div class="wrap">
@@ -442,6 +571,56 @@
     </div>
   </section>
 
+  <!-- III ARSENAL -->
+  <section class="chap pad" id="arsenal">
+    <div class="wrap">
+      <div class="split">
+        <div class="split-art reveal"><img src="art/arsenal.webp" alt="Gilded sword, shield, helm and armor displayed in candlelight" loading="lazy" /></div>
+        <div class="reveal">
+          <div class="chap-head"><b>III</b><i></i>GEAR</div>
+          <h2>The Arsenal</h2>
+          <p class="body">Every legend needs steel. The Arsenal is where your gear is kept, ready for the battles ahead.</p>
+          <ul class="rows">
+            <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4M19 21l2-2"/></svg></span>Your gear</li>
+            <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/></svg></span>Ready for battle</li>
+            <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M7 20v-3h10v3M12 4l2 4-2 3-2-3z"/></svg></span>Kept in the Arsenal</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IV EMPIRE -->
+  <section class="empire" id="empire">
+    <img src="art/empire.webp" alt="A dark fantasy empire of black fortresses and gold-roofed towers at dusk" loading="lazy" />
+    <div class="wrap">
+      <div class="chap reveal">
+        <div class="chap-head"><b>IV</b><i></i>EMPIRE</div>
+        <h2>Build Your Empire</h2>
+        <p class="body">Raise an empire of stone and gold and shape the seat of your power. Every battle won and every beast summoned serves the throne you build.</p>
+        <div class="rule"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- V ALLIANCE -->
+  <section class="chap pad" id="alliance">
+    <div class="wrap">
+      <div class="split flip">
+        <div class="reveal">
+          <div class="chap-head"><b>V</b><i></i>ALLIANCE</div>
+          <h2>No Legend Stands Alone</h2>
+          <p class="body">Join an Alliance and stand with others beneath one banner. Find your allies and fight for something greater than a single throne.</p>
+          <div class="join-line"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/></svg></span>Join an Alliance</div>
+        </div>
+        <div class="split-art banner reveal" style="border:0;box-shadow:none;overflow:visible">
+          <div class="banner-rod" aria-hidden="true"></div>
+          <div class="banner-cloth"><img src="art/alliance.webp" alt="Allied lords gathered around a war table beneath gold banners" loading="lazy" style="aspect-ratio:3/4" /><span>Allied</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- WARS -->
   <section class="wars" id="wars">
     <div class="wrap">
@@ -493,31 +672,54 @@
     </div>
   </section>
 
-  <!-- FEATURES -->
-  <section>
+  <!-- VI BOUNTIES -->
+  <section class="bounties pad" id="bounties" style="padding-top:96px;padding-bottom:96px">
+    <img src="art/bounty_board.webp" alt="" aria-hidden="true" loading="lazy" />
     <div class="wrap">
-      <p class="eyebrow reveal">THE REALM HOLDS MANY SECRETS</p>
-      <h2 class="h2 reveal">What Awaits You</h2>
-      <div class="features">
-        <div class="feature reveal">
-          <div class="feature-glyph"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></svg></div>
-          <h3>SUMMON</h3>
-          <p>Open the portal and call forth beasts of myth, from graveyard ghouls to gods. Rare Awakened forms shine in pale gold.</p>
+      <p class="eyebrow reveal">VI · DAILY GOALS</p>
+      <h2 class="h2 reveal">A Purpose for Every Day</h2>
+      <p class="lead reveal">The Bounty Board, Blood Debts and Missions set your daily goals.</p>
+      <div class="notices">
+        <article class="notice reveal"><span class="seal"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.8"/></svg></span><h3>BOUNTY BOARD</h3><div class="nr"></div><p>Bounties are posted for those bold enough to claim them. Check the board and take up the hunt.</p></article>
+        <article class="notice red reveal"><span class="seal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a7 7 0 0 0-7 7c0 2.3 1 3.7 2.5 4.8V18h9v-3.2C18 13.7 19 12.3 19 10a7 7 0 0 0-7-7z"/><circle cx="9.3" cy="10.5" r="1"/><circle cx="14.7" cy="10.5" r="1"/><path d="M10 18v2M14 18v2"/></svg></span><h3>BLOOD DEBTS</h3><div class="nr"></div><p>Some debts are paid only in blood. Settle your Blood Debts and let no score go unanswered.</p></article>
+        <article class="notice reveal"><span class="seal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10a2 2 0 0 1 2 2v13l-3-2-2 2-2-2-2 2-2-2-3 2V6a2 2 0 0 1 2-2z"/><path d="M9 9h6M9 12h6"/></svg></span><h3>MISSIONS</h3><div class="nr"></div><p>Missions give every day a purpose. Complete them and keep your legend moving forward.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- VII DESCENT -->
+  <section class="chap pad" id="descent">
+    <div class="wrap">
+      <div class="descent reveal">
+        <div class="descent-art"><img src="art/descent.webp" alt="A hooded figure carrying a lantern down a spiral stairway into darkness" loading="lazy" /></div>
+        <div class="descent-copy">
+          <div class="chap-head"><b>VII</b><i></i>A RUN BY LANTERN LIGHT</div>
+          <h2>The Descent</h2>
+          <p class="body">Go down into the dark with only lanterns to light the way. The Descent is a run into the deep, where every step is taken in a small circle of light.</p>
+          <div class="light"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M12 1v2M7 6h10l1 3H6l1-3zM8 9v8M16 9v8M6 17h12l-1 3H7z"/></svg>Carry the light</div>
         </div>
-        <div class="feature reveal">
-          <div class="feature-glyph"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 18h16M7 18v-3h10v3M9 15V9h6v6M12 9V4"/></svg></div>
-          <h3>FORGE</h3>
-          <p>Feed copies into the Ascension Forge. Each star makes a beast stronger, and three-star Mythics change your whole Pack.</p>
-        </div>
-        <div class="feature reveal">
-          <div class="feature-glyph"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4M19 21l2-2"/></svg></div>
-          <h3>RAID</h3>
-          <p>Hunt rival Warlords, claim bounties from the Bounty Board, and descend the Catacombs toward the Master Keeper's light.</p>
-        </div>
-        <div class="feature reveal">
-          <div class="feature-glyph"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 18l2-10 5 5 2-7 2 7 5-5 2 10z"/></svg></div>
-          <h3>RULE</h3>
-          <p>Seize haunted properties, bank your fortune, and earn titles like Soulforger and Eternal that every Warlord can see.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIII ACCESSIBILITY -->
+  <section class="chap pad" id="accessibility">
+    <div class="wrap">
+      <div class="comfort-panel reveal">
+        <div class="split flip" style="gap:36px">
+          <div>
+            <div class="chap-head"><b>VIII</b><i></i>ACCESSIBILITY</div>
+            <h2>Play in Comfort</h2>
+            <p class="body">Legaryn gives you the choice to reduce flashing lights, bursts and screen shakes, so the drama of battle stays comfortable to watch.</p>
+            <ul class="chips"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>Flashing lights</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg>Bursts</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9c3-3 5 3 8 0s5 3 8 0 3 0 4 0M2 15c3-3 5 3 8 0s5 3 8 0 3 0 4 0"/></svg>Screen shakes</li></ul>
+          </div>
+          <div class="switch-card">
+            <div class="switch-row">
+              <div><strong id="reduce-label">Reduce effects</strong><small>Reduce flashing lights, bursts and screen shakes</small></div>
+              <button type="button" class="switch" id="reduce-switch" role="switch" aria-checked="false" aria-labelledby="reduce-label"></button>
+            </div>
+            <p class="switch-note" id="reduce-note">Try it here: this switch also calms the drifting embers and flickering light on this page.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -557,6 +759,7 @@
           <p>You have been marked. <strong style="color:var(--gold-bright)">Your Epic Summon awaits in the void.</strong></p>
         </div>
       </div>
+      <p class="closing-line reveal">Mythic beasts, battles and empires, in the palm of your hand.</p>
     </div>
   </section>
 
@@ -642,15 +845,37 @@
       }, { threshold: 0.12 });
       document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
 
-      // Souls counter
-      var count = 2847;
-      var countEl = document.getElementById('soul-count');
-      setInterval(function () {
-        if (Math.random() < 0.3) {
-          count += Math.floor(Math.random() * 3) + 1;
-          countEl.textContent = count.toLocaleString();
+      // Real signup count. Set REAL_COUNT to the number from the Web3Forms dashboard.
+      // The line shows only when the count is at least SHOW_COUNT_FROM. Never a made-up number.
+      var SHOW_COUNT_FROM = 250;
+      var REAL_COUNT = null;
+      if (REAL_COUNT !== null && REAL_COUNT >= SHOW_COUNT_FROM) {
+        document.getElementById('soul-count').textContent = REAL_COUNT.toLocaleString();
+        document.getElementById('soul-line').hidden = false;
+      }
+
+      // Reduce effects switch (also follows the device's reduced-motion setting by default)
+      (function () {
+        var KEY = 'legaryn:reduce-effects';
+        var sw = document.getElementById('reduce-switch');
+        var note = document.getElementById('reduce-note');
+        if (!sw) return;
+        var saved = null;
+        try { saved = localStorage.getItem(KEY); } catch (_) {}
+        var on = saved !== null ? saved === '1'
+          : !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+        function apply() {
+          document.documentElement.classList.toggle('reduce', on);
+          sw.setAttribute('aria-checked', on ? 'true' : 'false');
+          note.textContent = 'Try it here: this switch also calms the drifting embers and flickering light on this page.' + (on ? ' Effects are reduced.' : '');
         }
-      }, 4000);
+        sw.addEventListener('click', function () {
+          on = !on;
+          try { localStorage.setItem(KEY, on ? '1' : '0'); } catch (_) {}
+          apply();
+        });
+        apply();
+      })();
 
       // Store buttons stay inert until they're made live
       document.querySelectorAll('.store').forEach(function (a) {
